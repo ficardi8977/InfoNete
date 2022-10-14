@@ -2,6 +2,7 @@
 include_once("helper/MysqlDatabase.php");
 include_once("helper/Render.php");
 include_once("helper/UrlHelper.php");
+
 include_once("controller/LoginController.php");
 
 include_once("model/UsuarioModel.php");
@@ -54,29 +55,4 @@ class Configuration{
     public function getUrlHelper(){
         return new UrlHelper();
     }
-
-
-    /*public function getCancionModel(){
-        $database = $this->getDatabase();
-        return new SongModel($database);
-    }
-
-    public function getTourController(){
-        $presentacionModel = $this->getPresentacionModel();
-        return new TourController($presentacionModel, $this->getRender());
-    }
-
-    public function getSongController(){
-        $cancionesModel = $this->getCancionModel();
-        return new SongController($cancionesModel, $this->getRender());
-    }
-
-    public function getLaBandaController(){
-        return new LaBandaController($this->getRender());
-    }
-
-    public function getQuieroSerParteController(){
-        return new QuieroSerParteController($this->getRender());
-    }
-    */
 }
