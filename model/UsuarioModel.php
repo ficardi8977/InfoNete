@@ -15,7 +15,7 @@ class UsuarioModel
 
     public function getUsuario($nombre, $password){
         //$passMd5 = md5($password);
-        $sql = "SELECT * FROM usuario where nombre = " . $nombre ."and password = ". $password;
+        $sql = "SELECT * FROM usuario where nombre = '" . $nombre ."'and password = '". $password. "'";
         return $this->database->query($sql);
     }
 }
