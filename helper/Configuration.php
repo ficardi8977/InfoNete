@@ -4,6 +4,7 @@ include_once("helper/Render.php");
 include_once("helper/UrlHelper.php");
 
 include_once("controller/LoginController.php");
+include_once("controller/SigninController.php");
 
 include_once("model/UsuarioModel.php");
 
@@ -38,6 +39,13 @@ class Configuration{
         $model = $this-> getUsuarioModel();
         $render = $this->getRender();
         return new LoginController($model, $render);
+    }
+
+    public function getSigninController()
+    {
+        $model = $this->getUsuarioModel();
+        $render = $this->getRender();
+        return new SigninController($model, $render);
     }
 
     private function getConfig(){

@@ -18,4 +18,10 @@ class UsuarioModel
         $sql = "SELECT * FROM usuario where nombre = '" . $nombre ."'and password = '". $password. "'";
         return $this->database->query($sql);
     }
+
+    public function setUsuario($nombre, $password){
+    $sql = "INSERT INTO usuario (nombre, password, IdTipoUsuario, Email, ValidacionMail, UbicacionGeografica)
+    VALUES ('$nombre', $password, 1, 'a@a', 0, 'Las toninas')";
+    return ($this->database->execute($sql));
+    }
 }
