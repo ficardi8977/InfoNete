@@ -1,0 +1,24 @@
+{{> header}}
+<div class="container">
+
+<form class= "form-column-center" action="verificar" method="POST" enctype="multipart/form-data">
+    
+    <label for="nombre">Nombre de usuario</label>
+    <input type="text" id="nombre" class="form-control" name="nombre" placeholder="nombre">
+
+    <label for="contraseña">contraseña</label>
+    <input type="contraseña" class="form-control" id="contraseña" name="contraseña" placeholder="contraseña">
+
+    <label for="email">email</label>
+    <input type="email" class="form-control" id="email" name="email" placeholder="email">
+
+    <label for="coordenadasX">direccion : coordenadasX</label>
+    <input type="text"  class="form-control" id="coordenadasX" name="coordenadasX" placeholder="coordenadasX">
+
+    <label for="coordenadasY">direccion : coordenadasY</label>
+    <input type="text"  class="form-control" id="coordenadasY" name="coordenadasY" placeholder="coordenadasY">
+
+    <input type='submit' class='btn btn-dark' name='verificar' value='verificar'>
+</form>
+</div>
+{{> footer}}
