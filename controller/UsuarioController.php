@@ -16,6 +16,7 @@ class UsuarioController {
 
     public function verificar()
     {
+        //  $resultado = $this->usuarioModel->setUsuario($nombre, $password);
         // llamar a metodo que envia mail con codigo
         echo $this->render->render("verificacionUsuarioView.mustache");
     }
