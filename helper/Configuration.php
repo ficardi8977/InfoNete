@@ -3,7 +3,8 @@ include_once("helper/MysqlDatabase.php");
 include_once("helper/Render.php");
 include_once("helper/UrlHelper.php");
 
-include_once("controller/LoginController.php");
+include_once("controller/HomeController.php");
+include_once("controller/UsuarioController.php");
 
 include_once("model/UsuarioModel.php");
 
@@ -33,11 +34,18 @@ class Configuration{
         return new UsuarioModel($database);
     }
 
-    public function getLoginController()
+    public function getHomeController()
     {
         $model = $this-> getUsuarioModel();
         $render = $this->getRender();
-        return new LoginController($model, $render);
+        return new HomeController($model, $render);
+    }
+
+    public function getRegistrarController()
+    {
+        $model = $this-> getUsuarioModel();
+        $render = $this->getRender();
+        return new UsuarioController($model, $render);
     }
 
     private function getConfig(){

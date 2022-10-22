@@ -13,13 +13,22 @@
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
         <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-        <a href="/" class="w3-bar-item w3-button w3-padding-large">La banda</a>
-        <a href="/home" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Canciones</a>
-        <a href="/tour" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Presentaciones</a>
-        <a href="/quieroSerParte" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Quiero Ser Parte</a>
+        <a href="/" class="w3-bar-item w3-button w3-padding-large">Home</a>
+        <a href="/" class="w3-bar-item w3-button w3-padding-large">Noticias</a>
+        <a href="/" class="w3-bar-item w3-button w3-padding-large">Suscripciones</a>     
+    {{#usuario}}
+        <p class="w3-wide">Hola {{Nombre}}!</p>
+    {{/usuario}}
+    {{^usuario}}
+            <form action="home/session" method="POST">
+                <input type="text" name="nombre" placeholder="nombre">
+                <input type="password" name="password" placeholder="password" >
+                <input type="submit" value="Ingresar">
+            </form>
+            <a href="Usuario/registrar" class="w3-bar-item w3-button w3-padding-large">Registrarse</a>
+        el usuario ingreso no existe
+    {{/usuario}}
     </div>
-</div>
-
-
+<div>
 <!-- Page content -->
 <div class="w3-content" style="max-width:2000px;margin-top:46px">

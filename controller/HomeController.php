@@ -1,6 +1,6 @@
 <?php
 
-class LoginController {
+class HomeController {
     private $usuarioModel;
     private $render;
 
@@ -9,7 +9,7 @@ class LoginController {
         $this->render = $render;
     }
 
-    public function procesarLogin(){
+    public function session(){
         $nombre = $_POST["nombre"];
         $password = $_POST["password"];
 
@@ -20,6 +20,13 @@ class LoginController {
     
     public function execute()
     {
-        echo $this->render->render("view/loginView.php");
+        echo $this->render->render("view/homeView.php");
     }
+
+    /*public function registrar()
+    {
+        echo $this->render->render("view/registrarView.php");
+    }
+    */
 }
+?>
