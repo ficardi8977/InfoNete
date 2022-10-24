@@ -11,7 +11,8 @@ class UsuarioController {
   
     public function alta()
     {
-        echo $this->render->render("signinView.mustache");
+        $data["session"] = $_SESSION;
+        echo $this->render->render("signinView.mustache", $data);
     }
 
     public function verificar()
