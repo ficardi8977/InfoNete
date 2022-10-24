@@ -19,6 +19,9 @@ SET time_zone = "+00:00";
 
 --
 -- Base de datos: `infonete`
+ create database infonete;
+
+
 --
 
 -- --------------------------------------------------------
