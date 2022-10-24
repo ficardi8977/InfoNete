@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-10-2022 a las 21:37:27
+-- Tiempo de generación: 24-10-2022 a las 02:11:00
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -55,11 +55,12 @@ CREATE TABLE `contraseña` (
 --
 
 INSERT INTO `contraseña` (`Id`, `IdUsuario`, `clave`, `FechaVencimiento`, `Validado`, `CodigoValidador`, `FechaExpiracionCodigo`) VALUES
-(1, 1, '1234', '2029-04-04', b'1', NULL, NULL),
-(2, 2, '1234', '2029-04-04', b'1', NULL, NULL),
-(3, 3, '1234', '2029-04-04', b'1', NULL, NULL),
-(4, 4, '1234', '2029-04-04', b'1', NULL, NULL),
-(5, 5, '1234', '2029-04-04', b'1', NULL, NULL);
+(1, 1, '81dc9bdb52d04dc20036dbd8313ed055', '2029-04-04', b'1', NULL, NULL),
+(2, 2, '81dc9bdb52d04dc20036dbd8313ed055', '2029-04-04', b'1', NULL, NULL),
+(3, 3, '81dc9bdb52d04dc20036dbd8313ed055', '2029-04-04', b'1', NULL, NULL),
+(4, 4, '81dc9bdb52d04dc20036dbd8313ed055', '2029-04-04', b'1', NULL, NULL),
+(5, 5, '81dc9bdb52d04dc20036dbd8313ed055', '2029-04-04', b'1', NULL, NULL),
+(13, 16, '81dc9bdb52d04dc20036dbd8313ed055', '2023-10-24', b'1', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -322,7 +323,8 @@ INSERT INTO `usuario` (`Id`, `Nombre`, `IdTipoUsuario`, `Email`, `CoordenadasX`,
 (2, 'Fer', 1, 'sofia@gmail.com', '-34.663050', '-58.593712'),
 (3, 'Eve', 1, 'eve@gmail.com', '-34.663050', '-58.593712'),
 (4, 'Tomas', 1, 'tomy@gmail.com', '-34.663050', '-58.593712'),
-(5, 'Juan', 1, 'juan@gmail.com', '-34.663050', '-58.593712');
+(5, 'Juan', 1, 'juan@gmail.com', '-34.663050', '-58.593712'),
+(16, 'Fer2', 1, 'fer_89_77@hotmail.com', '-34,49853', '-54,49853');
 
 --
 -- Índices para tablas volcadas
@@ -431,7 +433,7 @@ ALTER TABLE `compra`
 -- AUTO_INCREMENT de la tabla `contraseña`
 --
 ALTER TABLE `contraseña`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `edicion`
@@ -497,7 +499,7 @@ ALTER TABLE `tipousuario`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Restricciones para tablas volcadas

@@ -17,12 +17,12 @@ class UsuarioController {
     public function verificar()
     {
         $nombre = $_POST["nombre"];
-        $password = $_POST["password"];
+        $password = $_POST["contraseña"];
         $email = $_POST["email"];
         $coordenadasX = $_POST["coordenadasX"];
         $coordenadasY = $_POST["coordenadasY"];
 
-        $this->usuarioModel->setUsuario($nombre, $password,$email,$coordenadasX,$coordenadasY);
+        $this->usuarioModel->addUsuario($nombre, $password,$email,$coordenadasX,$coordenadasY);
 
         // llamar a metodo que envia mail con codigo
         echo $this->render->render("verificacionUsuarioView.mustache");
