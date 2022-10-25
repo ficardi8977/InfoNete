@@ -9,6 +9,7 @@ include_once('helpers/Router.php');
 
 // estos son los propios del tp
 include_once ("model/UsuarioModel.php");
+include_once ("model/ProductoModel.php");
 
 include_once('controller/HomeController.php');
 include_once('controller/UsuarioController.php');
@@ -28,7 +29,7 @@ class Configuration {
     // CONFIGS DE CONTROLLER //
 
     public function getHomeController(){
-        return new HomeController($this->createUsuarioModel(), $this->view);
+        return new HomeController($this->createUsuarioModel(),$this->createProductoModel(), $this->view);
     }
 
     public function getUsuarioController(){
@@ -40,6 +41,9 @@ class Configuration {
 
     private function createUsuarioModel(): UsuarioModel {
         return new UsuarioModel($this->database);
+    }
+    private function createProductoModel(): ProductoModel {
+        return new ProductoModel($this->database);
     }
 
     public function getRouter() {
