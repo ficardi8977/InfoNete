@@ -25,3 +25,5 @@
 [22-10-25 05:42:58][INFO] guardado de variables de sesión:Fer-1
 [22-10-25 05:43:36][INFO] guardado de variables de sesión:Fer-1
 [22-10-25 05:46:04][INFO] guardado de variables de sesión:Fer-1
+[22-10-25 05:53:13][INFO] guardado de variables de sesión:Fer-1
+[22-10-25 06:01:09][INFO] guardado de variables de sesión:Fer-1
