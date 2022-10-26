@@ -15,9 +15,12 @@ class SesionData {
                 $_SESSION["EsLector"] = true;
                 break;
             case 2:
-                $_SESSION["EsContedista"] = true;
+                $_SESSION["EsLector"] = true;
+                $_SESSION["EsContenidista"] = true;
                 break;
             case 3:
+                $_SESSION["EsLector"] = true;
+                $_SESSION["EsContenidista"] = true;
                 $_SESSION["EsAdministrador"] = true;
                 break;
         }
