@@ -33,7 +33,7 @@ class SesionData {
 
     public function esLogueado()
     {
-        return $_SESSION["Logueado"];
+        return isset($_SESSION["Logueado"]) && $_SESSION["Logueado"];
     }
 
     public function cargar($data = [])

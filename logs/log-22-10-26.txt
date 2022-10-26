@@ -2,3 +2,4 @@
 [22-10-26 12:29:33][INFO] guardado de variables de sesión:Fer-1
 [22-10-26 12:43:52][INFO] guardado de variables de sesión:Fer-1
 [22-10-26 01:38:50][INFO] guardado de variables de sesión:Fer-
+[22-10-26 02:14:26][INFO] guardado de variables de sesión:Fer-
