@@ -7,7 +7,7 @@ class SesionData {
         $this->logger = $logger;
     }
 
-    public function guardar($usuario, $tipoUsuario, $logueado )
+    public function guardar($usuario, $tipoUsuario, $logueado ,$idUsuario)
     {
         $_SESSION["Nombre"] = $usuario;
         switch ($tipoUsuario) {
@@ -26,7 +26,8 @@ class SesionData {
         }
         
         $this->logger->info("guardado de variables de sesión:".$_SESSION["Nombre"]."-".$_SESSION["IdTipoUsuario"]);
-        $this->Logueado($logueado);
+        $_SESSION["IdUsuario"]=$idUsuario;
+        $this->logueado($logueado);
     }
 
     public function logueado($logueado)

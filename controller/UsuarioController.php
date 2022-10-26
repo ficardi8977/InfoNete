@@ -38,7 +38,7 @@ class UsuarioController {
         
         if(isset($result[0]))
         {
-            $this->sesion->guardar($result[0]["Nombre"], $result[0]["IdTipoUsuario"], true);
+            $this->sesion->guardar($result[0]["Nombre"], $result[0]["IdTipoUsuario"], true, $result[0]["Id"]);
         }else
         {
             $this->sesion->logueado(false);

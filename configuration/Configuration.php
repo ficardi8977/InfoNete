@@ -11,9 +11,11 @@ include_once('helpers/SesionData.php');
 // estos son los propios del tp
 include_once ("model/UsuarioModel.php");
 include_once ("model/ProductoModel.php");
+include_once ("model/SuscripcionModel.php");
 
 include_once('controller/HomeController.php');
 include_once('controller/UsuarioController.php');
+include_once('controller/SuscripcionController.php');
 
 
 include_once ('dependencies/mustache/src/Mustache/Autoloader.php');
@@ -38,6 +40,11 @@ class Configuration {
     public function getUsuarioController(){
         return new UsuarioController($this->createUsuarioModel(), $this->view, $this->sesion, $this->getRouter());
     }
+
+
+    public function getSuscripcionController(){
+        return new SuscripcionController($this->createSuscripcionModel(), $this->view, $this->sesion);
+    }
     // //
     // CONFIGS DE MODEL //
 
@@ -50,5 +57,9 @@ class Configuration {
 
     public function getRouter() {
         return new Router($this, "home", "get");
+    }
+
+    public function createSuscripcionModel(): SuscripcionModel {
+        return new SuscripcionModel($this->database);
     }
 }
