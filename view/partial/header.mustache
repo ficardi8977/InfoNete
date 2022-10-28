@@ -12,7 +12,7 @@
 <body>
 
 
-<nav class="navbar  navbar-expand-lg navbar-dark bg-dark  ">
+<nav class="navbar  navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Infonete</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,7 +20,7 @@
     </button>
     <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
       <ul class="navbar-nav mb-2 mb-lg-0">
-        <li class="nav-item">
+        <li class="nav-item ">
           <a class="nav-link" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
@@ -42,21 +42,33 @@
         </li>
       </ul>
       <ul class="navbar-nav  ms-auto mb-2 mb-lg-0">
-          <div class="d-flex flex-column">
               {{#sesion}}
+                <div class="d-inline-flex">
+                <div class="mx-2 ">
                 <p class="text-light">Hola {{Nombre}}!</p>
-                <a href="/usuario/close" class="btn btn-success">Cerrar sesión</a>
+                </div>
+                <div>
+                 <a href="/usuario/close" class="btn btn-success">Cerrar sesión</a>
+                </div>
+                </div>
              {{/sesion}}
             {{^sesion}}
-                              <form action="/usuario/login" method="POST" class="d-flex">
+                <div class="d-inline-flex">
+                <div>
+                   <form action="/usuario/login" method="POST" class="d-flex">
                           <input class="form-control me-2 align-middle" type="text" placeholder="Nombre" aria-label="Search" name="nombre">
                           <input class="form-control me-2 align-middle" type="password" placeholder="Contraseña" aria-label="Search" name="password">
                           <button class="btn btn-outline-success align-middle" type="submit">Ingresar</button>
                   </form>
-            <a href="/usuario/alta" class="btn">Registrarse</a>
-            <p>{{mensaje}}</p>
+                </div>
+                 <a href="/usuario/alta" class="btn text-light">Registrarse</a>
+                <div>
+                </div>
+                <p class="text-light">{{mensaje}}</p>
+                  <div>
+                </div>
+               </div>
           {{/sesion}}
-          </div>
       </ul>
     </div>
   </div>

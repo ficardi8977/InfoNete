@@ -14,8 +14,18 @@ class SuscripcionController{
     public function alta(){
              $idProducto=$_POST["Id"];  
              $this->suscripcion->alta($idProducto);
-             echo $this->render->render("CatalogoView.mustache", $this->sesion->cargar());
+            $data= $this->mostrarSuscripciones();
+            echo $this->render->render("suscripcionesView.mustache", $this->sesion->cargar($data));
+
     }
+
+    public function mostrarSuscripciones(){
+             return $data['suscripciones']= $this->suscripcion->listSuscripciones();
+  
+    }
+
+
+
 }
 
 ?>
