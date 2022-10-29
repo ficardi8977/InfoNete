@@ -1,0 +1,29 @@
+{{> header}}
+<div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
+<h1>Mis suscripciones</h1>
+</div>
+
+<div class="row">
+        <table class="table">
+        {{#suscripciones}}
+        <thead class="table-dark">
+                <tr>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Tipo Producto</th>
+                    <th scope="col">Vigencia</th>
+                    <th scope="col">Autogestion</th>
+                </tr>
+        </thead>
+        <tbody>
+                <tr>
+                <img src = "../public/{{p.Imagen}}">
+                <td>{{p.Nombre}}</td>
+                <td>{{s.FechaDesde}} a {{s.FechaHasta}}</td>
+                <td><button>Dar de baja</button></td>
+                </tr>
+                <tr>
+            </tbody>
+        {{/suscripciones}}    
+        </table>
+</div> 
+{{> footer}}

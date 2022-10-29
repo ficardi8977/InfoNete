@@ -30,8 +30,16 @@ class SuscripcionModel{
 
     }
 
-    public function listSuscripciones(){
+    /**
+     * Lista todas las suscripciones del usuario que se encuentra en sesion.
+     */
 
+    public function listSuscripciones(){
+         $idUsuario = $_SESSION["IdUsuario"]; 
+        return $this->database->query("SELECT s.IdProducto,t.Nombre, s.FechaDesde,s.FechaHasta, p.Nombre, p.Imagen
+                from suscripcion s  inner join tipoproducto t
+                on (s.IdProducto=t.Id)  inner join producto p on (p.id=s.IdProducto)
+                where s.IdUsuario='$idUsuario' ;"); 
     }
 }
 ?>
