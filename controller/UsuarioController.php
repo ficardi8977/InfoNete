@@ -16,7 +16,7 @@ class UsuarioController {
         echo $this->render->render("signinView.mustache", $this->sesion->cargar());
     }
 
-    public function verificar()
+    public function registrar()
     {
         $nombre = $_POST["nombre"];
         $password = $_POST["contraseña"];
@@ -26,6 +26,14 @@ class UsuarioController {
 
         $this->usuarioModel->addUsuario($nombre, $password,$email,$coordenadasX,$coordenadasY);
 
+        $data["nombre"] = $nombre;
+        $data["email"] = $email;
+
+        echo $this->render->render("verificacionUsuarioView.mustache",$data);
+    }
+
+    public function confirmar()
+    {
         echo $this->render->render("verificacionUsuarioView.mustache");
     }
 
