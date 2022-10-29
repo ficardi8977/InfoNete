@@ -10,36 +10,50 @@
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
 
 <body>
-
-
 <nav class="navbar  navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Infonete</a>
+    <a class="navbar-brand" href="/">Infonete</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
       <ul class="navbar-nav mb-2 mb-lg-0">
-        <li class="nav-item ">
-          <a class="nav-link" aria-current="page" href="#">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Noticias</a>
-        </li>
-        <!--li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li-->
-        <li class="nav-item">
-          <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">Suscripciones</a>
-        </li>
+        {{#sesion}}
+          {{#EsLector}}
+          <li class="nav-item">
+            <a class="nav-link" href="/">Mis Suscripciones</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/">Mis Productos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/">Pronostico</a>
+          </li>
+          {{/EsLector}}
+          {{#EsContenidista}}
+            <li class="nav-item">
+              <a class="nav-link" href="/">ABM Producto</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/">ABM Sección</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/">ABM Edición</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/">ABM Noticia</a>
+            </li>
+          {{/EsContenidista}}
+        {{#EsAdministrador}}
+          <li class="nav-item">
+            <a class="nav-link" href="/">ABM Usuarios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/">Graficos</a>
+          </li>
+        {{/EsAdministrador}}
+      {{/sesion}}
       </ul>
       <ul class="navbar-nav  ms-auto mb-2 mb-lg-0">
               {{#sesion}}
