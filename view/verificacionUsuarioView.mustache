@@ -1,11 +1,13 @@
 {{> header}}
-<div class="container">
-<form class= "form-column-center" action="registrar.php" method="POST" enctype="multipart/form-data">
-    
-    <label for="codigo">Ingrese el codigo recibido a su email</label>
-    <input type="text" id="codigo" class="form-control" name="codigo" placeholder="xxxxxx">
-
-    <input type='submit' class='btn btn-dark' name='registrar' value='registrar'>
-</form>
+<div class="container overflow-hidden">
+  <div class="row gy-5">
+  <h1>Verifica tu correo electrónico</h1>
+  <span class="alert alert-primary" role="alert">
+    {{nombre}}, enviamos un mail a {{email}} Revisa tu buzón de correo y segui las instrucciones enviadas para confirmar la cuenta.
+  </span>
+  <div class="d-flex justify-content-center md-6">
+    <a href="/" class="btn btn-primary">Inicio</a>
+    </div>
 </div>
+
 {{> footer}}

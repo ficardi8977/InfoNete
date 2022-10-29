@@ -1,24 +1,56 @@
 {{> header}}
+<body onload="loadMap()">
 <div class="container">
+<form class="row g-3 needs-validation" action="registrar" method="POST" enctype="multipart/form-data" novalidate>
 
-<form class= "form-column-center" action="verificar" method="POST" enctype="multipart/form-data">
-    
+  <div class="col-md-6">
     <label for="nombre">Nombre de usuario</label>
-    <input type="text" id="nombre" class="form-control" name="nombre" placeholder="nombre">
+    <input type="text" id="nombre" class="form-control" name="nombre" placeholder="nombre" required>
+    <div class="invalid-feedback">
+        valor requerido!
+    </div>
+  </div>
 
-    <label for="contraseña">contraseña</label>
-    <input type="password" class="form-control" id="contraseña" name="contraseña" placeholder="contraseña">
+  <div class="col-md-6">
+    <label for="contraseña">Contraseña</label>
+    <input type="password" class="form-control" id="contraseña" name="contraseña" placeholder="contraseña" required>
+    <div class="invalid-feedback">
+        valor requerido!
+    </div>
+  </div>
 
-    <label for="email">email</label>
-    <input type="email" class="form-control" id="email" name="email" placeholder="email">
-
-    <label for="coordenadasX">direccion : coordenadasX</label>
-    <input type="text"  class="form-control" id="coordenadasX" name="coordenadasX" placeholder="coordenadasX">
-
-    <label for="coordenadasY">direccion : coordenadasY</label>
-    <input type="text"  class="form-control" id="coordenadasY" name="coordenadasY" placeholder="coordenadasY">
-
-    <input type='submit' class='btn btn-dark' name='verificar' value='verificar'>
+  <div class="col-md-12">
+    <label for="email" class="form-label">Email</label>
+    <div class="input-group has-validation">
+      <span class="input-group-text" id="inputGroupPrepend">@</span>
+      <input type="email" class="form-control" name="email" id="email" aria-describedby="inputGroupPrepend" required>
+      <div class="invalid-feedback">
+        Por favor, elije formato de mail correcto "x@x.com".
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+        <div class="alert alert-primary" role="alert">
+        Vamos a guardar tu geolocalizacion... Seleccioné su ubicación en el mapa con click derecho
+        </div>
+        <label for="coordenadasX">Latitud</label>
+        <input type="text"   class="form-control" id="coordenadasX" name="coordenadasX" pattern="^(-?\d+(\.\d+)?).\s*(-?\d+(\.\d+)?)$" placeholder="CoordenadasX : Latitud" required>
+        <div class="invalid-feedback">
+        seleccionar coordendas en el mapa o ingresar manualmente un valor numerico!
+        </div>
+        <label for="coordenadasY">Longitud</label>
+        <input type="text"  class="form-control" id="coordenadasY" name="coordenadasY" pattern="^(-?\d+(\.\d+)?).\s*(-?\d+(\.\d+)?)$" placeholder="CoordenadasY : Longitud" required>
+        <div class="invalid-feedback">
+        seleccionar coordendas en el mapa o ingresar manualmente un valor numerico!
+        </div>
+  </div>
+    <div class="col-md-6">
+        <div id="mapa" class="map-responsive"></div>
+    </div>
+   <div class="d-flex justify-content-center col-md-12">
+        <a href="/" class="btn btn-danger">Cancelar</a>
+        <button class="btn btn-success" type="submit">Registrar</button>
+   </div>
 </form>
 </div>
 {{> footer}}

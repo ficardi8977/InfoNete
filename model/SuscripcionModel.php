@@ -20,9 +20,7 @@ class SuscripcionModel{
             ".$precio.")";
                  
     $this->database->execute($sql);
-
-
-    }
+}
 
   
 
