@@ -30,5 +30,4 @@ class MySQlDatabase {
         $this->conexion->query($sql);
         return $this->conexion->insert_id;
     }
-
 }
