@@ -27,7 +27,10 @@ class UsuarioModel
 
     public function AddUsuario($nombre, $password, $email, $coordenadasX, $coordenadasY)
     {
-
+        $existeUsuario = $this->esUsuarioExistente($nombre);
+        if(isset($existeUsuario[0]["existe"]) && $existeUsuario[0]["existe"] == 1){
+            return "El usuario ". $nombre ." ya existe.";
+        }
 
         $sql = "INSERT INTO usuario (nombre, IdTipoUsuario, Email,coordenadasX, coordenadasY)
     VALUES ('" . $nombre . "',
@@ -38,8 +41,12 @@ class UsuarioModel
 
         $id = $this->database->execute($sql);
 
-
-        return $this->AddClave($nombre, $password, $id);
+        $this->AddClave($id, $password);
+    }
+    
+    private function esUsuarioExistente($nombreUsuario)
+    {
+        return $this->database->query("SELECT 1 as existe FROM usuario where Nombre ='".$nombreUsuario."'");
     }
 
     private function AddClave( $idUsuario, $clave)
