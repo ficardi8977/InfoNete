@@ -15,7 +15,10 @@
                     <input type="hidden" name="Id" value={{Id}}>
                     <button class="btn btn-success" type="submit" >Suscribirse</button>
                 </form>    
-                    <a href="/" class="btn btn-primary">Comprar una edición</a>
+                <form action="/edicion/listar" method="GET">
+                    <input type="hidden" name="IdProducto" value={{Id}}>
+                    <button class="btn btn-primary" type="submit" >Comprar una edición</a>
+                </form>
                 {{/sesion}}
             </div>
         </div>
