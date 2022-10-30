@@ -36,10 +36,10 @@ class SuscripcionModel{
 
     public function listSuscripciones(){
          $idUsuario = $_SESSION["IdUsuario"]; 
-        return $this->database->query("SELECT s.IdProducto,t.Nombre, s.FechaDesde,s.FechaHasta, p.Nombre, p.Imagen
-                from suscripcion s  inner join tipoproducto t
-                on (s.IdProducto=t.Id)  inner join producto p on (p.id=s.IdProducto)
-                where s.IdUsuario='$idUsuario' ;"); 
+        return $this->database->query("SELECT s.IdProducto,t.Nombre as NombreTipoProducto, s.FechaDesde,s.FechaHasta, p.Nombre as NombreProducto, p.Imagen
+                from suscripcion s  inner join producto p on (s.IdProducto=p.Id)
+                inner join tipoproducto t on (p.IdTipoProducto=t.Id)
+                where s.IdUsuario=".$idUsuario.";"); 
     }
 }
 ?>
