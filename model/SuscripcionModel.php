@@ -24,7 +24,6 @@ class SuscripcionModel{
 
     }
 
-  
     public function baja($idProducto){
                 $idUsuario = $_SESSION["IdUsuario"]; 
                 $idProducto= $_POST["IdProducto"];
@@ -45,6 +44,12 @@ class SuscripcionModel{
                 from suscripcion s  inner join producto p on (s.IdProducto=p.Id)
                 inner join tipoproducto t on (p.IdTipoProducto=t.Id)
                 where s.IdUsuario=".$idUsuario.";"); 
+    }
+
+    public function buscarArticulo(){
+           $idProducto=$_POST["Id"]; 
+           $sql="SELECT * FROM PRODUCTO WHERE Id=".$idProducto.";";     
+           $this->database->execute($sql);
     }
 }
 ?>

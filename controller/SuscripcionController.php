@@ -12,24 +12,36 @@ class SuscripcionController{
     }
 
     public function alta(){
-             $idProducto=$_POST["Id"];  
-             $this->suscripcion->alta($idProducto);
-            $data['suscripciones']= $this->mostrarSuscripciones();
-            echo $this->render->render("suscripcionesView.mustache", $this->sesion->cargar($data));
+              $idProducto=$_POST["Id"]; 
+             //$this->suscripcion->alta($idProducto);
+             /** Crear pantalla para dar de alta suscripcion con  un rango de fechas */
+             $data['producto']=$this->suscripcion->buscarArticulo($idProducto);
+             Redirect::doIt("altaSuscripcionView");
+              /*echo $this->render->render("altaSuscripcionView.mustache", $this->sesion->cargar($data));*/
 
     }
 
     public function mostrarSuscripciones(){
-             return $data['suscripciones']= $this->suscripcion->listSuscripciones();
+            $data['suscripciones']= $this->suscripcion->listSuscripciones();
+            echo $this->render->render("suscripcionesView.mustache", $this->sesion->cargar($data));
 
   
+    }
+
+    public function  altaSuscripcion(){
+            $idProducto=$_POST["Id"];
+            $fechaDesde=$_POST["fechaDesde"];    
+            $fechaHasta=$_POST["fechaHasta"]; 
+            $this->suscripcion->alta( $idProducto, $fechaDesde, $fechaHasta);
+            $data['suscripciones']= $this->suscripcion->listSuscripciones();
+            echo $this->render->render("suscripcionesView.mustache", $this->sesion->cargar($data));
+
     }
 
     public function baja(){
              $idProducto=$_POST["IdProducto"];   
              $this->suscripcion->baja($idProducto);
-             $data['suscripciones']= $this->mostrarSuscripciones();
-             echo $this->render->render("suscripcionesView.mustache", $this->sesion->cargar($data));
+             Redirect::doIt("/suscripcion/mostrarSuscripciones");
     }
 
 }

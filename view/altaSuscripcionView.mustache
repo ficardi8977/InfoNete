@@ -1,0 +1,28 @@
+{{> header}}
+<div class="container">
+  <h1 class="text-center mb-4">Catalogo de productos:</h1>
+  <div class="row">
+    {{#producto}}
+
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ Nombre }}</h5>
+          <img src="../public/{{ Imagen }}" />
+          <label for="fechaDesde">Fecha Desde:</label>
+          <input type="date" id="FechaDesde" name="fechaDesde" />
+          <label for="fechaHasta">Fecha Hasta:</label>
+          <input type="date" id="fechaHasta" name="fechaHasta" />
+          <form action="/suscripcion/altaSuscripcion" method="post">
+            <input type="hidden" name="Id" value="{{ Id }}" />
+            <button class="btn btn-success" type="submit">
+              Alta Suscripcion
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {{/producto}}
+  </div>
+  {{> footer}}
+</div>
