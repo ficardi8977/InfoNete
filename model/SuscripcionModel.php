@@ -19,15 +19,20 @@ class SuscripcionModel{
             '".$FechaHasta."', 
             ".$precio.")";
                  
-    $this->database->execute($sql);
-
+         $this->database->execute($sql);
+        
 
     }
 
   
-
-    public function baja(){
-
+    public function baja($idProducto){
+                $idUsuario = $_SESSION["IdUsuario"]; 
+                $idProducto= $_POST["IdProducto"];
+                /**
+                 * delete from suscripcion where IdUsuario=3 and IdProducto=1 
+                 */
+                $sql = "DELETE from suscripcion where IdUsuario=".$idUsuario." and IdProducto=".$idProducto.";";
+        $this->database->execute($sql);
     }
 
     /**
