@@ -1,0 +1,36 @@
+{{> header}}
+<div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
+<h1>Ediciones del producto seleccionado</h1>
+</div>
+
+<div class="row">
+        <table class="table">
+        <thead class="table-dark">
+                <tr>
+                    <th scope="col">N°Edicion</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Acción</th>
+                </tr>
+        </thead>
+        <tbody>
+        {{#ediciones}}
+                <tr>
+                <td>{{Numero}}</td>
+                <td>{{Fecha}}</td>
+                {{#Comprado}}
+                    <td><button class="btn btn-secondary" disabled >Comprada</button></td>
+                {{/Comprado}}
+                {{^Comprado}}
+                <form action="/edicion/comprar" method="post">
+                    <input type="hidden" name="IdEdicion" value={{Id}}>
+                    <input type="hidden" name="IdProducto" value={{IdProducto}}>
+                    <td><button class="btn btn-success">Comprar</button></td>
+                </form>
+                {{/Comprado}}
+                </tr>
+                <tr>
+            </tbody>
+        {{/ediciones}}    
+        </table>
+</div> 
+{{> footer}}

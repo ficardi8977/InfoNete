@@ -12,10 +12,12 @@ include_once('helpers/SesionData.php');
 include_once ("model/UsuarioModel.php");
 include_once ("model/ProductoModel.php");
 include_once ("model/SuscripcionModel.php");
+include_once ("model/EdicionModel.php");
 
 include_once('controller/HomeController.php');
 include_once('controller/UsuarioController.php');
 include_once('controller/SuscripcionController.php');
+include_once('controller/EdicionController.php');
 
 
 include_once ('dependencies/mustache/src/Mustache/Autoloader.php');
@@ -45,6 +47,9 @@ class Configuration {
     public function getSuscripcionController(){
         return new SuscripcionController($this->createSuscripcionModel(), $this->view, $this->sesion);
     }
+    public function getEdicionController(){
+        return new EdicionController($this->createEdicionModel(), $this->view, $this->sesion);
+    }
     // //
     // CONFIGS DE MODEL //
 
@@ -61,5 +66,8 @@ class Configuration {
 
     public function createSuscripcionModel(): SuscripcionModel {
         return new SuscripcionModel($this->database);
+    }
+    public function createEdicionModel(): EdicionModel {
+        return new EdicionModel($this->database);
     }
 }
