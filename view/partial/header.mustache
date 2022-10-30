@@ -80,14 +80,18 @@
                  <a href="/usuario/alta" class="btn text-light">Registrarse</a>
                 <div>
                 </div>
-                <p class="text-light">{{mensaje}}</p>
-                  <div>
-                </div>
                </div>
           {{/sesion}}
       </ul>
     </div>
   </div>
 </nav>
+  {{#msjLogError}}
+      <div class="container">
+    <div class="d-flex flex-wrap align-items-center">
+      <div class="alert alert-danger" role="alert">{{msjLogError}}</div>
+    </div>
+    </div>
+  {{/msjLogError}}
 <!-- Page content -->
 <div class='w3-content' style='max-width:2000px;margin-top:46px'>

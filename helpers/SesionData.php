@@ -33,11 +33,16 @@ class SesionData {
     public function logueado($logueado)
     {
         $_SESSION["Logueado"] = $logueado;
+        $_SESSION["Intentos"] = !$logueado;
     }
 
     public function esLogueado()
     {
         return isset($_SESSION["Logueado"]) && $_SESSION["Logueado"];
+    }
+    public function hayIntentos()
+    {
+        return isset($_SESSION["Intentos"]) && $_SESSION["Intentos"];
     }
 
     public function cargar($data = [])
@@ -45,6 +50,10 @@ class SesionData {
         if($this->esLogueado())
         {
             $data["sesion"] = $_SESSION;
+        }
+        if($this->hayIntentos())
+        {
+            $data["msjLogError"] = "Usuario o contraseña incorrecto.";
         }
         return $data;
     }
