@@ -12,4 +12,5 @@ class ProductoModel
     {
         return $this->database->query("SELECT * FROM producto");
     }
+    
 }
