@@ -16,7 +16,7 @@ class UsuarioController {
         echo $this->render->render("signinView.mustache", $this->sesion->cargar());
     }
 
-    public function verificar()
+    public function registrar()
     {
         $nombre = $_POST["nombre"];
         $password = $_POST["contraseña"];
@@ -24,8 +24,21 @@ class UsuarioController {
         $coordenadasX = $_POST["coordenadasX"];
         $coordenadasY = $_POST["coordenadasY"];
 
-        $this->usuarioModel->addUsuario($nombre, $password,$email,$coordenadasX,$coordenadasY);
+        $msjError= $this->usuarioModel->addUsuario($nombre, $password,$email,$coordenadasX,$coordenadasY);
 
+        $data["nombre"] = $nombre;
+        $data["email"] = $email;
+        if($msjError)
+        {
+            $data["msjError"] = $msjError;
+            echo $this->render->render("signinView.mustache",$this->sesion->cargar($data));
+            exit();
+        }
+        echo $this->render->render("verificacionUsuarioView.mustache",$data);
+    }
+
+    public function confirmar()
+    {
         echo $this->render->render("verificacionUsuarioView.mustache");
     }
 
@@ -38,7 +51,9 @@ class UsuarioController {
         
         if(isset($result[0]))
         {
-            $this->sesion->guardar($result[0]["Nombre"], $result[0]["IdTipoUsuario"], true, $result[0]["Id"]);
+            $this->sesion->guardar($result[0]["Nombre"], $result[0]["IdTipoUsuario"], 
+                                   true, 
+                                   $result[0]["Id"]);
         }else
         {
             $this->sesion->logueado(false);

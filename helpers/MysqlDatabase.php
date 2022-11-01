@@ -28,6 +28,6 @@ class MySQlDatabase {
 
     public function execute($sql) {
         $this->conexion->query($sql);
+        return $this->conexion->insert_id;
     }
-
 }
