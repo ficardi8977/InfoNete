@@ -43,7 +43,7 @@ class Configuration {
 
 
     public function getSuscripcionController(){
-        return new SuscripcionController($this->createSuscripcionModel(), $this->view, $this->sesion);
+        return new SuscripcionController($this->createSuscripcionModel(), $this->view, $this->sesion,$this->createProductoModel());
     }
     // //
     // CONFIGS DE MODEL //
