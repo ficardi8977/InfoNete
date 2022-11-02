@@ -12,5 +12,9 @@ class ProductoModel
     {
         return $this->database->query("SELECT * FROM producto");
     }
+    public function getproducto($idProducto)
+    {
+        return $this->database->query("SELECT * FROM producto WHERE id= ".$idProducto.";");
+    }
     
 }
