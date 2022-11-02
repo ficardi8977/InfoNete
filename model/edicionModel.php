@@ -16,6 +16,7 @@ class EdicionModel
         e.Numero, 
         e.Fecha, 
         e.IdProducto,
+        e.Precio,
         case when ".$idUsuario." = c.IdUsuario 
             then true
             else false end Comprado
@@ -23,6 +24,21 @@ class EdicionModel
         left join compra c on c.IdEdicion = e.Id
         where e.IdProducto = ". $idProducto);
     }
+
+    /*
+    public function getEdicionesPorProducto($idProducto,$fechaDesde, $fechaHasta){
+
+        return $this->database->query("SELECT e.Id, 
+        e.Numero, 
+        e.Fecha, 
+        e.IdProducto,
+        e.Precio
+        FROM edicion e
+        left join compra c on c.IdEdicion = e.Id
+        where e.IdProducto = ".$idProducto ."
+        and e.Fecha BETWEEN '".$fechaDesde . "'   and '".$fechaHasta ."';");
+    }
+    */
 
     public function comprar($idEdicion)
     {
