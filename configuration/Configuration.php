@@ -5,6 +5,7 @@ include_once('helpers/MustacheRenderer.php');
 include_once('helpers/Logger.php');
 include_once('helpers/Router.php');
 include_once('helpers/SesionData.php');
+include_once('helpers/EnvioMail.php');
 
 
 
