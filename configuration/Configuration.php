@@ -51,7 +51,7 @@ class Configuration {
 
 
     public function getSuscripcionController(){
-        return new SuscripcionController($this->createSuscripcionModel(), $this->view, $this->sesion,$this->createProductoModel());
+        return new SuscripcionController($this->createSuscripcionModel(), $this->view, $this->sesion,$this->createProductoModel(), $this->createEdicionModel());
     }
     public function getEdicionController(){
         return new EdicionController($this->createEdicionModel(), $this->view, $this->sesion);

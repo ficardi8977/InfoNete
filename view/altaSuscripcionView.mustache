@@ -1,19 +1,46 @@
  {{> header}}
 <div class="container">
   <h1 class="text-center mb-4">Catalogo de productos:</h1>
-  <div class="row">
+  <div class="row justify-content-center">
     {{#producto}}
 
-    <div class="col-sm-6">
+    <div class="col-12 col-lg-6">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">{{ Nombre }}</h5>
-          <img src="../public/{{ Imagen }}" />
+          <div class="d-flex  justify-content-center"> 
+              <div class="px-2">
+                  <h5 class="card-title">{{ Nombre }}</h5>
+                  <img src="../public/{{ Imagen }}" />
+              </div>
+              <div class="px-2">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Numero edición:</th>
+                        <th scope="col">Fecha edición:</th>
+                        <th scope="col">Precio</th>
+                      </tr>
+                    </thead>
+                    {{#ediciones}}
+                    <tbody>
+                      <tr>
+                        <td>{{{Numero}}}</td>
+                        <td>{{Fecha}}</td>
+                        <td>$ {{Precio}}</td>
+                      </tr>
+                    </tbody>
+                    {{/ediciones}}
+                  </table>
+                  <label>{{Total}}</label>
+              </div>
+          </div>    
           <form action="/suscripcion/altaSuscripcion" method="post">
-                    <label for="fechaDesde">Fecha Desde:</label>
-                    <input type="date" id="FechaDesde" name="fechaDesde" value="fechaDesde" />
-                    <label for="fechaHasta">Fecha Hasta:</label>
-                    <input type="date" id="fechaHasta" name="fechaHasta" value="fechaHasta" />
+                    <div>
+                        <label for="fechaDesde">Fecha Desde:</label>
+                        <input type="date" id="FechaDesde" name="fechaDesde" value="fechaDesde" />
+                        <label for="fechaHasta">Fecha Hasta:</label>
+                        <input type="date" id="fechaHasta" name="fechaHasta" value="fechaHasta" />
+                    </div>
                     <input type="hidden" name="Id" value="{{ Id }}" />
                     <button class="btn btn-success" type="submit">
               Alta Suscripcion
