@@ -16,7 +16,6 @@ class EdicionModel
         e.Numero, 
         e.Fecha, 
         e.IdProducto,
-        e.Precio,
         case when ".$idUsuario." = c.IdUsuario 
             then true
             else false end Comprado
