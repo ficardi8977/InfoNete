@@ -23,9 +23,10 @@ Class EnvioMail {
         //El puerto será el 587 ya que usamos encriptación TLS
         $mail->Port       = 587;
         //Definmos la seguridad como TLS
-        $mail->SMTPSecure = 'tls';
+        $mail->SMTPSecure = 'TLS';
+
         //Tenemos que usar gmail autenticados, así que esto a TRUE
-        $mail->SMTPAuth   = true;
+        $mail->SMTPAuth   = true;        
         //Definimos la cuenta que vamos a usar. Dirección completa de la misma
         $mail->Username   = "infoneteg7@gmail.com";
         //Introducimos nuestra contraseña de gmail
