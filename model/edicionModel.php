@@ -18,8 +18,7 @@ class EdicionModel
         e.IdProducto,
         case when ".$idUsuario." = c.IdUsuario 
             then true
-            else false end Comprado,
-        e.Precio
+            else false end Comprado
         FROM edicion e
         left join compra c on c.IdEdicion = e.Id
         where e.IdProducto = ". $idProducto);
