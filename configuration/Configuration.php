@@ -1,6 +1,6 @@
 <?php
-include_once ("helpers/Redirect.php");
-include_once('helpers/MySQlDatabase.php');
+include_once("helpers/Redirect.php");
+include_once("helpers/MySQlDatabase.php");
 include_once('helpers/MustacheRenderer.php');
 include_once('helpers/Logger.php');
 include_once('helpers/Router.php');
@@ -9,18 +9,20 @@ include_once('helpers/SesionData.php');
 
 
 // estos son los propios del tp
-include_once ("model/UsuarioModel.php");
-include_once ("model/ProductoModel.php");
-include_once ("model/SuscripcionModel.php");
-include_once ("model/EdicionModel.php");
+include_once("model/UsuarioModel.php");
+include_once("model/ProductoModel.php");
+include_once("model/SuscripcionModel.php");
+include_once("model/EdicionModel.php");
+include_once("model/NoticiaModel.php");
 
 include_once('controller/HomeController.php');
 include_once('controller/UsuarioController.php');
+include_once('controller/NoticiaController.php');
 include_once('controller/SuscripcionController.php');
 include_once('controller/EdicionController.php');
 
 
-include_once ('dependencies/mustache/src/Mustache/Autoloader.php');
+include_once('dependencies/mustache/src/Mustache/Autoloader.php');
 
 class Configuration {
     private $database;
@@ -41,6 +43,10 @@ class Configuration {
 
     public function getUsuarioController(){
         return new UsuarioController($this->createUsuarioModel(), $this->view, $this->sesion, $this->getRouter());
+    }
+
+    public function getNoticiaController(){
+        return new NoticiaController($this->createNoticiaModel(), $this->view, $this->sesion);
     }
 
 
@@ -69,5 +75,9 @@ class Configuration {
     }
     public function createEdicionModel(): EdicionModel {
         return new EdicionModel($this->database);
+    }
+
+    public function createNoticiaModel() : NoticiaModel {
+        return new NoticiaModel($this->database);
     }
 }
