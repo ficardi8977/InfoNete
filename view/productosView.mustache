@@ -1,5 +1,5 @@
  {{> header}}
-   <div class="container">
+   <div class="container ">
         <div class="d-flex justify-content-md-end pb-3">
              <form action="/producto/alta" method="GET">
                     <input type="hidden" name="IdProducto" value={{Id}}>
@@ -19,15 +19,21 @@
             {{#productos}}
             <tbody>
                 <tr class="text-center">
-                <td>
-                <img src = "../public/{{Imagen}}" class="img-fluid">
+                <td> 
+                    <div class="row g-0 "style="max-width: 540px;">
+                        <div class="col-md-4">
+                        <img src= "../public/{{Imagen}}" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <!--div class="col-md-8">
+                        </div-->
+                    </div>
                 </td>
                 <td>{{Nombre}}</td>
                 <td>{{NombreTipoProducto}}</td>
                 <td>
                 <div class="d-flex justify-content-center">
                     <div class="px-2">
-                        <form action="/producto/modificar" method="POST">
+                        <form action="/producto/modificar" method="GET">
                             <input type="hidden" name="Id" value={{Id}}>
                             <button class="btn btn-primary" type="submit" >Modificar Producto</a>
                         </form>
