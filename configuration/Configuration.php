@@ -15,12 +15,13 @@ include_once("model/SuscripcionModel.php");
 include_once("model/EdicionModel.php");
 include_once("model/NoticiaModel.php");
 
+
 include_once('controller/HomeController.php');
 include_once('controller/UsuarioController.php');
 include_once('controller/NoticiaController.php');
 include_once('controller/SuscripcionController.php');
 include_once('controller/EdicionController.php');
-
+include_once('controller/ProductoController.php');
 
 include_once('dependencies/mustache/src/Mustache/Autoloader.php');
 
@@ -56,6 +57,11 @@ class Configuration {
     public function getEdicionController(){
         return new EdicionController($this->createEdicionModel(), $this->view, $this->sesion);
     }
+
+    public function getProductoController(){
+        return new ProductoController($this->createProductoModel(),$this->view, $this->sesion);
+    }
+
     // //
     // CONFIGS DE MODEL //
 

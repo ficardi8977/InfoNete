@@ -8,13 +8,41 @@ class ProductoModel
     {
         $this->database = $database;
     }
-    public function getproductos()
-    {
+    public function getproductos() {
         return $this->database->query("SELECT * FROM producto");
     }
-    public function getproducto($idProducto)
-    {
+
+    public function getproducto($idProducto)  {
         return $this->database->query("SELECT * FROM producto WHERE id= ".$idProducto.";");
     }
+
+     public function getproductoConSuTipo($idProducto){
+        return $this->database->query("SELECT p.Id as Id, p.nombre as Nombre , p.Imagen as Imagen, t.nombre as NombreTipoProducto
+        from producto p inner join tipoproducto t on (p.IdTipoProducto=t.Id) where p.Id =".$idProducto.";");
+    }
     
+    public function getProductosConSuTipo(){
+        return $this->database->query("SELECT p.Id as Id, p.nombre as Nombre , p.Imagen as Imagen, t.nombre as NombreTipoProducto
+        from producto p inner join tipoproducto t on (p.IdTipoProducto=t.Id)");
+    }
+
+    public function bajaProducto($idProducto){
+
+        $sql=("DELETE from producto where Id=".$idProducto.";");
+        $this->database->execute($sql);
+    }
+
+    public function getTiposProducto(){
+        return $this->database->query("SELECT * FROM tipoproducto ;");
+    }
+
+    public function altaProducto($nombreProducto,$tipoProducto,$imagen){
+        $sql=("INSERT INTO producto( Nombre, IdTipoProducto, Imagen) VALUES ('$nombreProducto',$tipoProducto,'$imagen')");
+         $this->database->execute($sql);
+    }
+
+    public function updateProducto($idProducto,$imagen,$nombreProducto,$tipoProducto){
+        $sql=("UPDATE producto SET Nombre='.$nombreProducto.',IdTipoProducto='.$tipoProducto.',Imagen='.$imagen.' WHERE Id=".$idProducto.";");
+        $this->database->execute($sql);
+    }
 }
