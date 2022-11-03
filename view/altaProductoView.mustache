@@ -1,0 +1,42 @@
+ {{> header}}
+   <div class="container my-5">
+      <div class="row justify-content-center">
+        <h2 class="text-center mb-5">Formulario alta producto</h2>
+        <div class="col-6 align-middle">
+            <form class="row g-3" action="/producto/altaProducto" method="post" enctype="multipart/form-data">
+                        <div class="col-4 mb-2">
+                            <label for="nombre">Nombre del producto: </label>
+                        </div>
+                        <div class="col-8 mb-2">
+                            <input type="text" id="nombre" name="nombreProducto" class="form-control" required>
+                        </div>
+            
+                        <div class="col-4 mb-2">
+                            <label for="nombre">Seleccione el tipo de producto: </label>
+                        </div>
+                        <div class="col-8 d-flex mb-2">
+                            <div class="col-6">
+                                <input type="radio" name="tipoProducto" id="revista" value="revista"/>
+                                <label for="revista">Revista</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="radio" name="tipoProducto" id="diario" value="diario"/>
+                                <label for="diario">Diario</label>
+                            </div>
+                        </div>      
+                        <div class="col-4 mb-2">
+                                <label for="imagen">Insertar imagen del producto: </label>
+                        </div>
+                        <div class="col-8 mb-2">
+                                <input type="file" id="imagen" name="imagen" class="form-control" required>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <input type="submit" class='btn btn-success' name="publicar" value="Alta Producto">
+                        </div>              
+            </form>
+      </div> 
+   </div>
+
+    {{> footer}}
+
+

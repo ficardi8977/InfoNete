@@ -35,4 +35,9 @@ class ProductoModel
     public function getTiposProducto(){
         return $this->database->query("SELECT * FROM tipoproducto ;");
     }
+
+    public function altaProducto($nombreProducto,$tipoProducto,$imagen){
+        $sql=("INSERT INTO producto( Nombre, IdTipoProducto, Imagen) VALUES ('$nombreProducto',$tipoProducto,'$imagen')");
+         $this->database->execute($sql);
+    }
 }

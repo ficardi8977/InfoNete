@@ -29,6 +29,21 @@ class ProductoController {
 
     }
 
+    public function alta(){
+        echo $this->render->render("altaProductoView.mustache");
+    }
+
+    public function altaProducto(){
+            $nombreProducto = $_POST['nombreProducto'];
+            $tipoProducto = isset($_POST['tipoProducto']);
+            move_uploaded_file($_FILES["imagen"]["tmp_name"], "public/" . $_FILES["imagen"]["name"]);  //tmp_name ruta donde guarda el apache el archivo
+            $imagen = $_FILES["imagen"]["name"];  // Para obtener solo el nombre de la imagen
+
+            $this->productoModel->altaProducto($nombreProducto,$tipoProducto,$imagen);
+
+           echo Redirect::doIt("/producto/mostrarProductos");
+    }
+
     public function modificarProducto(){
 
     }
