@@ -1,0 +1,50 @@
+ {{> header}}
+   <div class="container">
+        <div class="d-flex justify-content-md-end pb-3">
+             <form action="/edicion/listar" method="GET">
+                    <!--input type="hidden" name="IdProducto" value={{Id}}-->
+                    <button class="btn btn-success " type="submit" >Alta Nuevo Producto</a>
+             </form>
+        </div>
+        <div>
+            <table class="table table-hover   ">
+            <thead class="table-dark ">
+                <tr class="text-center">
+                <th scope="col">Imagen</th>
+                <th scope="col">Nombre Producto</th>
+                <th scope="col">Tipo producto</th>
+                <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            {{#productos}}
+            <tbody>
+                <tr class="text-center">
+                <td>
+                <img src = "../public/{{Imagen}}" class="img-fluid">
+                </td>
+                <td>{{Nombre}}</td>
+                <td>{{NombreTipoProducto}}</td>
+                <td>
+                <div class="d-flex justify-content-center">
+                    <div class="px-2">
+                        <form action="/producto/modificar" method="POST">
+                            <input type="hidden" name="Id" value={{Id}}>
+                            <button class="btn btn-primary" type="submit" >Modificar Producto</a>
+                        </form>
+                    </div>
+                    <div class="px-2">
+                        <form action="/producto/baja" method="POST">
+                            <input type="hidden" name="Id" value={{Id}}>
+                            <button class="btn btn-danger" type="submit" >Baja Producto</a>
+                        </form>
+                    </div>
+                </div>
+                </td>
+                </tr>
+            </tbody>
+            {{/productos}}
+            </table>
+        </div>
+
+   </div>
+ {{> footer}}

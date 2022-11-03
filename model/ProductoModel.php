@@ -17,4 +17,22 @@ class ProductoModel
         return $this->database->query("SELECT * FROM producto WHERE id= ".$idProducto.";");
     }
     
+    public function getProductosConSuTipo(){
+        return $this->database->query("SELECT p.Id as Id, p.nombre as Nombre , p.Imagen as Imagen, t.nombre as NombreTipoProducto
+        from producto p inner join tipoproducto t on (p.IdTipoProducto=t.Id)");
+    }
+
+    public function bajaProducto($idProducto){
+
+        $sql=("DELETE from producto where Id=".$idProducto.";");
+        $this->database->execute($sql);
+    }
+
+    public function modificarProducto($idProducto){
+
+    }
+
+    public function getTiposProducto(){
+        return $this->database->query("SELECT * FROM tipoproducto ;");
+    }
 }
