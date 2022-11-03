@@ -14,6 +14,7 @@ include_once("model/ProductoModel.php");
 include_once("model/SuscripcionModel.php");
 include_once("model/EdicionModel.php");
 include_once("model/NoticiaModel.php");
+include_once("model/SeccionModel.php");
 
 include_once('controller/HomeController.php');
 include_once('controller/UsuarioController.php');
@@ -79,5 +80,9 @@ class Configuration {
 
     public function createNoticiaModel() : NoticiaModel {
         return new NoticiaModel($this->database);
+    }
+
+    public function createSeccionModel() : SeccionModel {
+        return new SeccionModel($this->database);
     }
 }
