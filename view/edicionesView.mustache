@@ -1,0 +1,47 @@
+{{> header}}
+<div class="container">
+        <div class="row justify-content-center "> 
+                <div class="text-center">
+                    <h1>Ediciones del producto seleccionado</h1>
+                </div>           
+                
+                 <div class="col-8 my-5 text-center ">
+                        {{#producto}}
+                            <div>
+                                <img src= "../public/{{Imagen}}" class="img-fluid rounded" alt="...">
+                            </div>
+                        {{/producto}}     
+                </div>       
+                <div class="col-8">
+                    <table class="table">
+                        <thead class="table-dark">
+                                <tr>
+                                    <th scope="col">N°Edicion</th>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                        </thead>
+                        <tbody>
+                        {{#ediciones}}
+                                <tr>
+                                <td>{{Numero}}</td>
+                                <td>{{Fecha}}</td>
+                                {{#Comprado}}
+                                    <td><button class="btn btn-secondary" disabled >Comprada</button></td>
+                                {{/Comprado}}
+                                {{^Comprado}}
+                                <form action="/edicion/comprar" method="post">
+                                    <input type="hidden" name="IdEdicion" value={{Id}}>
+                                    <input type="hidden" name="IdProducto" value={{IdProducto}}>
+                                    <td><button class="btn btn-success">Comprar</button></td>
+                                </form>
+                                {{/Comprado}}
+                                </tr>
+                                <tr>
+                            </tbody>
+                        {{/ediciones}}    
+                    </table>
+                </div>
+        </div> 
+</div>        
+{{> footer}}

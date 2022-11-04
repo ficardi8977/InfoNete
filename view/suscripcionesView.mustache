@@ -7,7 +7,7 @@
         <div class="row">
                 <table class="table">
                         <thead class="table-dark">
-                                <tr>
+                                <tr class="text-center">
                                         <th scope="col">Producto</th>
                                         <th>Nombre Producto</th>
                                         <th scope="col">Tipo Producto</th>
@@ -17,17 +17,31 @@
                         </thead>
                 {{#suscripciones}}
                 <tbody>
-                        <tr>
-                                <td> <img src = "../public/{{Imagen}}" class="img-fluid rounded"> </td>
+                        <tr class="text-center">
+                                <td> 
+                                <div class="col-12 my-5 ">
+                                        <div class="row g-0 text-center"style="max-width: 540px;">
+                                                <div>
+                                                <img src= "../public/{{Imagen}}" class="img-fluid rounded" alt="...">
+                                                </div>
+                                        </div>
+                                </div>
+                                </td>
                                 <td class="align-middle"><p>{{NombreProducto}}</p>
                                 </td>
                                 <td class="align-middle">{{NombreTipoProducto}}</td>
                                 <td class="align-middle">{{FechaDesde}} a {{FechaHasta}}</td>
                                 <td class="align-middle">
-                                        <form action="/suscripcion/baja" method="post">
-                                        <input type="hidden" name="IdProducto" value={{IdProducto}}>       
-                                        <button class="btn btn-success" type="submit" >Desuscribirse</button>
-                                        </form>          
+                                        <div class="py-2">                                        <form action="/suscripcion/   baja" method="post">
+                                                 <input type="hidden" name="IdProducto" value={{IdProducto}}>       
+                                                 <button class="btn btn-danger" type="submit" >Desuscribirse</button>
+                                                </form>
+                                        </div>
+                                        <div class="py-2">                                        <form action="/suscripcion/ediciones" method="post">
+                                                <input type="hidden" name="IdProducto" value={{IdProducto}}>       
+                                                <button class="btn btn-info" type="submit" >Ediciones</button>
+                                        </form> 
+                                        </div>
                                 </td>
                                 </tr>
                         <tr>
