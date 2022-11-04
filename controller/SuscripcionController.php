@@ -48,6 +48,11 @@ class SuscripcionController{
              Redirect::doIt("/suscripcion/mostrarSuscripciones");
     }
 
+    public function ediciones(){
+           $data['ediciones']= $this->edicion->getEdicionesPorProducto($_POST['IdProducto']);
+           $data['producto']= $this->producto->getproducto($_POST['IdProducto']);
+           echo $this->render->render("edicionesView.mustache",$this->sesion->cargar($data));
+    }
 }
 
 ?>
