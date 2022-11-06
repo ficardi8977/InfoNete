@@ -16,19 +16,21 @@ class EdicionModel
         e.Numero, 
         e.Fecha, 
         e.IdProducto,
+        e.Precio,
+        p.Imagen as ImagenProducto,
+        p.Nombre as NombreProducto,
         case when ".$idUsuario." = c.IdUsuario 
             then true
-            else false end Comprado
+            else false 
+            end Comprado
         FROM edicion e
+        JOIN producto p on p.id = e.idproducto
         left join compra c on c.IdEdicion = e.Id
         where e.IdProducto = ". $idProducto);
     }
 
-    public function comprar($idEdicion)
+    public function comprar($idEdicion, $precio)
     {
-        // por ahora el precio  viene estatico
-        $precio = 100;
-
         $idUsuario = $_SESSION["IdUsuario"];
 
         $sql = "INSERT INTO compra (IdEdicion, IdUsuario, precio)

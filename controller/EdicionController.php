@@ -14,16 +14,13 @@ class EdicionController {
 
     public function listar()
     {
-        $idProducto=$_GET["IdProducto"];      
-
-        $data["ediciones"] = $this->edicionModel->getEdicionesPorProducto($idProducto);
-
+        $data["ediciones"] = $this->edicionModel->getEdicionesPorProducto($_GET["IdProducto"]);
         echo $this->render->render("compraEdicionView.mustache", $this->sesion->cargar($data));
     }
+
     public function comprar()
     {
-        $this->edicionModel->comprar($_POST["IdEdicion"]);
-
+        $this->edicionModel->comprar($_POST["IdEdicion"], $_POST["Precio"] );
         echo Redirect::doIt("/edicion/listar?IdProducto=".$_POST["IdProducto"]);
     }
 }
