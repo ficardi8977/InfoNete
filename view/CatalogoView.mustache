@@ -11,8 +11,8 @@
                 <img src = "../public/{{Imagen}}">
                
                 {{#sesion}}
-                <form action="/suscripcion/alta" method="post">
-                    <input type="hidden" name="Id" value={{Id}}>
+                <form action="/suscripcion/mostrarAlta" method="GET">
+                    <input type="hidden" name="IdProducto" value={{Id}}>
                     <button class="btn btn-success" type="submit" >Suscribirse</button>
                 </form>    
                 <form action="/edicion/listar" method="GET">

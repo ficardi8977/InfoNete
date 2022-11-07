@@ -32,13 +32,15 @@
                                 <td class="align-middle">{{NombreTipoProducto}}</td>
                                 <td class="align-middle">{{FechaDesde}} a {{FechaHasta}}</td>
                                 <td class="align-middle">
-                                        <div class="py-2">                                        <form action="/suscripcion/   baja" method="post">
+                                        <div class="py-2">                                        
+                                        <form action="/suscripcion/baja" method="post">
                                                  <input type="hidden" name="IdProducto" value={{IdProducto}}>       
                                                  <button class="btn btn-danger" type="submit" >Desuscribirse</button>
-                                                </form>
+                                        </form>
                                         </div>
-                                        <div class="py-2">                                        <form action="/suscripcion/ediciones" method="post">
-                                                <input type="hidden" name="IdProducto" value={{IdProducto}}>       
+                                        <div class="py-2">                                       
+                                         <form action="/suscripcion/ediciones" method="get">
+                                                <input type="hidden" name="IdSuscripcion" value={{Id}}>       
                                                 <button class="btn btn-info" type="submit" >Ediciones</button>
                                         </form> 
                                         </div>

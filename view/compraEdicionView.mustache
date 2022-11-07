@@ -27,7 +27,9 @@
                 <td>{{Fecha}}</td>
                 <td>${{Precio}}</td>
                 {{#Comprado}}
-                    <td><button class="btn btn-secondary" disabled >Comprada</button></td>
+                    <td>
+                    <button class="btn btn-secondary" disabled >Comprada</button>
+                    </td>
                 {{/Comprado}}
                 {{^Comprado}}
                 <form action="/edicion/comprar" method="post">
