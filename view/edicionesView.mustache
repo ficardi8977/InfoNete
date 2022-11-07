@@ -29,15 +29,12 @@
                                 <tr>
                                 <td>{{Numero}}</td>
                                 <td>{{Fecha}}</td>
-                                {{#Comprado}}
-                                    <td><button class="btn btn-secondary" disabled >Comprada</button></td>
-                                {{/Comprado}}
-                                {{^Comprado}}
-                                <form action="/edicion/abrir" method="get">
+                                {{#PermiteLectura}}
+                                <form action="/edicion/detalle" method="get">
                                     <input type="hidden" name="IdEdicion" value={{Id}}>
                                     <td><button class="btn btn-success">Leer</button></td>
                                 </form>
-                                {{/Comprado}}
+                                {{/PermiteLectura}}
                                 </tr>
                                 <tr>
                             </tbody>

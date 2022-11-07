@@ -1,0 +1,57 @@
+{{> header}}
+<div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
+<h1>Mis compras</h1>
+</div>
+
+<div class="container">        
+        <div class="row">
+                <table class="table">
+                        <thead class="table-dark">
+                                <tr class="text-center">
+                                        <th scope="col">Producto</th>
+                                        <th scope="col">Nombre Producto</th>
+                                        <th scope="col">Tipo Producto</th>
+                                        <th scope="col">Nro Edición</th>
+                                        <th scope="col">Fecha Edición</th>
+                                        <th scope="col">Precio compra</th>
+                                        <th scope="col">Pago</th>
+                                        <th scope="col">Accion</th>
+             </tr>
+                        </thead>
+                {{#compras}}
+                <tbody>
+                        <tr class="text-center">
+                                <td> 
+                                <div class="col-12 my-5 ">
+                                        <div class="row g-0 text-center"style="max-width: 540px;">
+                                                <div>
+                                                <img src= "../public/{{ImagenProducto}}" class="img-fluid rounded" alt="...">
+                                                </div>
+                                        </div>
+                                </div>
+                                </td>
+                                <td class="align-middle"><p>{{NombreProducto}}</p>
+                                </td>
+                                <td class="align-middle">{{TipoProducto}}</td>
+                                <td class="align-middle">{{NumeroEdicion}}</td>
+                                <td class="align-middle">{{FechaEdicion}}</td>
+                                <td class="align-middle">{{PrecioCompra}}</td>
+                                {{#Pagado}}
+                                <td class="align-middle"><i class="bi bi-check"></i></td>
+                                {{/Pagado}}
+                                <td class="align-middle">
+                                        <div class="py-2">                                       
+                                         <form action="/edicion/detalle" method="get">
+                                                <input type="hidden" name="IdEdicion" value={{IdEdicion}}>       
+                                                <button class="btn btn-primary" type="submit" >Leer</button>
+                                        </form> 
+                                        </div>
+                                </td>
+                                </tr>
+                        <tr>
+                </tbody>
+                {{/compras}}    
+                </table>
+        </div> 
+</div>
+{{> footer}}

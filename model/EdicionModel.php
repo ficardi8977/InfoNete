@@ -40,4 +40,24 @@ class EdicionModel
 
         $this->database->execute($sql);        
     }
+
+    public function listCompras()
+    {
+        $idUsuario = $_SESSION["IdUsuario"];
+        return $this->database->query(
+        "select
+        p.Imagen as ImagenProducto,
+        p.Nombre as NombreProducto,
+        tp.Nombre as TipoProducto,
+        e.id as IdEdicion,
+        e.Numero as NumeroEdicion,
+        e.Fecha as FechaEdicion,
+        c.Precio as PrecioCompra,
+        c.Pagado
+        from compra c
+        join edicion e on e.id = c.IdEdicion
+        join producto p on p.id = e.IdProducto
+        join tipoproducto tp on tp.id = p.IdTipoProducto
+        where c.IdUsuario = ".$idUsuario);      
+    }
 }

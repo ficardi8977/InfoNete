@@ -72,13 +72,15 @@ class SuscripcionModel{
         p.Imagen as ImagenProducto,
         p.Nombre as NombreProducto,
         s.FechaDesde,
-        s.FechaHasta
+        s.FechaHasta,
+        case when e.id is not null
+            then true 
+            else false 
+        end PermiteLectura
         FROM suscripcion s 
         JOIN producto p on p.id = s.idproducto
-        join edicion e on e.IdProducto = p.Id
-        where s.id = ".$idSuscripcion." and s.idUsuario = ".$idUsuario."
-        and s.FechaDesde <= e.fecha 
-        and s.FechaHasta >= e.Fecha");
+        left join edicion e on e.IdProducto = p.Id and s.FechaDesde <= e.fecha and s.FechaHasta >= e.Fecha
+        where s.id = ".$idSuscripcion." and s.idUsuario = ".$idUsuario);
     }
 }
 ?>
