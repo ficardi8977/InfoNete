@@ -7,10 +7,9 @@ class SuscripcionController{
     private $edicion;
 
 
-    public function __construct($suscripcion,$render, $sesion ,$producto,$edicion){
+    public function __construct($suscripcion,$render, $producto,$edicion){
             $this->suscripcion = $suscripcion;
             $this->render = $render;
-            $this->sesion = $sesion;
             $this->producto= $producto;
             $this->edicion=$edicion;
     }
@@ -18,12 +17,13 @@ class SuscripcionController{
     public function mostrarAlta(){             
              $idProducto = $_GET["IdProducto"];
              $data['producto']=$this->producto->getProducto($idProducto);
-             echo $this->render->render("altaSuscripcionView.mustache", $this->sesion->cargar($data));
+             echo $this->render->render("altaSuscripcionView.mustache", SesionData::cargar($data));
         }
 
     public function misSuscripciones(){
+            Permisos::validar();
             $data['suscripciones']= $this->suscripcion->listSuscripciones();
-            echo $this->render->render("suscripcionesView.mustache", $this->sesion->cargar($data));
+            echo $this->render->render("suscripcionesView.mustache", SesionData::cargar($data));
         }
 
     public function alta(){
@@ -39,7 +39,7 @@ class SuscripcionController{
 
     public function ediciones(){
            $data['ediciones'] = $this->suscripcion->getEdiciones($_GET['IdSuscripcion']);           
-           echo $this->render->render("edicionesView.mustache",$this->sesion->cargar($data));
+           echo $this->render->render("edicionesView.mustache",SesionData::cargar($data));
     }
 }
 

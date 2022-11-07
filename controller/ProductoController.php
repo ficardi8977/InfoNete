@@ -2,19 +2,16 @@
 class ProductoController {
     private $productoModel;
      private $render;
-    private $sesion;
 
-
-    public function __construct($productoModel,$render,$sesion){
+    public function __construct($productoModel,$render){
         $this->productoModel=$productoModel;
         $this->render=$render;
-        $this->sesion=$sesion;
         }
 
     public function mostrarProductos(){
 
            $data['productos']=$this->productoModel->getProductosConSuTipo(); 
-           echo $this->render->render("productosView.mustache", $this->sesion->cargar($data));
+           echo $this->render->render("productosView.mustache", SesionData::cargar($data));
     }   
 
     public function baja(){  
@@ -27,7 +24,7 @@ class ProductoController {
            $idProducto= $_POST["Id"];
            $data['producto']=$this->productoModel->getproducto($idProducto); 
            $data['TiposProducto']=$this->productoModel->getTiposProducto();
-           echo $this->render->render("modificarProductoView.mustache", $this->sesion->cargar($data));
+           echo $this->render->render("modificarProductoView.mustache", SesionData::cargar($data));
 
     }
     */
@@ -50,7 +47,7 @@ class ProductoController {
     public function modificar(){
         $data['idProductoAModificar']=$_GET['Id'];
         $data['producto']=$this->productoModel->getproductoConSuTipo($_GET['Id']); 
-        echo $this->render->render("modificarProductoView.mustache",$this->sesion->cargar($data));
+        echo $this->render->render("modificarProductoView.mustache", SesionData::cargar($data));
     }
 
     public function modificarProducto(){

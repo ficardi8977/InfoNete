@@ -1,13 +1,7 @@
 <?php
 class SesionData {
 
-    private $logger;
-
-    public function __construct($logger) {
-        $this->logger = $logger;
-    }
-
-    public function guardar($usuario, $tipoUsuario, $logueado ,$idUsuario)
+    public static function guardar($usuario, $tipoUsuario, $logueado ,$idUsuario)
     {
         $_SESSION["Nombre"] = $usuario;
         switch ($tipoUsuario) {
@@ -25,33 +19,32 @@ class SesionData {
                 break;
         }
         
-        $this->logger->info("guardado de variables de sesión:".$_SESSION["Nombre"]."-".$_SESSION["IdTipoUsuario"]);
         $_SESSION["IdUsuario"]=$idUsuario;
-        $this->logueado($logueado);
+        SesionData::logueado($logueado);
     }
 
-    public function logueado($logueado)
+    public static function logueado($logueado)
     {
         $_SESSION["Logueado"] = $logueado;
         $_SESSION["Intentos"] = !$logueado;
     }
 
-    public function esLogueado()
+    public static function esLogueado()
     {
         return isset($_SESSION["Logueado"]) && $_SESSION["Logueado"];
     }
-    public function hayIntentos()
+    public static function hayIntentos()
     {
         return isset($_SESSION["Intentos"]) && $_SESSION["Intentos"];
     }
 
-    public function cargar($data = [])
+    public static function cargar($data = [])
     {
-        if($this->esLogueado())
+        if(SesionData::esLogueado())
         {
             $data["sesion"] = $_SESSION;
         }
-        if($this->hayIntentos())
+        if(SesionData::hayIntentos())
         {
             $data["msjLogError"] = "Usuario o contraseña incorrecto.";
         }
