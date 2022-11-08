@@ -9,6 +9,10 @@ class SeccionModel{
         $this->database = $database;
     }
 
+    public function getSecciones(){
+        return $this->database->query("SELECT * FROM seccion");
+    }
+
     public function alta($Id,$nombre){
 
         $sql = "INSERT INTO seccion($Id, $nombre)
