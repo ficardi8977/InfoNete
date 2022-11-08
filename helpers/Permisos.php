@@ -1,8 +1,8 @@
 <?php
     class Permisos{
-    public static function validar($rolMinimo="Lector"){
-        if(!isset($_SESSION["logueado"]))
-        {
+    public static function validarAcceso($rolMinimo){
+        if(!isset($_SESSION["Logueado"]) || 
+           $rolMinimo > $_SESSION["IdTipoUsuario"]){
             Redirect::doIt("/");
         }
     }

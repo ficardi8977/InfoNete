@@ -12,24 +12,27 @@ class EdicionController {
 
     public function listar()
     {
+        Permisos::validarAcceso(Rol::Lector->value);   
         $data["ediciones"] = $this->edicionModel->getEdicionesPorProducto($_GET["IdProducto"]);
         echo $this->render->render("compraEdicionView.mustache", SesionData::cargar($data));
     }
 
     public function comprar()
     {
+        Permisos::validarAcceso(Rol::Lector->value);   
         $this->edicionModel->comprar($_POST["IdEdicion"], $_POST["Precio"] );
         echo Redirect::doIt("/edicion/listar?IdProducto=".$_POST["IdProducto"]);
     }
 
     public function misCompras()
     {
+        Permisos::validarAcceso(Rol::Lector->value);   
         $data['compras']= $this->edicionModel->listCompras();
         echo $this->render->render("misComprasView.mustache", SesionData::cargar($data));
     }
 
     public function detalle()
-    {
+    {        
         //$data['edicion'] = $this->edicionModel->abrir($_GET["IdEdicion"]);
         $data['edicion'] = "por ahora vacio la idea es abrir una lista de noticias que contiene la edicion";
         echo $this->render->render("detalleEdicionView.mustache", SesionData::cargar($data));

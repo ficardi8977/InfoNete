@@ -18,7 +18,7 @@ class SesionData {
                 $_SESSION["EsAdministrador"] = true;
                 break;
         }
-        
+        $_SESSION["IdTipoUsuario"]=$tipoUsuario;
         $_SESSION["IdUsuario"]=$idUsuario;
         SesionData::logueado($logueado);
     }

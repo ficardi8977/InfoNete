@@ -16,6 +16,10 @@ include_once("model/SuscripcionModel.php");
 include_once("model/EdicionModel.php");
 include_once("model/NoticiaModel.php");
 
+// enums
+include_once("model/enums/Rol.php");
+
+
 
 include_once('controller/HomeController.php');
 include_once('controller/UsuarioController.php');
