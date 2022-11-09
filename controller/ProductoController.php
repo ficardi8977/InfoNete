@@ -30,7 +30,7 @@ class ProductoController {
     */
 
     public function alta(){
-        echo $this->render->render("altaProductoView.mustache");
+        echo $this->render->render("altaProductoView.mustache", $this->sesion->cargar());
     }
 
     public function altaProducto(){
@@ -51,15 +51,25 @@ class ProductoController {
     }
 
     public function modificarProducto(){
-         move_uploaded_file($_FILES["imagen"]["tmp_name"], "public/" . $_FILES["imagen"]["name"]); 
-         $imagen = $_FILES["imagen"]["name"];
+        
+        if(!empty($_FILES["imagen"]["name"])){
+
+            move_uploaded_file($_FILES["imagen"]["tmp_name"], "public/" . $_FILES["imagen"]["name"]);
+            $imagen = $_FILES["imagen"]["name"];
+        }else{
+            $imagen =  $_POST['imageOld'];
+        }
+         
          $nombreProducto = $_POST['nombreProducto'];
-         $tipoProducto = isset($_POST['tipoProducto']);
+         $tipoProducto = $_POST['tipoProducto'];
 
         $this->productoModel->updateProducto($_POST['Id'],$imagen,$nombreProducto,$tipoProducto);
 
         echo Redirect::doIt("/producto/mostrarProductos");
 
     }
+
+
+
 
 }

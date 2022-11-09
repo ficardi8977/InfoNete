@@ -17,7 +17,11 @@ class ProductoModel
     }
 
      public function getproductoConSuTipo($idProducto){
-        return $this->database->query("SELECT p.Id as Id, p.nombre as Nombre , p.Imagen as Imagen, t.nombre as NombreTipoProducto
+        return $this->database->query("SELECT p.Id as Id, p.nombre as Nombre , p.Imagen as Imagen, t.nombre as NombreTipoProducto ,
+        case  
+        when p.IdTipoProducto = 1 then true
+        else false
+        end as EsDiario
         from producto p inner join tipoproducto t on (p.IdTipoProducto=t.Id) where p.Id =".$idProducto.";");
     }
     
@@ -28,7 +32,7 @@ class ProductoModel
 
     public function bajaProducto($idProducto){
 
-        $sql=("DELETE from producto where Id=".$idProducto.";");
+        $sql=("DELETE from producto where Id=$idProducto;");
         $this->database->execute($sql);
     }
 
@@ -42,7 +46,7 @@ class ProductoModel
     }
 
     public function updateProducto($idProducto,$imagen,$nombreProducto,$tipoProducto){
-        $sql=("UPDATE producto SET Nombre='.$nombreProducto.',IdTipoProducto='.$tipoProducto.',Imagen='.$imagen.' WHERE Id=".$idProducto.";");
+        $sql=("UPDATE producto SET Nombre='$nombreProducto',IdTipoProducto=$tipoProducto,Imagen='$imagen' WHERE Id=$idProducto;");
         $this->database->execute($sql);
     }
 }
