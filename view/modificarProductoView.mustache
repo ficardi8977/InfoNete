@@ -9,30 +9,36 @@
                             <label for="nombre">Nombre del producto: </label>
                         </div>
                         <div class="col-8 mb-2">
-                            <input type="text" id="nombre" name="nombreProducto" class="form-control" placeholder="{{Nombre}}">
+                            <input type="text" id="nombre" name="nombreProducto" class="form-control" value="{{Nombre}}">
                         </div>
-            
-                        <div class="col-4 mb-2">
-                         <label for="nombre">El producto es de tipo: </label>
-   
-                        </div>
-                        <div class="col-8 mb-2">
-                         <input type="text" id="nombre" name="nombreProducto" class="form-control" placeholder="{{NombreTipoProducto}}" readonly>
-                        </div>
-
                         <div class="col-4 mb-2">
                             <label for="nombre">Cambiar tipo de producto: </label>
                         </div>
+                        {{#EsDiario}}
                         <div class="col-8 d-flex mb-2">
                             <div class="col-6">
-                                <input type="radio" name="tipoProducto" id="revista" value="revista"/>
+                                <input type="radio" name="tipoProducto" id="revista" value="2"/>
                                 <label for="revista">Revista</label>
                             </div>
                             <div class="col-6">
-                                <input type="radio" name="tipoProducto" id="diario" value="diario"/>
+                                <input type="radio" name="tipoProducto" id="diario" value="1" checked/>
                                 <label for="diario">Diario</label>
                             </div>
-                        </div>  
+                        </div> 
+                        {{/EsDiario}}
+                        {{^EsDiario}}
+                         <div class="col-8 d-flex mb-2">
+                            <div class="col-6">
+                                <input type="radio" name="tipoProducto" id="revista" value="2" checked/>
+                                <label for="revista">Revista</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="radio" name="tipoProducto" id="diario" value="1" />
+                                <label for="diario">Diario</label>
+                            </div>
+                        </div> 
+                        {{/EsDiario}} 
+    
 
                         <div class="col-12 my-5 ">
                                  <div class="row g-0 text-center"style="max-width: 540px;">
@@ -48,7 +54,8 @@
                                 <input type="file" id="imagen" name="imagen" class="form-control">
                         </div>
                         <div class="d-flex justify-content-center">
-                            <input type="hidden" name="Id" value={{Id}}>
+                            <input type="hidden" name="Id" value={{Id}} />
+                            <input type="hidden" name="imageOld" value={{Imagen}} />
                             <input type="submit" class='btn btn-success' name="publicar" value="Modificar Producto">
                         </div>              
             </form>
