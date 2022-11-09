@@ -164,6 +164,7 @@ CREATE TABLE `noticia` (
   `Titulo` varchar(100) NOT NULL,
   `Subtitulo` varchar(150) NOT NULL,
   `Cuerpo` mediumtext NOT NULL,
+  `Link` varchar(200) NULL,
   `IdEdicionSeccion` int(11) NOT NULL,
   `CoordenadaX` varchar(100) NOT NULL,
   `CoordenadaY` varchar(100) NOT NULL
