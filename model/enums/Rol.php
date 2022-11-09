@@ -1,8 +1,7 @@
 <?php
-
-Enum Rol: int
+abstract class Rol
 {
-    case Lector = 1;
-    case Contenidista = 2;
-    case Administrador = 3;
+    const Lector = 1;
+    const Contenidista = 2;
+    const Administrador = 3;
 }
