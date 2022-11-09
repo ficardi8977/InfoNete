@@ -5,11 +5,20 @@
          <label for="titulo">Título de la noticia:</label>
          <input type="text" id="titulo" name="titulo" class="form-control" required>
 
+         <label for="subtitulo">Subtítulo de la noticia:</label>
+         <input type="text" id="subtitulo" name="subtitulo" class="form-control" required>
+
          <label for="cuerpo">Cuerpo de la noticia:</label>
          <textarea id="cuerpo" name="cuerpo" class="form-control" rows="15" required></textarea>
 
          <label for="imagen">Insertar imagen: </label>
          <input type="file" id="imagen" name="imagen" class="form-control" required>
+
+         <label for="link">Insertar un link a mayor información (opcional):</label>
+         <input type="text" id="link" name="link" class="form-control">
+
+         <label for="foto_o_video">Foto o video adicional (opcional):</label>
+         <input type="file" id="foto_o_video" name="foto_o_video" class="form-control">
 
          <div class="d-flex justify-content-center col-md-12">
             <input type="submit" class='btn btn-success' name="publicar" value="Publicar">

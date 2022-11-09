@@ -5,11 +5,10 @@ class NoticiaController {
     private $render;
     private $sesion;
 
-    public function __construct($noticiaModel, $render, $sesion){
+    public function __construct($noticiaModel, $render){
 
         $this->noticiaModel = $noticiaModel;
         $this->render = $render;
-        $this->sesion = $sesion;
     }
 
     public function alta()

@@ -5,15 +5,14 @@ class UsuarioController {
     private $render;
     private $sesion;
 
-    public function __construct($usuarioModel, $render,  $sesion){
+    public function __construct($usuarioModel, $render){
         $this->usuarioModel = $usuarioModel;
         $this->render = $render;
-        $this->sesion = $sesion;
     }
   
     public function alta()
     {
-        echo $this->render->render("signinView.mustache", $this->sesion->cargar());
+        echo $this->render->render("signinView.mustache", SesionData::cargar());
     }
 
     public function registrar()
@@ -31,7 +30,7 @@ class UsuarioController {
         if($msjError)
         {
             $data["msjError"] = $msjError;
-            echo $this->render->render("signinView.mustache",$this->sesion->cargar($data));
+            echo $this->render->render("signinView.mustache",SesionData::cargar($data));
             exit();
         }
         echo $this->render->render("verificacionUsuarioView.mustache",$data);
@@ -51,12 +50,12 @@ class UsuarioController {
         
         if(isset($result[0]))
         {
-            $this->sesion->guardar($result[0]["Nombre"], $result[0]["IdTipoUsuario"], 
+            SesionData::guardar($result[0]["Nombre"], $result[0]["IdTipoUsuario"], 
                                    true, 
                                    $result[0]["Id"]);
         }else
         {
-            $this->sesion->logueado(false);
+            SesionData::logueado(false);
         }
         Redirect::doIt();
     }
