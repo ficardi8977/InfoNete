@@ -13,22 +13,29 @@ class SeccionModel{
         return $this->database->query("SELECT * FROM seccion");
     }
 
-    public function alta($Id,$nombre){
+    public function getSeccion($idSeccion){
+        return $this->database->query("SELECT * FROM seccion WHERE  Id =".$idSeccion.";");
+    }
 
-        $sql = "INSERT INTO seccion($Id, $nombre)
-        VALUES('".Id."',
-               ".$nombre.")";
+    public function altaSeccion($nombre){
 
-        $this->database->execute($sql);
+       $sql=("INSERT INTO seccion(nombre) VALUES ('".$nombre."')");
+       $this->database->execute($sql);
         
     }
 
-    public function baja($Id,$nombre){
-        $IdSeccion= $_POST["Id"];
-        $sql= "DELETE FROM seccion WHERE Id=".$IdSeccion." ";
-
+    public function bajaSeccion($idSeccion){
+        $sql = ("DELETE from seccion where Id =".$idSeccion.";");
         $this->database->execute($sql);
     }
+
+
+    public function updateSeccion($idSeccion,$nombreSeccion){
+        $sql=("UPDATE seccion SET Nombre='.$nombreSeccion.' WHERE Id=".$idSeccion.";");
+        $this->database->execute($sql);
+    }
+
+
 
 
 }

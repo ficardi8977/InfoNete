@@ -1,10 +1,12 @@
 {{> header}}
 <div class="container">
     <div class="d-flex justify-content-md-end pb-3">
+
         <form action="/seccion/alta" method="GET">
-            <input type="hidden" name="IdSeccion" value={{Id}}>
-            <button class="btn btn-success " type="submit" >Alta Nueva Seccion </button>
+            <input type="hidden" name="nombre" value={{nombre}}>
+            <button class="btn btn-success " type="submit" >Alta Nueva Seccion</a>
         </form>
+
     </div>
     <div>
         <table class="table table-hover   ">
@@ -21,7 +23,7 @@
                         <div class="d-flex justify-content-center">
                             <div class="px-2">
                                 <form action="/seccion/modificar" method="POST">
-                                    <input type="hidden" name="Id" value={{Id}}>
+                                    <input type="hidden" name="idSeccion" value={{Id}}>
                                     <button class="btn btn-primary" type="submit" >Modificar Seccion</button>
                                 </form>
                             </div>

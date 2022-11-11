@@ -64,7 +64,7 @@ class Configuration {
         return new ProductoController($this->createProductoModel(),$this->view, $this->sesion);
     }
 
-    public function getSeccionCotroller(){
+    public function getSeccionController(){
         return new SeccionController($this->createSeccionModel(),$this->view, $this->sesion);
     }
     // //
