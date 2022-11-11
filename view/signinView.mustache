@@ -19,7 +19,7 @@
         valor requerido!
     </div>
   </div>
-
+   
   <div class="col-md-12">
     <label for="email" class="form-label">Email</label>
     <div class="input-group has-validation">
@@ -30,10 +30,26 @@
       </div>
     </div>
   </div>
+    {{#EsAdministrador}}
+    <div class="col-md-6">
+    <label for="IdTipoUsuario">Tipo de usuario</label>
+    <p type="text" class="form-control" id="IdTipoUsuario" name="IdTipoUsuario"  value='2' >Contenidista</p>
+  </div>
+  {{/EsAdministrador}}
+
+  <div class="d-flex flex-column ">
+
+  <div  class="row" > 
+        <div class="col-md-12">
+          <div class="alert alert-primary" role="alert"> 
+            <p>
+            Vamos a guardar tu geolocalizacion... Seleccioné su ubicación en el mapa con click derecho
+            </p>
+          </div> 
+        </div>   
+  </div>
+  <div  class="row">
   <div class="col-md-6">
-        <div class="alert alert-primary" role="alert">
-        Vamos a guardar tu geolocalizacion... Seleccioné su ubicación en el mapa con click derecho
-        </div>
         <label for="coordenadasX">Latitud</label>
         <input type="text"   class="form-control" id="coordenadasX" name="coordenadasX" pattern="^(-?\d+(\.\d+)?).\s*(-?\d+(\.\d+)?)$" placeholder="CoordenadasX : Latitud" required>
         <div class="invalid-feedback">
@@ -45,7 +61,7 @@
         seleccionar coordendas en el mapa o ingresar manualmente un valor numerico!
         </div>
   </div>
-    <div class="col-md-6">
+    <div class="col-md-6 ">
         <div id="mapa" class="map-responsive"></div>
     </div>
     {{#msjError}}
@@ -57,6 +73,8 @@
         <a href="/" class="btn btn-danger">Cancelar</a>
         <button class="btn btn-success" type="submit">Registrar</button>
    </div>
+  </div> 
+  </div>
 </form>
 </div>
 {{> footer}}

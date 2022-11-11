@@ -25,7 +25,7 @@ class UsuarioModel
         return $this->database->query($sql);
     }
 
-    public function AddUsuario($nombre, $password, $email, $coordenadasX, $coordenadasY)
+    public function AddUsuario($nombre, $password, $email, $coordenadasX, $coordenadasY,$idTipoDeUsuario = 1)
     {
         $existeUsuario = $this->esUsuarioExistente($nombre);
         if(isset($existeUsuario[0]["existe"]) && $existeUsuario[0]["existe"] == 1){
@@ -34,7 +34,7 @@ class UsuarioModel
 
         $sql = "INSERT INTO usuario (nombre, IdTipoUsuario, Email,coordenadasX, coordenadasY)
     VALUES ('" . $nombre . "',
-            1, 
+            ". $idTipoDeUsuario .",
             '" . $email . "', 
             '" . $coordenadasX . "', 
             '" . $coordenadasY . "')";

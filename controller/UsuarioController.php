@@ -11,7 +11,10 @@ class UsuarioController {
     }
   
     public function alta()
-    {
+    {    if($_SESSION["IdUsuario"] == 3){
+        $data["EsAdministrador"] = true;
+        echo $this->render->render("signinView.mustache", SesionData::cargar($data));
+    }
         echo $this->render->render("signinView.mustache", SesionData::cargar());
     }
 
@@ -22,8 +25,9 @@ class UsuarioController {
         $email = $_POST["email"];
         $coordenadasX = $_POST["coordenadasX"];
         $coordenadasY = $_POST["coordenadasY"];
+        $idTipoDeUsuario = $_POST["IdTipoUsuario"];
 
-        $msjError= $this->usuarioModel->addUsuario($nombre, $password,$email,$coordenadasX,$coordenadasY);
+        $msjError= $this->usuarioModel->addUsuario($nombre, $password,$email,$coordenadasX,$coordenadasY,$idTipoDeUsuario);
 
         $data["nombre"] = $nombre;
         $data["email"] = $email;
@@ -66,5 +70,11 @@ class UsuarioController {
         Redirect::doIt();
     }
 
+
+    public function mostrarUsuarios(){
+        $data["usuarios"]= $this->usuarioModel->getUsuarios();
+        echo $this->render->render("mostrarUsuariosView.mustache", SesionData::cargar($data));
+
+    }
 }
 ?>
