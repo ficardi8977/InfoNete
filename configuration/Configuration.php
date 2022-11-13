@@ -15,6 +15,7 @@ include_once("model/ProductoModel.php");
 include_once("model/SuscripcionModel.php");
 include_once("model/EdicionModel.php");
 include_once("model/NoticiaModel.php");
+include_once("model/SeccionModel.php");
 
 // enums
 include_once("model/enums/Rol.php");
@@ -58,7 +59,7 @@ class Configuration {
         return new SuscripcionController($this->createSuscripcionModel(), $this->view, $this->createProductoModel(), $this->createEdicionModel());
     }
     public function getEdicionController(){
-        return new EdicionController($this->createEdicionModel(), $this->view);
+        return new EdicionController($this->createEdicionModel(), $this->createSeccionModel(), $this->view);
     }
 
     public function getProductoController(){
@@ -88,5 +89,9 @@ class Configuration {
 
     public function createNoticiaModel() : NoticiaModel {
         return new NoticiaModel($this->database);
+    }
+
+    public function createSeccionModel() : SeccionModel {
+        return new SeccionModel($this->database);
     }
 }

@@ -1,0 +1,33 @@
+{{> header}}
+<div class="container">
+        <div class="row justify-content-center "> 
+                <div class="text-center">
+                    <h1>Asociar sección a una edición </h1>
+                </div>  
+                <div class="alert alert-primary" role="alert">
+                Seleccioné una sección para asociarlo a la edición.
+                </div>
+                <div class="text-center">
+                        <form action="/edicion/asociarSeccion" method="POST">
+                        <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">Secciones</label>
+                        </div>
+                        <select name="IdSeccion" class="custom-select" id="inputGroupSelect01">
+                        <option selected>Elegí una sección...</option>
+                        {{#secciones}}
+                        <option value={{Id}}>{{Nombre}}</option>
+                        {{/secciones}}
+                        </select>
+                        </div>
+
+                                <input type="hidden" name="IdEdicion" value="{{IdEdicion}}" />
+                                <button class="btn btn-success" type="submit">Asociar</button> 
+                        </form>
+
+                </div>
+
+                </div>                   
+        </div> 
+</div>        
+{{> footer}}
