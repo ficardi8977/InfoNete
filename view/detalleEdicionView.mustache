@@ -1,9 +1,12 @@
  {{> header}}
    <div class="container ">
-       <h1>Edición Número {{edicion.0.NumeroEdicion}} del producto "{{edicion.0.NombreProducto}}"</h1>
+       <h1>Contenido de la edición del producto</h1>
 
         <div class="d-flex justify-content-md-end pb-3">
-                    <a href="/edicion/mostrarAsociarSeccion?IdEdicion={{edicion.0.IdEdicion}}" class="btn btn-success"  > Asociar seccion </a> 
+                    <form action="/edicion/mostrarAsociarSeccion" method="GET">
+                            <input type="hidden" name="IdEdicion" value={{IdEdicion}}>
+                            <button class="btn btn-success" type="submit" >Asociar sección</button>                    
+                    </form>
         </div>
         <div>
             <table class="table table-hover   ">

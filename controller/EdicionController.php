@@ -35,6 +35,7 @@ class EdicionController {
 
     public function detalle()
     {        
+        $data['IdEdicion'] =$_GET["IdEdicion"];
         $data['edicion'] = $this->edicionModel->listSecciones($_GET["IdEdicion"]);
         echo $this->render->render("detalleEdicionView.mustache", SesionData::cargar($data));
     }
