@@ -25,9 +25,9 @@ class UsuarioController {
         $email = $_POST["email"];
         $coordenadasX = $_POST["coordenadasX"];
         $coordenadasY = $_POST["coordenadasY"];
-        $idTipoDeUsuario = $_POST["IdTipoUsuario"];
+        
 
-        $msjError= $this->usuarioModel->addUsuario($nombre, $password,$email,$coordenadasX,$coordenadasY,$idTipoDeUsuario);
+        $msjError= $this->usuarioModel->addUsuario($nombre, $password,$email,$coordenadasX,$coordenadasY);
 
         $data["nombre"] = $nombre;
         $data["email"] = $email;
@@ -72,9 +72,28 @@ class UsuarioController {
 
 
     public function mostrarUsuarios(){
-        $data["usuarios"]= $this->usuarioModel->getUsuarios();
+        $data["usuarios"]= $this->usuarioModel->getUsuariosConTipo();
         echo $this->render->render("mostrarUsuariosView.mustache", SesionData::cargar($data));
 
+    }
+
+    public function modificar (){
+        $data['IdUsuario']= $_GET['IdUsuario'];
+        $data['tiposUsuarios'] = $this->usuarioModel->tipoDeUsuarios();
+         echo $this->render->render("modificarUsuarioView.mustache", SesionData::cargar($data));
+    }
+
+    public function modificarUsuario(){
+        $tipoUsuario = $_POST['IdTipoUsuario'];
+        $idUsuario = $_POST ['IdUsuario'];
+        $this-> usuarioModel->updateUsuario($tipoUsuario,$idUsuario);
+        Redirect::doIt("/usuario/mostrarUsuarios");
+    }
+
+    public function baja(){
+        $IdUsuario = $_POST['Id'];
+        $this->usuarioModel->deleteUsuario($IdUsuario);
+        Redirect::doIt("/usuario/mostrarUsuarios");
     }
 }
 ?>
