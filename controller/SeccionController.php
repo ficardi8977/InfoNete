@@ -4,25 +4,23 @@ class SeccionController
 
     private $seccionModel;
     private $render;
-    private $sesion;
 
 
-    public function __construct($seccionModel, $render, $sesion)
+    public function __construct($seccionModel, $render)
     {
         $this->seccionModel = $seccionModel;
         $this->render = $render;
-        $this->sesion = $sesion;
     }
 
     public function mostrarSecciones()
     {
         $data['secciones'] = $this->seccionModel->getSecciones();
-        echo $this->render->render("mostrarSecciones.mustache", $this->sesion->cargar($data));
+        echo $this->render->render("mostrarSecciones.mustache", SesionData::cargar($data));
     }
 
     public function alta()
     {
-        echo $this->render->render("altaSeccion.mustache", $this->sesion->cargar());
+        echo $this->render->render("altaSeccion.mustache", SesionData::cargar());
 
     }
 
@@ -46,7 +44,7 @@ class SeccionController
         //$data['IdSeccionAModificar'] = $_GET['Id'];
         $data['seccion'] = $this->seccionModel->getSeccion($_POST['Id']);
 
-        echo $this->render->render("modificarSeccion.mustache", $this->sesion->cargar($data));
+        echo $this->render->render("modificarSeccion.mustache", SesionData::cargar($data));
     }
 
 

@@ -68,7 +68,7 @@ class Configuration {
     }
 
     public function getSeccionController(){
-        return new SeccionController($this->createSeccionModel(),$this->view, $this->sesion);
+        return new SeccionController($this->createSeccionModel(),$this->view);
     }
     // //
     // CONFIGS DE MODEL //
