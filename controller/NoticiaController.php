@@ -37,12 +37,19 @@ class NoticiaController {
             $datos["link"] = $_POST["link"];
 
         //recibo imagen opcional
-        if(!empty($_FILES["foto_o_video"])){
+        if(!empty($_FILES["foto_o_video"]["name"])){
             move_uploaded_file($_FILES["foto_o_video"]["tmp_name"], "public/" . $_FILES["foto_o_video"]["name"]);
             $datos["foto_o_video"] = $_FILES["foto_o_video"]["name"];
         }
+
+        //recibo audio opcional
+        if(!empty($_FILES["grabacion"]["name"])){
+            $grabacionName = uniqid("grabacion", true) . '.wav';
+            move_uploaded_file($_FILES["grabacion"]["tmp_name"], "public/" . $grabacionName);
+            $datos["grabacion"] = $grabacionName;
+        }
         
         $this->noticiaModel->addNoticia($datos);
-        echo Redirect::doIt("/");
+        echo Redirect::doIt("/noticia/mostrarNoticias");
     }
 }

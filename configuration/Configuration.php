@@ -15,6 +15,7 @@ include_once("model/ProductoModel.php");
 include_once("model/SuscripcionModel.php");
 include_once("model/EdicionModel.php");
 include_once("model/NoticiaModel.php");
+include_once("model/SeccionModel.php");
 
 // enums
 include_once("model/enums/Rol.php");
@@ -27,6 +28,7 @@ include_once('controller/NoticiaController.php');
 include_once('controller/SuscripcionController.php');
 include_once('controller/EdicionController.php');
 include_once('controller/ProductoController.php');
+include_once ('controller/SeccionController.php');
 
 include_once('dependencies/mustache/src/Mustache/Autoloader.php');
 
@@ -58,13 +60,16 @@ class Configuration {
         return new SuscripcionController($this->createSuscripcionModel(), $this->view, $this->createProductoModel(), $this->createEdicionModel());
     }
     public function getEdicionController(){
-        return new EdicionController($this->createEdicionModel(), $this->view);
+        return new EdicionController($this->createEdicionModel(), $this->createSeccionModel(), $this->view);
     }
 
     public function getProductoController(){
         return new ProductoController($this->createProductoModel(),$this->view);
     }
 
+    public function getSeccionController(){
+        return new SeccionController($this->createSeccionModel(),$this->view);
+    }
     // //
     // CONFIGS DE MODEL //
 
@@ -88,5 +93,9 @@ class Configuration {
 
     public function createNoticiaModel() : NoticiaModel {
         return new NoticiaModel($this->database);
+    }
+
+    public function createSeccionModel() : SeccionModel {
+        return new SeccionModel($this->database);
     }
 }

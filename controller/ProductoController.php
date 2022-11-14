@@ -9,31 +9,25 @@ class ProductoController {
         }
 
     public function mostrarProductos(){
-
+           Permisos::validarAcceso(Rol::Contenidista);
            $data['productos']=$this->productoModel->getProductosConSuTipo(); 
            echo $this->render->render("productosView.mustache", SesionData::cargar($data));
     }   
 
     public function baja(){  
+            Permisos::validarAcceso(Rol::Contenidista);
              $this->productoModel->bajaProducto($_POST["Id"]);
              Redirect::doIt("/producto/mostrarProductos");
     }
 
-    /*
-    public function modificar(){
-           $idProducto= $_POST["Id"];
-           $data['producto']=$this->productoModel->getproducto($idProducto); 
-           $data['TiposProducto']=$this->productoModel->getTiposProducto();
-           echo $this->render->render("modificarProductoView.mustache", SesionData::cargar($data));
-
-    }
-    */
 
     public function alta(){
-        echo $this->render->render("altaProductoView.mustache", $this->sesion->cargar());
+        Permisos::validarAcceso(Rol::Contenidista);
+        echo $this->render->render("altaProductoView.mustache", SesionData::cargar());
     }
 
     public function altaProducto(){
+            Permisos::validarAcceso(Rol::Contenidista);
             $nombreProducto = $_POST['nombreProducto'];
             $tipoProducto = isset($_POST['tipoProducto']);
             move_uploaded_file($_FILES["imagen"]["tmp_name"], "public/" . $_FILES["imagen"]["name"]);  //tmp_name ruta donde guarda el apache el archivo
@@ -45,13 +39,14 @@ class ProductoController {
     }
 
     public function modificar(){
+        Permisos::validarAcceso(Rol::Contenidista);
         $data['idProductoAModificar']=$_GET['Id'];
         $data['producto']=$this->productoModel->getproductoConSuTipo($_GET['Id']); 
         echo $this->render->render("modificarProductoView.mustache", SesionData::cargar($data));
     }
 
     public function modificarProducto(){
-        
+        Permisos::validarAcceso(Rol::Contenidista);
         if(!empty($_FILES["imagen"]["name"])){
 
             move_uploaded_file($_FILES["imagen"]["tmp_name"], "public/" . $_FILES["imagen"]["name"]);
