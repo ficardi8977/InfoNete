@@ -10,11 +10,8 @@ class UsuarioController {
         $this->render = $render;
     }
   
-    public function alta()
-    {    if($_SESSION["IdUsuario"] == 3){
-        $data["EsAdministrador"] = true;
-        echo $this->render->render("signinView.mustache", SesionData::cargar($data));
-    }
+    public function alta(){
+
         echo $this->render->render("signinView.mustache", SesionData::cargar());
     }
 
