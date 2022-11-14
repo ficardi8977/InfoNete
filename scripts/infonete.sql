@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-11-2022 a las 03:04:00
+-- Tiempo de generación: 13-11-2022 a las 20:18:19
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -39,6 +39,12 @@ CREATE TABLE `compra` (
 -- Volcado de datos para la tabla `compra`
 --
 
+INSERT INTO `compra` (`Id`, `IdUsuario`, `IdEdicion`, `Precio`, `Pagado`) VALUES
+(1, 1, 5, '999.99', b'1'),
+(2, 1, 6, '999.99', b'1'),
+(3, 1, 2, '999.99', b'1'),
+(4, 1, 8, '7007.97', b'0');
+
 -- --------------------------------------------------------
 
 --
@@ -64,7 +70,7 @@ INSERT INTO `contraseña` (`Id`, `IdUsuario`, `clave`, `FechaVencimiento`, `Vali
 (2, 2, '81dc9bdb52d04dc20036dbd8313ed055', '2029-04-04', b'1', NULL, NULL),
 (3, 3, '81dc9bdb52d04dc20036dbd8313ed055', '2029-04-04', b'1', NULL, NULL),
 (4, 4, '81dc9bdb52d04dc20036dbd8313ed055', '2029-04-04', b'1', NULL, NULL),
-(5, 5, '81dc9bdb52d04dc20036dbd8313ed055', '2029-04-04', b'1', NULL, NULL),
+(5, 5, '81dc9bdb52d04dc20036dbd8313ed055', '2029-04-04', b'1', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -88,9 +94,9 @@ INSERT INTO `edicion` (`Id`, `Numero`, `IdProducto`, `Fecha`, `precio`) VALUES
 (1, 1, 1, '2022-10-01', '4453.49'),
 (2, 2, 1, '2022-10-08', '4453.49'),
 (3, 3, 1, '2022-10-15', '4591.18'),
-(4, 4, 1, '2022-12-22', '11004.93'),
+(4, 4, 1, '2022-10-22', '11004.93'),
 (5, 1, 2, '2022-10-02', '22343.46'),
-(6, 2, 2, '2022-12-18', '9379.33'),
+(6, 2, 2, '2022-10-18', '9379.33'),
 (7, 1, 3, '2022-10-10', '20092.91'),
 (8, 1, 3, '2022-10-28', '7007.97'),
 (9, 1, 4, '2022-10-01', '15382.41'),
@@ -105,7 +111,28 @@ INSERT INTO `edicion` (`Id`, `Numero`, `IdProducto`, `Fecha`, `precio`) VALUES
 (18, 6, 5, '2022-10-28', '10894.37'),
 (19, 7, 5, '2022-10-29', '1787.03'),
 (20, 8, 5, '2022-10-30', '10558.94'),
-(21, 9, 5, '2022-10-31', '19633.39');
+(21, 30, 5, '2022-12-01', '19633.39'),
+(22, 31, 1, '2022-12-01', '4453.49'),
+(23, 32, 1, '2022-12-01', '4453.49'),
+(24, 33, 1, '2022-12-01', '4591.18'),
+(25, 34, 1, '2022-12-01', '11004.93'),
+(26, 31, 2, '2022-12-01', '22343.46'),
+(27, 32, 2, '2022-12-01', '9379.33'),
+(28, 31, 3, '2022-12-01', '20092.91'),
+(29, 31, 3, '2022-12-01', '7007.97'),
+(30, 31, 4, '2022-12-01', '15382.41'),
+(31, 32, 4, '2022-12-01', '12576.12'),
+(32, 33, 4, '2022-12-01', '8745.02'),
+(33, 34, 4, '2022-12-14', '21222.75'),
+(34, 31, 5, '2022-12-14', '10294.50'),
+(35, 32, 5, '2022-12-14', '2070.01'),
+(36, 33, 5, '2022-12-14', '16103.03'),
+(37, 34, 5, '2022-12-14', '17492.13'),
+(38, 35, 5, '2022-12-14', '5043.19'),
+(39, 36, 5, '2022-12-14', '10894.37'),
+(40, 37, 5, '2022-12-14', '1787.03'),
+(41, 38, 5, '2022-12-14', '10558.94'),
+(42, 39, 5, '2022-12-14', '19633.39');
 
 -- --------------------------------------------------------
 
@@ -164,10 +191,11 @@ CREATE TABLE `noticia` (
   `Titulo` varchar(100) NOT NULL,
   `Subtitulo` varchar(150) NOT NULL,
   `Cuerpo` mediumtext NOT NULL,
-  `Link` varchar(200) NULL,
   `IdEdicionSeccion` int(11) NOT NULL,
   `CoordenadaX` varchar(100) NOT NULL,
-  `CoordenadaY` varchar(100) NOT NULL
+  `CoordenadaY` varchar(100) NOT NULL,
+  `Link` varchar(100) NULL,  
+  `EStado` varchar(100) NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -197,16 +225,16 @@ CREATE TABLE `producto` (
 
 INSERT INTO `producto` (`Id`, `Nombre`, `IdTipoProducto`, `Imagen`, `Mensualidad`) VALUES
 (1, 'Bien Verde', 2, 'bienVerde.jpg', '300.00'),
-(2, 'Billiken', 2, 'billiken.jpg', '200.00'),
+(2, 'Billiken', 2, 'billiken.jpg', '300.00'),
 (3, 'Campeones', 2, 'campeones.jpg', '300.00'),
-(4, 'Caras', 2, 'caras.jpg', '500.00'),
+(4, 'Caras', 2, 'caras.jpg', '300.00'),
 (5, 'Clarin', 1, 'clarin.jpg', '300.00'),
-(6, 'Cosmopolitan', 2, 'cosmopolitan.jpg', '320.00'),
+(6, 'Cosmopolitan', 2, 'cosmopolitan.jpg', '300.00'),
 (7, 'Cronica', 1, 'cronica.jpg', '300.00'),
 (8, 'Lo Gourmet', 2, 'loGourmet.jpg', '300.00'),
-(9, 'Ohlala!', 2, 'ohlala.jpg', '810.00'),
+(9, 'Ohlala!', 2, 'ohlala.jpg', '300.00'),
 (10, 'Pais', 2, 'ohlala.jpg', '300.00'),
-(11, 'Rolling Stone', 2, 'rollingStone.jpg', '1000.00');
+(11, 'Rolling Stone', 2, 'rollingStone.jpg', '300.00');
 
 -- --------------------------------------------------------
 
@@ -252,8 +280,8 @@ CREATE TABLE `suscripcion` (
 --
 
 INSERT INTO `suscripcion` (`Id`, `IdUsuario`, `IdProducto`, `FechaDesde`, `FechaHasta`, `Precio`) VALUES
-(8, 1, 4, '2020-11-07', '2024-07-07', '999.99'),
-(13, 1, 5, '2022-11-07', '2025-05-07', '9000.00');
+(16, 1, 2, '2022-11-07', '2023-01-07', '600.00'),
+(20, 1, 4, '2020-11-17', '2026-11-09', '14400.00');
 
 -- --------------------------------------------------------
 
@@ -441,7 +469,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `compra`
 --
 ALTER TABLE `compra`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `contraseña`
@@ -477,9 +505,66 @@ ALTER TABLE `noticia`
 -- AUTO_INCREMENT de la tabla `suscripcion`
 --
 ALTER TABLE `suscripcion`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `contraseña`
+--
+ALTER TABLE `contraseña`
+  ADD CONSTRAINT `contraseña_ibfk_1` FOREIGN KEY (`IdUsuario`) REFERENCES `usuario` (`Id`);
+
+--
+-- Filtros para la tabla `edicion`
+--
+ALTER TABLE `edicion`
+  ADD CONSTRAINT `edicion_ibfk_1` FOREIGN KEY (`IdProducto`) REFERENCES `producto` (`Id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `edicionseccion`
+--
+ALTER TABLE `edicionseccion`
+  ADD CONSTRAINT `edicionseccion_ibfk_1` FOREIGN KEY (`IdEdicion`) REFERENCES `edicion` (`Id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `edicionseccion_ibfk_2` FOREIGN KEY (`IdSeccion`) REFERENCES `seccion` (`Id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `multimedia`
+--
+ALTER TABLE `multimedia`
+  ADD CONSTRAINT `multimedia_ibfk_1` FOREIGN KEY (`IdNoticia`) REFERENCES `noticia` (`Id`),
+  ADD CONSTRAINT `multimedia_ibfk_2` FOREIGN KEY (`IdTipoMultimedia`) REFERENCES `tipomultimedia` (`Id`);
+
+--
+-- Filtros para la tabla `noticia`
+--
+ALTER TABLE `noticia`
+  ADD CONSTRAINT `noticia_ibfk_1` FOREIGN KEY (`IdEdicionSeccion`) REFERENCES `edicionseccion` (`Id`);
+
+--
+-- Filtros para la tabla `producto`
+--
+ALTER TABLE `producto`
+  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`IdTipoProducto`) REFERENCES `tipoproducto` (`Id`);
+
+--
+-- Filtros para la tabla `suscripcion`
+--
+ALTER TABLE `suscripcion`
+  ADD CONSTRAINT `suscripcion_ibfk_1` FOREIGN KEY (`IdProducto`) REFERENCES `producto` (`Id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `suscripcion_ibfk_2` FOREIGN KEY (`IdUsuario`) REFERENCES `usuario` (`Id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`IdTipoUsuario`) REFERENCES `tipousuario` (`Id`);
+COMMIT;

@@ -60,4 +60,37 @@ class EdicionModel
         join tipoproducto tp on tp.id = p.IdTipoProducto
         where c.IdUsuario = ".$idUsuario);      
     }
+
+    public function listSecciones($idEdicion)
+    {
+        return $this->database->query(
+        "SELECT 
+        e.Id as IdEdicion, 
+        e.Numero as NumeroEdicion, 
+        s.Id as IdSeccion, 
+        s.Nombre as NombreSeccion,
+        p.nombre as NombreProducto 
+        FROM edicion e 
+        join edicionseccion es on es.IdEdicion = e.Id
+        join seccion s on s.Id = es.IdSeccion
+        join producto p on p.id = e.idproducto
+        where IdEdicion = ".$idEdicion);      
+    }
+
+    public function asociarSeccion($idEdicion,$idSeccion)
+    {
+        $sql = "INSERT INTO edicionSeccion (idEdicion,idSeccion)
+        VALUES(".$idEdicion.",".$idSeccion.")";
+        
+        return $this->database->execute($sql);
+    }
+
+    public function desasociarSeccion($idEdicion,$idSeccion)
+    {
+        $sql = "DELETE FROM edicionSeccion 
+        WHERE IdEdicion = ".$idEdicion. 
+        " AND IdSeccion = ".$idSeccion;
+        
+        return $this->database->execute($sql);
+    }
 }
