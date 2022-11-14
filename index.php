@@ -8,6 +8,6 @@ $configuration = new Configuration();
 
 $router = $configuration->getRouter();
 
-EnvioMail::Test();
+Mail::enviar();
 
 $router->redirect($_GET['controller'],$_GET['method']);

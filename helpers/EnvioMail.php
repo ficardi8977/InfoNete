@@ -1,8 +1,8 @@
 <?php
 
-        use PHPMailer\PHPMailer\PHPMailer;
-        use PHPMailer\PHPMailer\SMTP;
-        use PHPMailer\PHPMailer\Exception;
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\SMTP;
+    use PHPMailer\PHPMailer\Exception;
             
     require ('dependencies/PHPMailer/PHPMailer.php');
     require ('dependencies/PHPMailer/SMTP.php');
@@ -33,7 +33,7 @@ Class EnvioMail {
         //Definimos la cuenta que vamos a usar. Dirección completa de la misma
         $mail->Username   = "infoneteg7@gmail.com";
         //Introducimos nuestra contraseña de gmail
-        $mail->Password   = "fewhgiflztokjxvs";//"Infoneteg7$$";
+        $mail->Password   = "tggvslsdporwtjqj";//"Infoneteg7$$";
         //Definimos el remitente (dirección y, opcionalmente, nombre)
         $mail->SetFrom('infoneteg7@gmail.com', 'Infonete Noticias');
         //Y, ahora sí, definimos el destinatario (dirección y, opcionalmente, nombre)
@@ -56,7 +56,6 @@ Class EnvioMail {
 
     public static function Test()
     {
-      
         //Create an instance; passing `true` enables exceptions
         $mail = new PHPMailer(true);
         
@@ -67,7 +66,7 @@ Class EnvioMail {
             $mail->Host       = 'smtp.gmail.com';                    //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
             $mail->Username   = "infoneteg7@gmail.com";                     //SMTP username
-            $mail->Password   = "fewhgiflztokjxvs";//"Infoneteg7$$";                               //SMTP password
+            $mail->Password   = "tggvslsdporwtjqj";//"Infoneteg7$$";                               //SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
             $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         
