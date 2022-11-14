@@ -41,5 +41,12 @@ class NoticiaModel {
             VALUES ('".$datos["foto_o_video"]."', $idNoticia, 2)";
             $this->database->execute($sql);
         }
+
+        //si encuentra un audio
+        if($datos["audio"]){
+            $sql = "INSERT INTO multimedia (nombre, idNoticia, idTipoMultimedia)
+            VALUES ('".$datos["audio"]."', $idNoticia, 2)";
+            $this->database->execute($sql);
+        }
     }
 }

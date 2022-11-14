@@ -20,10 +20,20 @@
          <label for="foto_o_video">Foto o video adicional (opcional):</label>
          <input type="file" id="foto_o_video" name="foto_o_video" class="form-control">
 
+         <div class="row my-4 g-2">
+            <label class="row" for="audio">Grabar un audio (opcional):</label>
+            <button type="button" id="start" class="btn col-md-1 btn-success">Start</button>
+            <button type="button" id="stop" class="btn col-md-1 btn-danger" disabled>Stop</button>
+            <span id="grabando" class="col-md-10"></span>
+            <input type="file" hidden id="audio" name="audio" class="form-control">
+            <audio id="grabacion" hidden class="col-md-4" controls></audio>
+         </div>
+
          <div class="d-flex justify-content-center col-md-12">
             <input type="submit" class='btn btn-success' name="publicar" value="Publicar">
          </div>
                      
       </form>
    </div>
+   <script type="text/javascript" src="../public/js/audio.js"></script>
  {{> footer}}

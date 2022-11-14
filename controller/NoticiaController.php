@@ -41,6 +41,13 @@ class NoticiaController {
             move_uploaded_file($_FILES["foto_o_video"]["tmp_name"], "public/" . $_FILES["foto_o_video"]["name"]);
             $datos["foto_o_video"] = $_FILES["foto_o_video"]["name"];
         }
+
+        //recibo audio opcional
+        if(!empty($_FILES["audio"])){
+            $audioName = uniqid("audio", true) . '.wav';
+            move_uploaded_file($_FILES["audio"]["tmp_name"], "public/" . $audioName);
+            $datos["audio"] = $audioName;
+        }
         
         $this->noticiaModel->addNoticia($datos);
         echo Redirect::doIt("/");
