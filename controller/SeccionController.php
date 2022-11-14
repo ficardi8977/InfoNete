@@ -16,7 +16,6 @@ class SeccionController
 
     public function mostrarSecciones()
     {
-        $idSeccion = $_GET["IdSeccion"];
         $data['secciones'] = $this->seccionModel->getSecciones();
         echo $this->render->render("mostrarSecciones.mustache", $this->sesion->cargar($data));
     }
@@ -44,20 +43,17 @@ class SeccionController
 
     public function modificar()
     {
-        $data['IdSeccionAModificar'] = $_GET['Id'];
-        $data['seccion'] = $this->seccionModel->getSeccion($_POST['IdSeccion']);
+        //$data['IdSeccionAModificar'] = $_GET['Id'];
+        $data['seccion'] = $this->seccionModel->getSeccion($_POST['Id']);
 
         echo $this->render->render("modificarSeccion.mustache", $this->sesion->cargar($data));
     }
 
 
     public function modificarSeccion(){
+        $this->seccionModel->updateSeccion($_POST['IdSeccion'], $_POST['nombreSeccion']);
 
-        $nombreSeccion = $_POST['nombreSeccion'];
-
-        $this->seccionModel->updateSeccion($_POST['Id'], $nombreSeccion);
-
-        echo Redirect::doIt("/seccion/mostrarSeccioes");
+        echo Redirect::doIt("/seccion/mostrarSecciones");
 
     }
 }

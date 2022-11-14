@@ -14,7 +14,7 @@ class SeccionModel{
     }
 
     public function getSeccion($idSeccion){
-        return $this->database->query("SELECT * FROM seccion WHERE  Id =".$idSeccion.";");
+        return $this->database->query("SELECT * FROM seccion WHERE  Id = $idSeccion;");
     }
 
     public function altaSeccion($nombre){
@@ -31,7 +31,7 @@ class SeccionModel{
 
 
     public function updateSeccion($idSeccion,$nombreSeccion){
-        $sql=("UPDATE seccion SET Nombre='.$nombreSeccion.' WHERE Id=".$idSeccion.";");
+        $sql=("UPDATE seccion SET Nombre='$nombreSeccion' WHERE Id=$idSeccion");
         $this->database->execute($sql);
     }
 
