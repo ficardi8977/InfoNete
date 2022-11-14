@@ -19,18 +19,9 @@ class ProductoController {
              Redirect::doIt("/producto/mostrarProductos");
     }
 
-    /*
-    public function modificar(){
-           $idProducto= $_POST["Id"];
-           $data['producto']=$this->productoModel->getproducto($idProducto); 
-           $data['TiposProducto']=$this->productoModel->getTiposProducto();
-           echo $this->render->render("modificarProductoView.mustache", SesionData::cargar($data));
-
-    }
-    */
 
     public function alta(){
-        echo $this->render->render("altaProductoView.mustache", $this->sesion->cargar());
+        echo $this->render->render("altaProductoView.mustache", SesionData::cargar());
     }
 
     public function altaProducto(){
