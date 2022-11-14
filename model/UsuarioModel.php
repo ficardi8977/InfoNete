@@ -14,6 +14,15 @@ class UsuarioModel
         return $this->database->query("SELECT * FROM usuario");
     }
 
+    public function getUsuariosConTipo() {
+        return $this->database->query ("SELECT u.Nombre, u.IdTipoUsuario, u.Id as IdUsuario ,tu.Nombre as TipoUsuario, u.Email , u.CoordenadasX,u.CoordenadasY
+        from usuario u inner join tipousuario tu on (u.IdTipoUsuario = tu.id)");
+    }
+
+    public function tipoDeUsuarios(){
+        return $this->database->query("SELECT* from tipousuario");
+    }
+
     public function getUsuario($nombre, $password)
     {
         $passMd5 = $this->EncriptarClave($password);
@@ -25,7 +34,7 @@ class UsuarioModel
         return $this->database->query($sql);
     }
 
-    public function AddUsuario($nombre, $password, $email, $coordenadasX, $coordenadasY)
+    public function AddUsuario($nombre, $password, $email, $coordenadasX, $coordenadasY,$idTipoDeUsuario = 1)
     {
         $existeUsuario = $this->esUsuarioExistente($nombre);
         if(isset($existeUsuario[0]["existe"]) && $existeUsuario[0]["existe"] == 1){
@@ -34,7 +43,7 @@ class UsuarioModel
 
         $sql = "INSERT INTO usuario (nombre, IdTipoUsuario, Email,coordenadasX, coordenadasY)
     VALUES ('" . $nombre . "',
-            1, 
+            ". $idTipoDeUsuario .",
             '" . $email . "', 
             '" . $coordenadasX . "', 
             '" . $coordenadasY . "')";
@@ -71,5 +80,17 @@ class UsuarioModel
     private function EncriptarClave($clave)
     {
         return md5($clave);
+    }
+     
+
+
+    public function updateUsuario($tipoUsuario,$idUsuario){
+        $sql =  ("UPDATE usuario set idTipoUsuario = $tipoUsuario where id = $idUsuario");
+        $this->database->execute($sql);
+    }
+
+    public function deleteUsuario($IdUsuario){
+        $sql = ("DELETE FROM usuario WHERE Id =$IdUsuario");
+        $this->database->execute($sql);
     }
 }
