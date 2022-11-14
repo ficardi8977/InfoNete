@@ -37,15 +37,21 @@ class NoticiaModel {
 
         //si encuentra una foto o video opcional
         if($datos["foto_o_video"]){
+            $idTipoMultimedia = 4;
+            $ext = substr($datos["foto_o_video"], -3);
+            if($ext == 'jpg' || $ext == 'png')
+                $idTipoMultimedia = 2;
+            elseif($ext == 'mp4')
+                $idTipoMultimedia = 3;
             $sql = "INSERT INTO multimedia (nombre, idNoticia, idTipoMultimedia)
-            VALUES ('".$datos["foto_o_video"]."', $idNoticia, 2)";
+            VALUES ('".$datos["foto_o_video"]."', $idNoticia, $idTipoMultimedia)";
             $this->database->execute($sql);
         }
 
         //si encuentra un audio
-        if($datos["audio"]){
+        if($datos["grabacion"]){
             $sql = "INSERT INTO multimedia (nombre, idNoticia, idTipoMultimedia)
-            VALUES ('".$datos["audio"]."', $idNoticia, 2)";
+            VALUES ('".$datos["grabacion"]."', $idNoticia, 1)";
             $this->database->execute($sql);
         }
     }
