@@ -28,6 +28,7 @@ include_once('controller/NoticiaController.php');
 include_once('controller/SuscripcionController.php');
 include_once('controller/EdicionController.php');
 include_once('controller/ProductoController.php');
+include_once ('controller/SeccionController.php');
 
 include_once('dependencies/mustache/src/Mustache/Autoloader.php');
 
@@ -66,6 +67,9 @@ class Configuration {
         return new ProductoController($this->createProductoModel(),$this->view);
     }
 
+    public function getSeccionController(){
+        return new SeccionController($this->createSeccionModel(),$this->view, $this->sesion);
+    }
     // //
     // CONFIGS DE MODEL //
 
