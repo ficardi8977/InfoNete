@@ -11,6 +11,10 @@ require './vendor/autoload.php';
 
 Class Mail {
 
+    public static function ConfigurarServidor()
+    {
+    }
+    
     public static function enviarGmail()
     {
     //Create an instance; passing `true` enables exceptions
@@ -18,18 +22,17 @@ Class Mail {
 
     try {
         //Server settings
-        $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-        $mail->isSMTP();                                            //Send using SMTP
-        $mail->Host       = 'smtp.gmail.com';                    //Set the SMTP server to send through
-        $mail->SMTPAuth   = TRUE;                                   //Enable SMTP authentication
-        $mail->Username   = "infoneteg7@gmail.com";                     //SMTP username
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;                     
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth   = TRUE;
+        $mail->Username   = "infoneteg7@gmail.com";
         $mail->Password   = "tggvslsdporwtjqj";//"Infoneteg7$$";
-                                       //SMTP password
         $mail->SMTPOptions = array('ssl' => array('verify_peer' => false,
                                                   'verify_peer_name' => false,
                                                   'allow_self_signed' => true)
                                                   );
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;  
 
         //Recipients
