@@ -1,0 +1,53 @@
+ {{> header}}
+   <div class="container ">
+        <div class="d-flex justify-content-md-end pb-3">
+                    <a href="/producto/alta" class="btn btn-success"  > Alta Nuevo Producto </a> 
+        </div>
+        <div>
+            <table class="table table-hover   ">
+            <thead class="table-dark ">
+                <tr class="text-center">
+                <th scope="col">Imagen</th>
+                <th scope="col">Nombre Producto</th>
+                <th scope="col">Tipo producto</th>
+                <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            {{#productos}}
+            <tbody>
+                <tr class="text-center">
+                <td> 
+                    <div class="row g-0 "style="max-width: 540px;">
+                        <div class="col-md-4">
+                        <img src= "../public/{{Imagen}}" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <!--div class="col-md-8">
+                        </div-->
+                    </div>
+                </td>
+                <td>{{Nombre}}</td>
+                <td>{{NombreTipoProducto}}</td>
+                <td>
+                <div class="d-flex justify-content-center">
+                    <div class="px-2">
+                        <form action="/producto/modificar" method="GET">
+                            <input type="hidden" name="Id" value={{Id}}>
+                            <button class="btn btn-primary" type="submit" >Modificar Producto</a>
+                        </form>
+                    </div>
+                    <div class="px-2">
+                        <form action="/producto/baja" method="POST">
+                            <input type="hidden" name="Id" value={{Id}}>
+                            <button class="btn btn-danger" type="submit" >Baja Producto</a>
+                        </form>
+                    </div>
+                </div>
+                </td>
+                </tr>
+            </tbody>
+            {{/productos}}
+            </table>
+        </div>
+
+   </div>
+ {{> footer}}

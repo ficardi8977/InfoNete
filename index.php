@@ -1,8 +1,6 @@
 <?php
 session_start();
 
-
-
 include_once ("configuration/Configuration.php");
 $configuration = new Configuration();
 

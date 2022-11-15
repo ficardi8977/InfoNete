@@ -5,15 +5,14 @@ class UsuarioController {
     private $render;
     private $sesion;
 
-    public function __construct($usuarioModel, $render,  $sesion){
+    public function __construct($usuarioModel, $render){
         $this->usuarioModel = $usuarioModel;
         $this->render = $render;
-        $this->sesion = $sesion;
     }
   
-    public function alta()
-    {
-        echo $this->render->render("signinView.mustache", $this->sesion->cargar());
+    public function alta(){
+
+        echo $this->render->render("signinView.mustache", SesionData::cargar());
     }
 
     public function registrar()
@@ -23,6 +22,7 @@ class UsuarioController {
         $email = $_POST["email"];
         $coordenadasX = $_POST["coordenadasX"];
         $coordenadasY = $_POST["coordenadasY"];
+        
 
         $msjError= $this->usuarioModel->addUsuario($nombre, $password,$email,$coordenadasX,$coordenadasY);
 
@@ -31,7 +31,7 @@ class UsuarioController {
         if($msjError)
         {
             $data["msjError"] = $msjError;
-            echo $this->render->render("signinView.mustache",$this->sesion->cargar($data));
+            echo $this->render->render("signinView.mustache",SesionData::cargar($data));
             exit();
         }
         echo $this->render->render("verificacionUsuarioView.mustache",$data);
@@ -51,12 +51,12 @@ class UsuarioController {
         
         if(isset($result[0]))
         {
-            $this->sesion->guardar($result[0]["Nombre"], $result[0]["IdTipoUsuario"], 
+            SesionData::guardar($result[0]["Nombre"], $result[0]["IdTipoUsuario"], 
                                    true, 
                                    $result[0]["Id"]);
         }else
         {
-            $this->sesion->logueado(false);
+            SesionData::logueado(false);
         }
         Redirect::doIt();
     }
@@ -67,5 +67,30 @@ class UsuarioController {
         Redirect::doIt();
     }
 
+
+    public function mostrarUsuarios(){
+        $data["usuarios"]= $this->usuarioModel->getUsuariosConTipo();
+        echo $this->render->render("mostrarUsuariosView.mustache", SesionData::cargar($data));
+
+    }
+
+    public function modificar (){
+        $data['IdUsuario']= $_GET['IdUsuario'];
+        $data['tiposUsuarios'] = $this->usuarioModel->tipoDeUsuarios();
+         echo $this->render->render("modificarUsuarioView.mustache", SesionData::cargar($data));
+    }
+
+    public function modificarUsuario(){
+        $tipoUsuario = $_POST['IdTipoUsuario'];
+        $idUsuario = $_POST ['IdUsuario'];
+        $this-> usuarioModel->updateUsuario($tipoUsuario,$idUsuario);
+        Redirect::doIt("/usuario/mostrarUsuarios");
+    }
+
+    public function baja(){
+        $IdUsuario = $_POST['Id'];
+        $this->usuarioModel->deleteUsuario($IdUsuario);
+        Redirect::doIt("/usuario/mostrarUsuarios");
+    }
 }
 ?>

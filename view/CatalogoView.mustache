@@ -8,11 +8,17 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">{{Nombre}}</h5>
-                <img src = "../public/{{Imagen}}">
+                <div class="row g-0 "style="max-width: 540px;">
+                        <div class="col-md-4">
+                        <img src= "../public/{{Imagen}}" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <!--div class="col-md-8">
+                        </div-->
+                    </div>
                
                 {{#sesion}}
-                <form action="/suscripcion/alta" method="post">
-                    <input type="hidden" name="Id" value={{Id}}>
+                <form action="/suscripcion/mostrarAlta" method="GET">
+                    <input type="hidden" name="IdProducto" value={{Id}}>
                     <button class="btn btn-success" type="submit" >Suscribirse</button>
                 </form>    
                 <form action="/edicion/listar" method="GET">

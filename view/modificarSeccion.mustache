@@ -1,0 +1,26 @@
+{{> header}}
+<div class="container my-5">
+    <div class="row justify-content-center ">
+        <h2 class="text-center my-5">Modificar Seccion</h2>
+        <div class="col-6 align-middle bg-light p-2">
+            {{#seccion}}
+                <form class="row g-3" action="/seccion/modificarSeccion" method="post" enctype="multipart/form-data">
+                    <div class="col-4 mb-2">
+                        <label for="nombre">Nombre de la seccion: </label>
+                    </div>
+                    <div class="col-8 mb-2">
+                        <input type="text" id="nombre" name="nombreSeccion" class="form-control" value="{{Nombre}}">
+                    </div>
+
+
+                    <div class="d-flex justify-content-center">
+                        <input type="hidden" name="IdSeccion" value={{Id}}>
+                        <input type="submit" class='btn btn-success' name="publicar" value="Modificar Seccion">
+                    </div>
+                </form>
+            {{/seccion}}
+        </div>
+    </div>
+
+    {{> footer}}
+

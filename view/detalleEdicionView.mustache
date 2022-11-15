@@ -1,0 +1,47 @@
+ {{> header}}
+   <div class="container ">
+       <h1>Contenido de la edición del producto</h1>
+
+        <div class="d-flex justify-content-md-end pb-3">
+                    <form action="/edicion/mostrarAsociarSeccion" method="GET">
+                            <input type="hidden" name="IdEdicion" value={{IdEdicion}}>
+                            <button class="btn btn-success" type="submit" >Asociar sección</button>                    
+                    </form>
+        </div>
+        <div>
+            <table class="table table-hover   ">
+            <thead class="table-dark ">
+                <tr class="text-center">
+                <th scope="col">Seccion</th>
+                <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            {{#edicion}}
+            <tbody>
+                <tr class="text-center">
+                <td>{{NombreSeccion}}</td>
+                <td>
+                <div class="d-flex justify-content-center">
+                    <div class="px-2">
+                        <form action="/edicionSeccion/Noticias" method="GET">
+                            <input type="hidden" name="Id" value={{Id}}>
+                            <button class="btn btn-primary" type="submit" >Leer</a>
+                        </form>
+                    </div>
+                    <div class="px-2">
+                        <form action="/edicion/desasociarSeccion" method="POST">
+                            <input type="hidden" name="IdEdicion" value={{IdEdicion}}>
+                            <input type="hidden" name="IdSeccion" value={{IdSeccion}}>
+                            <button class="btn btn-danger" type="submit" >Quitar</a>
+                        </form>
+                    </div>
+                </div>
+                </td>
+                </tr>
+            </tbody>
+            {{/edicion}}
+            </table>
+        </div>
+
+   </div>
+ {{> footer}}

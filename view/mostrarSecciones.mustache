@@ -1,0 +1,45 @@
+{{> header}}
+<div class="container">
+    <div class="d-flex justify-content-md-end pb-3">
+
+        <form action="/seccion/alta" method="GET">
+            <input type="hidden" name="nombre" value={{nombre}}>
+            <button class="btn btn-success " type="submit" >Alta Nueva Seccion</a>
+        </form>
+
+    </div>
+    <div>
+        <table class="table table-hover   ">
+            <thead class="table-dark ">
+            <tr class="text-center">
+                <th scope="col">Nombre Seccion</th>
+            </tr>
+            </thead>
+            {{#secciones}}
+                <tbody>
+                <tr class="text-center">
+                    <td>{{Nombre}}</td>
+                    <td>
+                        <div class="d-flex justify-content-center">
+                            <div class="px-2">
+                                <form action="/seccion/modificar" method="POST">
+                                    <input type="hidden" name="Id" value={{Id}}>
+                                    <button class="btn btn-primary" type="submit" >Modificar Seccion</button>
+                                </form>
+                            </div>
+                            <div class="px-2">
+                                <form action="/seccion/baja" method="POST">
+                                    <input type="hidden" name="Id" value={{Id}}>
+                                    <button class="btn btn-danger" type="submit" >Baja Seccion</button>
+                                </form>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            {{/secciones}}
+        </table>
+    </div>
+
+</div>
+{{> footer}}

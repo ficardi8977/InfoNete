@@ -1,28 +1,61 @@
  {{> header}}
 <div class="container">
-  <h1 class="text-center mb-4">Catalogo de productos:</h1>
-  <div class="row">
-    {{#producto}}
-
-    <div class="col-sm-6">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">{{ Nombre }}</h5>
-          <img src="../public/{{ Imagen }}" />
-          <form action="/suscripcion/altaSuscripcion" method="post">
-                    <label for="fechaDesde">Fecha Desde:</label>
-                    <input type="date" id="FechaDesde" name="fechaDesde" value="fechaDesde" />
-                    <label for="fechaHasta">Fecha Hasta:</label>
-                    <input type="date" id="fechaHasta" name="fechaHasta" value="fechaHasta" />
-                    <input type="hidden" name="Id" value="{{ Id }}" />
-                    <button class="btn btn-success" type="submit">
-              Alta Suscripcion
-            </button>
-          </form>
+{{#producto}}
+    <h1>Planes de suscripción a "{{Nombre}}"</h1>
+    <div class="row">
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-body">
+              <div class="px-2">
+                  <h2 class="card-title">Pago Mensual</h2>
+                  <img src="../public/{{ Imagen }}" />
+                  <h4>${{Mensualidad}}/mes</h4>
+                  <h5>durante 6 meses"{{Nombre}}"</h5>
+                  <form action="/suscripcion/alta" method="post">
+                    <input type="hidden" name="IdProducto" value="{{Id}}" />
+                    <input type="hidden" name="PeriodoMensual" value=6 />
+                    <button class="btn btn-success" type="submit">Suscribirse</button>         
+                  </form>                        
+              </div>
+            </div>
         </div>
-      </div>
+    </div>
+        <div class="col-sm-4">
+        <div class="card">
+            <div class="card-body">
+              <div class="px-2">
+                  <h2 class="card-title">Pago Anual</h2>
+                  <img src="../public/{{ Imagen }}" />
+                  <h4>${{Mensualidad}}/mes</h4>
+                  <h5>durante 12 meses"{{Nombre}}"</h5>
+                  <form action="/suscripcion/alta" method="post">
+                    <input type="hidden" name="IdProducto" value="{{Id}}" />
+                    <input type="hidden" name="PeriodoMensual" value=12 />
+                    <button class="btn btn-success" type="submit">Suscribirse</button>         
+                  </form>                        
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-body">
+               <div class="px-2">
+                  <h2 class="card-title">Personalizada</h2>
+                  <img src="../public/{{ Imagen }}" />
+                  <h4>${{Mensualidad}}/mes</h4>
+                  <h5>Periodo personalizado"{{Nombre}}"</h5>
+                  <form action="/suscripcion/alta" method="post">
+                    <input type="hidden" name="IdProducto" value="{{Id}}" />
+                    <input type="number" name="PeriodoMensual" value=2 /> meses
+                    <button class="btn btn-success" type="submit">Suscribirse</button>         
+                  </form>                                             
+              </div>
+            </div>
+        </div>
     </div>
     {{/producto}}
   </div>
+</div>
   {{> footer}}
 </div>
