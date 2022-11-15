@@ -44,8 +44,9 @@ class EdicionesController{
     public function bajaEdicion(){
         Permisos::validarAcceso(Rol::Contenidista);
         $idEdicion = $_POST['Id'];
+        $idProducto = $_POST['IdProducto'];
         $this->edicionesModel->baja($idEdicion);
-        echo Redirect::doIt("/ediciones/mostrarProducto");
+        echo Redirect::doIt("/ediciones/mostrarEdiciones?Id=$idProducto");
     }
 
     public function volver(){

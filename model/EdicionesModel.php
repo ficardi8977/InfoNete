@@ -14,7 +14,7 @@ class EdicionesModel{
     }
 
     public function getEdicionesPorIdProducto($idProducto){
-        $sql = ("SELECT Id, Numero, Fecha, precio
+        $sql = ("SELECT Id, IdProducto, Numero, Fecha, precio
                  FROM edicion
                  WHERE IdProducto = '$idProducto'");
         return $this->database->query($sql);
