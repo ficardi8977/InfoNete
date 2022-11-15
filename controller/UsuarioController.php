@@ -3,7 +3,6 @@
 class UsuarioController {
     private $usuarioModel;
     private $render;
-    private $sesion;
 
     public function __construct($usuarioModel, $render){
         $this->usuarioModel = $usuarioModel;
@@ -25,21 +24,28 @@ class UsuarioController {
         
 
         $msjError= $this->usuarioModel->addUsuario($nombre, $password,$email,$coordenadasX,$coordenadasY);
-
-        $data["nombre"] = $nombre;
-        $data["email"] = $email;
         if($msjError)
         {
             $data["msjError"] = $msjError;
             echo $this->render->render("signinView.mustache",SesionData::cargar($data));
             exit();
         }
+        // este metodo genera url y la enviar por mail para confirar usuario
+        $this->usuarioModel->crearVerificacion($nombre, $email);
+        
+        $data["nombre"] = $nombre;
+        $data["email"] = $email;
         echo $this->render->render("verificacionUsuarioView.mustache",$data);
     }
 
     public function confirmar()
     {
-        echo $this->render->render("verificacionUsuarioView.mustache");
+        $idUsuario = $_GET["IdUsuario"];
+        $codigoVerificador = $_GET["CodigoVerificacion"];
+        
+        $this->usuarioModel->confirmar($idUsuario, $codigoVerificador);
+        
+        echo $this->render->render("confirmacionView.mustache");
     }
 
     public function login()
