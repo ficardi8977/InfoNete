@@ -5,7 +5,7 @@ include_once('helpers/MustacheRenderer.php');
 include_once('helpers/Logger.php');
 include_once('helpers/Router.php');
 include_once('helpers/SesionData.php');
-include_once('helpers/mail.php');
+include_once('helpers/mailer.php');
 include_once('helpers/Permisos.php');
 
 
@@ -36,10 +36,12 @@ include_once('dependencies/mustache/src/Mustache/Autoloader.php');
 class Configuration {
     private $database;
     private $view;
+    private $mailer;
 
     public function __construct() {
         $this->database = new MySQlDatabase();
         $this->view = new MustacheRenderer("view/", 'view/partial/');
+        $this->mailer = new Mailer();
     }
 
     // CONFIGS DE CONTROLLER //
@@ -75,7 +77,7 @@ class Configuration {
     // CONFIGS DE MODEL //
 
     private function createUsuarioModel(): UsuarioModel {
-        return new UsuarioModel($this->database);
+        return new UsuarioModel($this->database, $this->mailer);
     }
     private function createProductoModel(): ProductoModel {
         return new ProductoModel($this->database);

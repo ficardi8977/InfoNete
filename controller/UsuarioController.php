@@ -4,10 +4,9 @@ class UsuarioController {
     private $usuarioModel;
     private $render;
 
-    public function __construct($usuarioModel, $render, $mailer){
+    public function __construct($usuarioModel, $render){
         $this->usuarioModel = $usuarioModel;
         $this->render = $render;
-        $this->mailer = $mailer;
     }
   
     public function alta(){
@@ -31,7 +30,8 @@ class UsuarioController {
             echo $this->render->render("signinView.mustache",SesionData::cargar($data));
             exit();
         }
-        $this->mailer->Enviar($email, $nombre);
+        // este metodo genera url y la enviar por mail para confirar usuario
+        $this->usuarioModel->crearVerificacion($nombre, $email);
         
         $data["nombre"] = $nombre;
         $data["email"] = $email;
@@ -40,7 +40,12 @@ class UsuarioController {
 
     public function confirmar()
     {
-        echo $this->render->render("verificacionUsuarioView.mustache");
+        $idUsuario = $_GET["IdUsuario"];
+        $codigoVerificador = $_GET["CodigoVerificacion"];
+        
+        $this->usuarioModel->confirmar($idUsuario, $codigoVerificador);
+        
+        echo $this->render->render("confirmacionView.mustache");
     }
 
     public function login()

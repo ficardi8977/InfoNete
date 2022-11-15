@@ -9,11 +9,12 @@ require './vendor/autoload.php';
 Class Mailer 
 {
 
-    public function ConfigurarServidor()
+    private function ConfigurarServidor()
     {
         $mail = new PHPMailer(true);
 
-        $mail->SMTPDebug = SMTP::DEBUG_SERVER;                     
+        //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        $mail->SMTPDebug = SMTP::DEBUG_OFF;                     
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth   = TRUE;
@@ -21,29 +22,29 @@ Class Mailer
         $mail->Password   = "tggvslsdporwtjqj";//"Infoneteg7$$";
         $mail->SMTPOptions = array('ssl' => array('verify_peer' => false,
                                                     'verify_peer_name' => false,
-                                                    'allow_self_signed' => true)
-                                                    );
+                                                    'allow_self_signed' => true));
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;  
 
         return $mail;            
     }
 
-    public function EnviarMail($nombre, $email)
+    public function Enviar($nombre, $email, $url)
     {
         try{
         $mail = $this->ConfigurarServidor();
         $mail->setFrom('infoneteg7@gmail.com', 'Infonete');
-        //$mail->AddAddress('fernando.icardi@gmail.com', 'Fer');     //Add a recipient        
+        $mail->AddAddress($email, $nombre);     //Add a recipient        
             
             //Content
         $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = 'Here is the subject';
-        $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+        $mail->Subject = 'Confirmar cuenta:';
+        $mail->Body    = " <b>$nombre</b>: <br> 
+                            Ingresa a este link para confirmar cuenta 
+                            <a href='".$url."'>Link confirmación</a>.";
         $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
             $mail->send();
-            echo 'Message has been sent';
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
@@ -52,7 +53,7 @@ Class Mailer
 
 
     // este metodo si funciona
-    public function enviar($nombre, $email)
+    /*public function enviar($nombre, $email)
     {
 
         $mail = new PHPMailer(true);
@@ -88,5 +89,6 @@ Class Mailer
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
     }
+    */
 }
     
