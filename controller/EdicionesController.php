@@ -11,16 +11,19 @@ class EdicionesController{
     }
 
     public function mostrarProducto(){
+        Permisos::validarAcceso(Rol::Contenidista);
         $data['productos'] = $this->productoModel->getProductosConSuTipo();
         echo $this->render->render("edicionView.mustache", SesionData::cargar($data));
     }
 
     public function crearEdicion(){
+        Permisos::validarAcceso(Rol::Contenidista);
         $data['producto']=$this->productoModel->getproductoConSuTipo($_GET['Id']);
         echo $this->render->render('crearEdicionForm.mustache', SesionData::cargar($data));
     }
 
     public function altaEdicion(){
+        Permisos::validarAcceso(Rol::Contenidista);
         $numero = $_POST['numero'];
         $fecha = $_POST['fecha'];
         $precio = $_POST['precio'];
@@ -32,18 +35,21 @@ class EdicionesController{
     }
 
     public function mostrarEdiciones(){
+        Permisos::validarAcceso(Rol::Contenidista);
         $idProducto = $_GET['Id'];
         $data['ediciones'] = $this->edicionesModel->getEdicionesPorIdProducto($idProducto);
         echo $this->render->render("showEdiciones.mustache", SesionData::cargar($data));
     }
 
     public function bajaEdicion(){
+        Permisos::validarAcceso(Rol::Contenidista);
         $idEdicion = $_POST['Id'];
         $this->edicionesModel->baja($idEdicion);
         echo Redirect::doIt("/ediciones/mostrarProducto");
     }
 
     public function volver(){
+        Permisos::validarAcceso(Rol::Contenidista);
         echo Redirect::doIt("mostrarProducto");
     }
 
