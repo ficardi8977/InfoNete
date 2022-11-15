@@ -1,0 +1,42 @@
+{{> header}}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <h2 class="text-center mb-4">Crear de Edición</h2>
+        <div class="col-6 align-middle bg-light p-2 shadow-lg">
+            {{#producto}}
+                <form class="row g-3 p-3" action="/ediciones/altaEdicion" method="post" enctype="multipart/form-data">
+                    <div class="col-6 my-4">
+                        <div class="col-11 text-center" style="max-width: 540px;">
+                            <div>
+                                <img src= "../public/{{Imagen}}" class="img-fluid rounded" style="height: 310px;" alt="...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <h2>{{Nombre}}</h2>
+                        </div>
+                        <div class="col-10 mb-3">
+                            <label class="pb-1" for="numero">Número de edición:</label>
+                            <input type="text" name="numero" class="form-control">
+                        </div>
+                        <div class="col-10 mb-3">
+                            <label class="pb-1" for="fecha">Fecha:</label>
+                            <input type="date" name="fecha" class="form-control">
+                        </div>
+                        <div class="col-10 mb-3">
+                            <label class="pb-1" for="precio">Precio</label>
+                            <input type="text" name="precio" class="form-control">
+                        </div>
+                        <div>
+                            <input type="hidden" name="Id" value={{Id}} />
+                            <input type="submit" class='btn btn-success mt-0' name="altaEdicion" value="Crear Edición">
+                        </div>
+                    </div>
+                </form>
+            {{/producto}}
+        </div>
+    </div>
+
+{{> footer}}
