@@ -8,9 +8,9 @@
     require ('dependencies/PHPMailer/SMTP.php');
     require ('dependencies/PHPMailer/Exception.php');
 
-Class EnvioMail {
+Class enviarMail {
 
-    public static function enviar()
+    public static function enviar($nombre, $email)
     {
         //Crear una instancia de PHPMailer
         $mail = new PHPMailer(true);
@@ -54,7 +54,7 @@ Class EnvioMail {
         }        
     }
 
-    public static function Test()
+    public function Test()
     {
         //Create an instance; passing `true` enables exceptions
         $mail = new PHPMailer(true);

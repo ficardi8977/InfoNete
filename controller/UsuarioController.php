@@ -3,11 +3,11 @@
 class UsuarioController {
     private $usuarioModel;
     private $render;
-    private $sesion;
 
-    public function __construct($usuarioModel, $render){
+    public function __construct($usuarioModel, $render, $mailer){
         $this->usuarioModel = $usuarioModel;
         $this->render = $render;
+        $this->mailer = $mailer;
     }
   
     public function alta(){
@@ -25,15 +25,16 @@ class UsuarioController {
         
 
         $msjError= $this->usuarioModel->addUsuario($nombre, $password,$email,$coordenadasX,$coordenadasY);
-
-        $data["nombre"] = $nombre;
-        $data["email"] = $email;
         if($msjError)
         {
             $data["msjError"] = $msjError;
             echo $this->render->render("signinView.mustache",SesionData::cargar($data));
             exit();
         }
+        $this->mailer->Enviar($email, $nombre);
+        
+        $data["nombre"] = $nombre;
+        $data["email"] = $email;
         echo $this->render->render("verificacionUsuarioView.mustache",$data);
     }
 
