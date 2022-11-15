@@ -8,6 +8,6 @@ $configuration = new Configuration();
 
 $router = $configuration->getRouter();
 
-Mail::enviar();
+Mail::enviarGmail();
 
 $router->redirect($_GET['controller'],$_GET['method']);

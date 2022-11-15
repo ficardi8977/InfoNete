@@ -20,12 +20,17 @@ Class Mail {
         //Server settings
         $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
         $mail->isSMTP();                                            //Send using SMTP
-        $mail->Host       = 'ssl://smtp.gmail.com';                    //Set the SMTP server to send through
+        $mail->Host       = 'smtp.gmail.com';                    //Set the SMTP server to send through
         $mail->SMTPAuth   = TRUE;                                   //Enable SMTP authentication
         $mail->Username   = "infoneteg7@gmail.com";                     //SMTP username
-        $mail->Password   = "tggvslsdporwtjqj";//"Infoneteg7$$";                               //SMTP password
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-        $mail->Port       = 465;  
+        $mail->Password   = "tggvslsdporwtjqj";//"Infoneteg7$$";
+                                       //SMTP password
+        $mail->SMTPOptions = array('ssl' => array('verify_peer' => false,
+                                                  'verify_peer_name' => false,
+                                                  'allow_self_signed' => true)
+                                                  );
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
+        $mail->Port       = 587;  
 
         //Recipients
             //Recipients
@@ -53,9 +58,17 @@ Class Mail {
         $mail->Host = 'in-v3.mailjet.com'; // host
         $mail->SMTPAuth = true;
         $mail->Username = '0636caf5f5b78c027a0866e0120855f7'; //username
-        $mail->Password = '010b66f35896354646038903517b7ec9'; //password
+        $mail->Password = '105efbdb5c8bf1a5926736f9b8814942'; //password
+       
+        //opcion TLS/
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
         $mail->Port       = 587;  
+        
+
+        //opcion SMTPS/ 
+        //$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+        //$mail->Port       = 465;  
+        ///
         
         $mail->setFrom('fernando.icardi@gmail.com', 'infonete');
         $mail->addAddress('fernando.icardi@hotmail.com', 'Fer');
