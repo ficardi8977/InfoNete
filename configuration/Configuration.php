@@ -6,6 +6,7 @@ include_once('helpers/Logger.php');
 include_once('helpers/Router.php');
 include_once('helpers/SesionData.php');
 include_once('helpers/Permisos.php');
+include_once('helpers/generadorCpdf.php');
 
 
 
@@ -31,6 +32,8 @@ include_once('controller/ProductoController.php');
 include_once ('controller/SeccionController.php');
 
 include_once('dependencies/mustache/src/Mustache/Autoloader.php');
+include_once ('dependencies/DomPdf/autoload.inc.php');
+
 
 class Configuration {
     private $database;
