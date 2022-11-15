@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4e13c6af-8126-41ea-a0a2-a5242354deea" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/controller/EdicionesController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/EdicionesModel.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/crearEdicionForm.mustache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/edicionView.mustache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/view/showEdiciones.mustache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/Configuration.php" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/Configuration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/partial/header.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/partial/header.mustache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/EdicionesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/EdicionesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/EdicionesModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/EdicionesModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/crearEdicionForm.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/crearEdicionForm.mustache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/edicionView.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/edicionView.mustache" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +46,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668447737594</updated>
-      <workItem from="1668447738891" duration="13748000" />
+      <workItem from="1668447738891" duration="13955000" />
+      <workItem from="1668514047659" duration="6417000" />
     </task>
     <servers />
   </component>

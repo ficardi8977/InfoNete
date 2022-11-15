@@ -31,4 +31,20 @@ class EdicionesController{
         echo Redirect::doIt("/ediciones/mostrarProducto");
     }
 
+    public function mostrarEdiciones(){
+        $idProducto = $_GET['Id'];
+        $data['ediciones'] = $this->edicionesModel->getEdicionesPorIdProducto($idProducto);
+        echo $this->render->render("showEdiciones.mustache", SesionData::cargar($data));
+    }
+
+    public function bajaEdicion(){
+        $idEdicion = $_POST['Id'];
+        $this->edicionesModel->baja($idEdicion);
+        echo Redirect::doIt("/ediciones/mostrarProducto");
+    }
+
+    public function volver(){
+        echo Redirect::doIt("mostrarProducto");
+    }
+
 }

@@ -12,4 +12,16 @@ class EdicionesModel{
         $sql = ("INSERT INTO edicion(Numero, IdProducto, Fecha, precio) VALUES ('$numero', '$idProducto', '$fecha', $precio)");
         $this->database->execute($sql);
     }
+
+    public function getEdicionesPorIdProducto($idProducto){
+        $sql = ("SELECT Id, Numero, Fecha, precio
+                 FROM edicion
+                 WHERE IdProducto = '$idProducto'");
+        return $this->database->query($sql);
+    }
+
+    public function baja($idEdicion){
+        $sql = ("DELETE FROM edicion WHERE Id = '$idEdicion'");
+        $this->database->execute($sql);
+    }
 }
