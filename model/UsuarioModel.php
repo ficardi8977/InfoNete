@@ -3,10 +3,12 @@
 class UsuarioModel
 {
     private $database;
+    private $mailer;
 
-    public function __construct($database)
+    public function __construct($database, $mailer)
     {
         $this->database = $database;
+        $this->mailer = $mailer;
     }
 
     public function getUsuarios()
@@ -86,8 +88,6 @@ class UsuarioModel
     {
         return md5($clave);
     }
-     
-
 
     public function updateUsuario($tipoUsuario,$idUsuario){
         $sql =  ("UPDATE usuario set idTipoUsuario = $tipoUsuario where id = $idUsuario");
@@ -97,5 +97,32 @@ class UsuarioModel
     public function deleteUsuario($IdUsuario){
         $sql = ("DELETE FROM usuario WHERE Id =$IdUsuario");
         $this->database->execute($sql);
+    }
+
+    public function crearVerificacion($nombre, $email)
+    {
+        $usuario = $this->database->query("SELECT u.id as IdUsuario, c.CodigoValidador  
+                                FROM usuario u 
+                                JOIN contraseña c on c.idUsuario = u.id
+                                where u.nombre ='". $nombre."' AND 
+                                u.email = '".$email."';");
+
+        $urlConfirmacion = $this->crearUrlConfirmacion($usuario[0]["IdUsuario"], $usuario[0]["CodigoValidador"]);
+        $this->mailer->enviar($nombre, $email, $urlConfirmacion);
+    }
+
+    public function confirmar($idUsuario, $codigoVerificacion)
+    {
+        $fechaHoy = date('Y-m-d');
+        return $this->database->execute("UPDATE contraseña
+        SET CodigoValidador=null,  
+        fechaExpiracionCodigo = null,
+        Validado = true
+        where idUsuario = $idUsuario AND codigoValidador = '".$codigoVerificacion."' AND fechaExpiracionCodigo > '".$fechaHoy."'");
+    }
+
+    private function crearUrlConfirmacion($idUsuario, $codigoVerificacion)
+    {
+        return "http://localhost/usuario/confirmar?IdUsuario=$idUsuario&CodigoVerificacion=$codigoVerificacion";
     }
 }

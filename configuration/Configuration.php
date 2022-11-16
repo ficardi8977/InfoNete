@@ -5,6 +5,7 @@ include_once('helpers/MustacheRenderer.php');
 include_once('helpers/Logger.php');
 include_once('helpers/Router.php');
 include_once('helpers/SesionData.php');
+include_once('helpers/Mailer.php');
 include_once('helpers/Permisos.php');
 include_once('helpers/generadorCpdf.php');
 
@@ -17,6 +18,7 @@ include_once("model/SuscripcionModel.php");
 include_once("model/EdicionModel.php");
 include_once("model/NoticiaModel.php");
 include_once("model/SeccionModel.php");
+include_once("model/EdicionesModel.php");
 
 // enums
 include_once("model/enums/Rol.php");
@@ -29,7 +31,8 @@ include_once('controller/NoticiaController.php');
 include_once('controller/SuscripcionController.php');
 include_once('controller/EdicionController.php');
 include_once('controller/ProductoController.php');
-include_once ('controller/SeccionController.php');
+include_once('controller/SeccionController.php');
+include_once('controller/EdicionesController.php');
 
 include_once('dependencies/mustache/src/Mustache/Autoloader.php');
 include_once ('dependencies/DomPdf/autoload.inc.php');
@@ -38,10 +41,12 @@ include_once ('dependencies/DomPdf/autoload.inc.php');
 class Configuration {
     private $database;
     private $view;
+    private $mailer;
 
     public function __construct() {
         $this->database = new MySQlDatabase();
         $this->view = new MustacheRenderer("view/", 'view/partial/');
+        $this->mailer = new Mailer();
     }
 
     // CONFIGS DE CONTROLLER //
@@ -65,7 +70,9 @@ class Configuration {
     public function getEdicionController(){
         return new EdicionController($this->createEdicionModel(), $this->createSeccionModel(), $this->view);
     }
-
+    public function getEdicionesController(){
+        return new EdicionesController($this->createEdicionesModel(), $this->createProductoModel(), $this->view);
+    }
     public function getProductoController(){
         return new ProductoController($this->createProductoModel(),$this->view);
     }
@@ -77,7 +84,7 @@ class Configuration {
     // CONFIGS DE MODEL //
 
     private function createUsuarioModel(): UsuarioModel {
-        return new UsuarioModel($this->database);
+        return new UsuarioModel($this->database, $this->mailer);
     }
     private function createProductoModel(): ProductoModel {
         return new ProductoModel($this->database);
@@ -92,6 +99,10 @@ class Configuration {
     }
     public function createEdicionModel(): EdicionModel {
         return new EdicionModel($this->database);
+    }
+
+    public function createEdicionesModel(): EdicionesModel {
+        return new EdicionesModel($this->database);
     }
 
     public function createNoticiaModel() : NoticiaModel {
