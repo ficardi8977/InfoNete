@@ -16,6 +16,11 @@ class UsuarioModel
         return $this->database->query("SELECT * FROM usuario");
     }
 
+        public function getUsuariosContenidistas()
+    {
+        return $this->database->query("SELECT u.Nombre,u.CoordenadasY, u.CoordenadasX, tu.Nombre as TipoUsuario , u.Email FROM usuario  u inner join tipoUsuario  tu  on ( u.IdTipoUsuario = tu.Id) where IdTipoUsuario= 2");
+    }
+
     public function getUsuariosConTipo() {
         return $this->database->query ("SELECT u.Nombre, u.IdTipoUsuario, u.Id as IdUsuario ,tu.Nombre as TipoUsuario, u.Email , u.CoordenadasX,u.CoordenadasY
         from usuario u inner join tipousuario tu on (u.IdTipoUsuario = tu.id)");

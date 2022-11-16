@@ -80,6 +80,12 @@ class UsuarioController {
 
     }
 
+    public function mostrarUsuariosContenidistas(){
+        $data["usuariosContenidistas"]= $this->usuarioModel->getUsuariosContenidistas();
+        $html = $this->render->render("listaContenidistasView.mustache", SesionData::cargar($data));
+        GeneradorPdf::generarPdf($html);
+    }
+
     public function modificar (){
         $data['IdUsuario']= $_GET['IdUsuario'];
         $data['tiposUsuarios'] = $this->usuarioModel->tipoDeUsuarios();
