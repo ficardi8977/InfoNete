@@ -16,7 +16,7 @@ class UsuarioModel
 
         public function getUsuariosContenidistas()
     {
-        return $this->database->query("SELECT * FROM usuario where IdTipoUsuario= 2");
+        return $this->database->query("SELECT u.Nombre,u.CoordenadasY, u.CoordenadasX, tu.Nombre as TipoUsuario , u.Email FROM usuario  u inner join tipoUsuario  tu  on ( u.IdTipoUsuario = tu.Id) where IdTipoUsuario= 2");
     }
 
     public function getUsuariosConTipo() {

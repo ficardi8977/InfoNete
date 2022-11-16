@@ -76,7 +76,7 @@ class UsuarioController {
 
     public function mostrarUsuariosContenidistas(){
         $data["usuariosContenidistas"]= $this->usuarioModel->getUsuariosContenidistas();
-        $html = $this->render->htmlToVariable("listaContenidistasView.mustache", SesionData::cargar($data));
+        $html = $this->render->render("listaContenidistasView.mustache", SesionData::cargar($data));
         GeneradorPdf::generarPdf($html);
     }
 
