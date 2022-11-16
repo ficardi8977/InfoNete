@@ -12,9 +12,10 @@ class NoticiaModel {
     }
 
     //obtenemos todas las noticias
-    public function getNoticias()
+    public function getNoticias($edicion, $seccion)
     {
-        return $this->database->query("SELECT * FROM noticia");
+        $sql = "SELECT n.Titulo, n.Id FROM noticia n JOIN edicionseccion es ON n.IdEdicionSeccion = es.Id WHERE es.IdEdicion = $edicion AND es.IdSeccion = $seccion";
+        return $this->database->query($sql);
     }
 
     //se ingresa la noticia en la base de datos

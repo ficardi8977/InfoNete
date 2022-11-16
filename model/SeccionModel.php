@@ -13,6 +13,12 @@ class SeccionModel{
         return $this->database->query("SELECT * FROM seccion");
     }
 
+    public function getSeccionesPorEdicion($edicion)
+    {
+        $sql = "SELECT s.Id, s.Nombre FROM seccion s JOIN edicionseccion e ON s.id = e.idSeccion WHERE e.idEdicion = $edicion";
+        return $this->database->query($sql);
+    }
+
     public function getSeccion($idSeccion){
         return $this->database->query("SELECT * FROM seccion WHERE  Id = $idSeccion;");
     }

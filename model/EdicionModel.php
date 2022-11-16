@@ -11,22 +11,8 @@ class EdicionModel
 
     public function getEdicionesPorProducto($idProducto)
     {
-        $idUsuario = $_SESSION["IdUsuario"]; 
-        return $this->database->query("SELECT e.Id, 
-        e.Numero, 
-        e.Fecha, 
-        e.IdProducto,
-        e.Precio,
-        p.Imagen as ImagenProducto,
-        p.Nombre as NombreProducto,
-        case when ".$idUsuario." = c.IdUsuario 
-            then true
-            else false 
-            end Comprado
-        FROM edicion e
-        JOIN producto p on p.id = e.idproducto
-        left join compra c on c.IdEdicion = e.Id
-        where e.IdProducto = ". $idProducto);
+        $sql = "SELECT * FROM edicion WHERE idProducto = $idProducto";
+        return $this->database->query($sql);
     }
 
     public function comprar($idEdicion, $precio)
