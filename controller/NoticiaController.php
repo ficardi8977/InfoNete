@@ -19,6 +19,7 @@ class NoticiaController {
 
     public function alta()
     {
+        Permisos::validarAcceso(Rol::Contenidista);
         echo $this->render->render("noticiaView.mustache", SesionData::cargar());
     }
 

@@ -16,6 +16,6 @@ class MustacheRenderer {
 
     public function render($viewName, $datos = []) {
         $contentAsString =  file_get_contents($this->viewFolder . $viewName);
-        echo  $this->mustache->render($contentAsString, $datos);
+        return  $this->mustache->render($contentAsString, $datos);
     }
 }

@@ -5,12 +5,17 @@ let grabacion = document.getElementById("grabacion");
 let reproducir = document.getElementById("reproducir");
 
 startButton.addEventListener("click", () => {
-    stopButton.disabled = false;
-    startButton.disabled = true;
-    grabando.innerHTML = "Grabando...";
-    
     navigator.mediaDevices.getUserMedia({ audio: true, video: false })
-        .then(handleSuccess);
+        .then(handleSuccess)
+        .catch(() => {
+            navigator.permissions.query({name: 'microphone'}).then(function (result) {
+                if (result.state == 'prompt') {
+                    alert("Micrófono no permitido");
+                } else if (result.state == 'denied') {
+                    alert("Micrófono denegado");
+                }
+              });
+        });
 });
 
 const handleSuccess = (stream) => {
@@ -18,6 +23,10 @@ const handleSuccess = (stream) => {
     const options = {mimeType: 'audio/webm'};
     const recordedChunks = [];
     const mediaRecorder = new MediaRecorder(stream, options);
+
+    stopButton.disabled = false;
+    startButton.disabled = true;
+    grabando.innerHTML = "Grabando...";
 
     mediaRecorder.addEventListener('dataavailable', (e) => {
     if (e.data.size > 0) recordedChunks.push(e.data);
@@ -30,7 +39,7 @@ const handleSuccess = (stream) => {
     startButton.disabled = false;
     let audioBlob = new Blob(recordedChunks);
     let file = new File([audioBlob], "audio.wav");
-    let container = new DataTransfer(); 
+    let container = new DataTransfer();
     container.items.add(file);
     grabacion.files = container.files;
     reproducir.src = URL.createObjectURL(audioBlob);
