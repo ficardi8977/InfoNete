@@ -137,15 +137,16 @@ class UsuarioModel
             inner join usuario u on(u.Id=c.IdUsuario)
             inner join tipousuario tu on(u.IdTipoUsuario=tu.Id)
             order by u.Nombre");
-            $this->database->execute($sql);
+            return $this->database->query($sql);
     }
 
     public function  productosSuscriptosPorUsuario(){
         $sql=("select tu.Nombre as NombreUsuario,p.Nombre as TipoProducto, s.FechaDesde,s.FechaHasta
-        from suscripcion s inner join usuario u on ( s.IdUsuario=u.Id)
+        from suscripcion s 
+        inner join usuario u on ( s.IdUsuario = u.Id)
         inner join tipousuario tu on (u.IdTipoUsuario= tu.Id)
         inner join producto p on (s.IdProducto= p.Id)
         order by u.Nombre");
-        $this->database->execute($sql);
+        return $this->database->query($sql);
     }
 }
