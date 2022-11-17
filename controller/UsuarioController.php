@@ -4,6 +4,7 @@ class UsuarioController {
     private $usuarioModel;
     private $render;
 
+
     public function __construct($usuarioModel, $render){
         $this->usuarioModel = $usuarioModel;
         $this->render = $render;
@@ -118,5 +119,11 @@ class UsuarioController {
                 $html = $this->render->render("listaCompraYSuscripcionProductosView.mustache", SesionData::cargar($data));
         GeneradorPdf::generarPdf($html);
     }
+
+    public function mostrarProductosConInfo(){
+        Permisos::validarAcceso(Rol::Administrador);
+        $data["productos"] = $this->usuarioModel->getProductosConSuTipo();
+        $html = $this->render->render("listaProductosConInfo.mustache", SesionData::cargar($data));
+        GeneradorPdf::generarPdf($html);
+    }
 }
-?>

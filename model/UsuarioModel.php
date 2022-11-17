@@ -149,4 +149,10 @@ class UsuarioModel
         order by u.Nombre");
         return $this->database->query($sql);
     }
+
+    public function getProductosConSuTipo(){
+        $sql = ("SELECT p.Id as Id, p.nombre as Nombre , p.Imagen as Imagen, p.Mensualidad as Mensualidad,  t.nombre as NombreTipoProducto
+        from producto p inner join tipoproducto t on (p.IdTipoProducto=t.Id)");
+        return $this->database->query($sql);
+    }
 }
