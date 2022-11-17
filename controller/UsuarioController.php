@@ -75,24 +75,28 @@ class UsuarioController {
 
 
     public function mostrarUsuarios(){
+        Permisos::validarAcceso(Rol::Administrador);
         $data["usuarios"]= $this->usuarioModel->getUsuariosConTipo();
         echo $this->render->render("mostrarUsuariosView.mustache", SesionData::cargar($data));
 
     }
 
     public function mostrarUsuariosContenidistas(){
+        Permisos::validarAcceso(Rol::Administrador);
         $data["usuariosContenidistas"]= $this->usuarioModel->getUsuariosContenidistas();
         $html = $this->render->render("listaContenidistasView.mustache", SesionData::cargar($data));
         GeneradorPdf::generarPdf($html);
     }
 
     public function modificar (){
+        Permisos::validarAcceso(Rol::Administrador);
         $data['IdUsuario']= $_GET['IdUsuario'];
         $data['tiposUsuarios'] = $this->usuarioModel->tipoDeUsuarios();
          echo $this->render->render("modificarUsuarioView.mustache", SesionData::cargar($data));
     }
 
     public function modificarUsuario(){
+        Permisos::validarAcceso(Rol::Administrador);
         $tipoUsuario = $_POST['IdTipoUsuario'];
         $idUsuario = $_POST ['IdUsuario'];
         $this-> usuarioModel->updateUsuario($tipoUsuario,$idUsuario);
@@ -100,9 +104,19 @@ class UsuarioController {
     }
 
     public function baja(){
+        Permisos::validarAcceso(Rol::Administrador);
         $IdUsuario = $_POST['Id'];
         $this->usuarioModel->deleteUsuario($IdUsuario);
         Redirect::doIt("/usuario/mostrarUsuarios");
+    }
+
+    public function mostrarProductosSuscriptosyComprados(){
+        Permisos::validarAcceso(Rol::Administrador);
+        $data["usuarios"]= $this->usuarioModel->getUsuariosConTipo();
+        $data["productosCompradosPorUsuario"]=$this->usuarioModel->productosCompradosPorUsuario();
+        $data["productosSuscriptosPorUsuario"]=$this->usuarioModel->productosSuscriptosPorUsuario();
+                $html = $this->render->render("listaCompraYSuscripcionProductosView.mustache", SesionData::cargar($data));
+        GeneradorPdf::generarPdf($html);
     }
 }
 ?>
