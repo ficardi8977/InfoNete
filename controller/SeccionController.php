@@ -54,4 +54,17 @@ class SeccionController
         echo Redirect::doIt("/seccion/mostrarSecciones");
 
     }
+
+    public function listarSeccionesAjax()
+    {
+        Permisos::validarAcceso(Rol::Contenidista);
+        $edicion = $_POST['datos'];
+        $data = $this->seccionModel->getSeccionesPorEdicion($edicion);
+        echo "<select id='secciones' name='seccion' class='form-select'>";
+        echo "<option value='default'>Seleccione una seccion</option>";
+        foreach ($data as $value) {
+            echo "<option value='" . $value['Id'] . "'>" . $value['Nombre'] . "</option>";
+        }
+        echo "</select>";
+    }
 }

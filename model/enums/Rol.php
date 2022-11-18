@@ -3,5 +3,6 @@ abstract class Rol
 {
     const Lector = 1;
     const Contenidista = 2;
-    const Administrador = 3;
+    const Editor = 3;
+    const Administrador = 4;
 }

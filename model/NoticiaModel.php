@@ -14,7 +14,7 @@ class NoticiaModel {
     //obtenemos todas las noticias
     public function getNoticias($idEdicionSeccion)
     {
-        $sql = "SELECT Titulo, Id FROM noticia WHERE IdEdicionSeccion = $idEdicionSeccion";
+        $sql = "SELECT Titulo, Id, IdEstadoNoticia FROM noticia WHERE IdEdicionSeccion = $idEdicionSeccion";
         return $this->database->query($sql);
     }
 

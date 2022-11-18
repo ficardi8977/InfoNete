@@ -2,13 +2,10 @@
 class NoticiaController {
     
     private $noticiaModel;
-    private $productoModel;
-    private $edicionModel;
-    private $seccionModel;
     private $render;
     private $sesion;
 
-    public function __construct($noticiaModel, $productoModel, $edicionModel, $seccionModel, $render){
+    public function __construct($noticiaModel, $render){
 
         $this->noticiaModel = $noticiaModel;
         $this->productoModel = $productoModel;
@@ -20,7 +17,7 @@ class NoticiaController {
     public function mostrarABMNoticias(){
         Permisos::validarAcceso(Rol::Contenidista);
         $data["IdEdicionSeccion"] = $_GET["IdEdicionSeccion"];
-        echo $this->render->render("noticiasView.mustache", SesionData::cargar($data));
+        echo $this->render->render("abmNoticiasView.mustache", SesionData::cargar($data));
     }
 
     public function listarNoticias()
@@ -35,14 +32,30 @@ class NoticiaController {
             $idEdicionSeccion = $_GET['IdEdicionSeccion'];
         $data["IdEdicionSeccion"] = $idEdicionSeccion;
         $data["noticias"] = $this->noticiaModel->getNoticias($idEdicionSeccion);
-        echo $this->render->render("listarNoticias.mustache", SesionData::cargar($data));
+        foreach ($data["noticias"] as $key => $value) {
+            switch ($value['IdEstadoNoticia']) {
+                case 1:
+                    $data["noticias"][$key]["Borrador"] = true;
+                    break;               
+                case 2:
+                    $data["noticias"][$key]["A publicar"] = true;
+                    break;
+                case 3:
+                    $data["noticias"][$key]["Publicada"] = true;
+                    break;
+                case 4:
+                    $data["noticias"][$key]["Baneada"] = true;
+                    break;
+            }
+        }
+        echo $this->render->render("noticiasView.mustache", SesionData::cargar($data));
     }
 
     public function alta()
     {
         Permisos::validarAcceso(Rol::Contenidista);
         $data["IdEdicionSeccion"] = $_POST["IdEdicionSeccion"];
-        echo $this->render->render("noticiaView.mustache", SesionData::cargar($data));
+        echo $this->render->render("crearNoticiaView.mustache", SesionData::cargar($data));
     }
 
     public function publicar()
@@ -85,40 +98,8 @@ class NoticiaController {
         echo "Noticia eliminada";
     }
 
-    public function listarProductos()
+    public function modificarNoticia()
     {
-        $data = $this->productoModel->getProductos();
-        echo "<select id='productos' name='producto' class='form-select' >";
-        echo "<option value='default' selected>Seleccione un producto</option>";
-        foreach ($data as $value) {
-            echo "<option value='" . $value['Id'] . "'>" . $value['Nombre'] . "</option>";
-        }
-        echo "</select>";
-    }
-    
-    public function listarEdicionesPorProducto()
-    {
-        Permisos::validarAcceso(Rol::Contenidista);
-        $producto = $_POST['datos'];
-        $data = $this->edicionModel->getEdicionesPorProducto($producto);
-        echo "<select id='ediciones' name='edicion' class='form-select'>";
-        echo "<option value='default'>Seleccione una edicion</option>";
-        foreach ($data as $value) {
-            echo "<option value='" . $value['Id'] . "'>Edicion Número " . $value['Numero'] . "</option>";
-        }
-        echo "</select>";
-    }
-
-    public function listarSeccionesPorEdicion()
-    {
-        Permisos::validarAcceso(Rol::Contenidista);
-        $edicion = $_POST['datos'];
-        $data = $this->seccionModel->getSeccionesPorEdicion($edicion);
-        echo "<select id='secciones' name='seccion' class='form-select'>";
-        echo "<option value='default'>Seleccione una seccion</option>";
-        foreach ($data as $value) {
-            echo "<option value='" . $value['Id'] . "'>" . $value['Nombre'] . "</option>";
-        }
-        echo "</select>";
+        # code...
     }
 }

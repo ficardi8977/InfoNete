@@ -14,7 +14,7 @@ class EdicionController {
 
     public function listar()
     {
-        Permisos::validarAcceso(Rol::Lector);   
+        Permisos::validarAcceso(Rol::Lector);
         $data["ediciones"] = $this->edicionModel->getEdicionesPorProducto($_GET["IdProducto"]);
         echo $this->render->render("compraEdicionView.mustache", SesionData::cargar($data));
     }
@@ -57,6 +57,19 @@ class EdicionController {
     {        
         $this->edicionModel->desasociarSeccion($_POST["IdEdicion"], $_POST["IdSeccion"] );
         Redirect::doIt("/edicion/detalle?IdEdicion=".$_POST["IdEdicion"]);   
+    }
+
+    public function listarEdicionesAjax()
+    {
+        Permisos::validarAcceso(Rol::Contenidista);
+        $producto = $_POST['datos'];
+        $data = $this->edicionModel->getEdicionesPorProducto($producto);
+        echo "<select id='ediciones' name='edicion' class='form-select'>";
+        echo "<option value='default'>Seleccione una edicion</option>";
+        foreach ($data as $value) {
+            echo "<option value='" . $value['Id'] . "'>Edicion Número " . $value['Numero'] . "</option>";
+        }
+        echo "</select>";
     }
 }
 ?>

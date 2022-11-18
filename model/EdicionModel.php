@@ -19,12 +19,13 @@ class EdicionModel
     {
         $idUsuario = $_SESSION["IdUsuario"];
 
-        $sql = "INSERT INTO compra (IdEdicion, IdUsuario, precio)
-    VALUES (" . $idEdicion . ",
+        $sql = "INSERT INTO compra (IdEdicion, IdUsuario, Precio, Pagado)
+        VALUES (" . $idEdicion . ",
             " . $idUsuario . ", 
-            " . $precio . ")";
+            " . $precio . ",
+            1)";
 
-        $this->database->execute($sql);        
+        $this->database->execute($sql);      
     }
 
     public function listCompras()

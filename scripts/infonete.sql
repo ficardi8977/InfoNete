@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 13-11-2022 a las 20:18:19
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 8.1.6
+-- Servidor: localhost
+-- Tiempo de generación: 18-11-2022 a las 10:30:41
+-- Versión del servidor: 10.4.25-MariaDB
+-- Versión de PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -83,14 +83,14 @@ CREATE TABLE `edicion` (
   `Numero` int(11) NOT NULL,
   `IdProducto` int(11) NOT NULL,
   `Fecha` date NOT NULL,
-  `precio` decimal(10,2) NOT NULL
+  `Precio` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `edicion`
 --
 
-INSERT INTO `edicion` (`Id`, `Numero`, `IdProducto`, `Fecha`, `precio`) VALUES
+INSERT INTO `edicion` (`Id`, `Numero`, `IdProducto`, `Fecha`, `Precio`) VALUES
 (1, 1, 1, '2022-10-01', '4453.49'),
 (2, 2, 1, '2022-10-08', '4453.49'),
 (3, 3, 1, '2022-10-15', '4591.18'),
@@ -163,6 +163,27 @@ INSERT INTO `edicionseccion` (`Id`, `IdEdicion`, `IdSeccion`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `estadonoticia`
+--
+
+CREATE TABLE `estadonoticia` (
+  `Id` int(11) NOT NULL,
+  `Nombre` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `estadonoticia`
+--
+
+INSERT INTO `estadonoticia` (`Id`, `Nombre`) VALUES
+(1, 'Borrador'),
+(2, 'A publicar'),
+(3, 'Publicada'),
+(4, 'Baneada');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `multimedia`
 --
 
@@ -194,16 +215,16 @@ CREATE TABLE `noticia` (
   `IdEdicionSeccion` int(11) NOT NULL,
   `CoordenadaX` varchar(100) NOT NULL,
   `CoordenadaY` varchar(100) NOT NULL,
-  `Link` varchar(100) NULL,  
-  `EStado` varchar(100) NULL
+  `Link` varchar(100) DEFAULT NULL,
+  `IdEstadoNoticia` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `noticia`
 --
 
-INSERT INTO `noticia` (`Id`, `Titulo`, `Subtitulo`, `Cuerpo`, `IdEdicionSeccion`, `CoordenadaX`, `CoordenadaY`) VALUES
-(1, 'Bitcoin como moneda oficial, ¿una buena medida para estimular la economía nacional?', 'La noticia de que El Salvador reconocía la criptomoneda alegró a los portadores, pero la inestabilidad del precio pone en duda su viabilidad como medi', 'Esta teoría explica por qué bitcoin, sin ningún respaldo, vale mucho más que petro, emitido por el Gobierno venezolano con petróleo como respaldo. La gente la prefiere, simplemente porque la moneda creada por Satoshi Nakamoto tiene más compradores que la ', 8, '-34.608055555556', '-58.370277777778');
+INSERT INTO `noticia` (`Id`, `Titulo`, `Subtitulo`, `Cuerpo`, `IdEdicionSeccion`, `CoordenadaX`, `CoordenadaY`, `Link`, `IdEstadoNoticia`) VALUES
+(1, 'Bitcoin como moneda oficial, ¿una buena medida para estimular la economía nacional?', 'La noticia de que El Salvador reconocía la criptomoneda alegró a los portadores, pero la inestabilidad del precio pone en duda su viabilidad como medi', 'Esta teoría explica por qué bitcoin, sin ningún respaldo, vale mucho más que petro, emitido por el Gobierno venezolano con petróleo como respaldo. La gente la prefiere, simplemente porque la moneda creada por Satoshi Nakamoto tiene más compradores que la ', 8, '-34.608055555556', '-58.370277777778', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -301,7 +322,8 @@ CREATE TABLE `tipomultimedia` (
 INSERT INTO `tipomultimedia` (`Id`, `Nombre`) VALUES
 (1, 'Audio'),
 (2, 'Imagen'),
-(3, 'Video');
+(3, 'Video'),
+(4, 'Otro');
 
 -- --------------------------------------------------------
 
@@ -340,7 +362,8 @@ CREATE TABLE `tipousuario` (
 INSERT INTO `tipousuario` (`Id`, `Nombre`) VALUES
 (1, 'Lector'),
 (2, 'Contenidista'),
-(3, 'Administrador');
+(3, 'Editor'),
+(4, 'Administrador');
 
 -- --------------------------------------------------------
 
@@ -362,11 +385,11 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`Id`, `Nombre`, `IdTipoUsuario`, `Email`, `CoordenadasX`, `CoordenadasY`) VALUES
-(1, 'Fer', 3, 'fernando.icardi@gmail.com', '-34.663050', '-58.593712'),
-(2, 'Sofi', 3, 'sofia@gmail.com', '-34.663050', '-58.593712'),
-(3, 'Eve', 3, 'eve@gmail.com', '-34.663050', '-58.593712'),
-(4, 'Tomas', 3, 'tomy@gmail.com', '-34.663050', '-58.593712'),
-(5, 'Juan', 3, 'juan@gmail.com', '-34.663050', '-58.593712');
+(1, 'Fer', 4, 'fernando.icardi@gmail.com', '-34.663050', '-58.593712'),
+(2, 'Sofi', 4, 'sofia@gmail.com', '-34.663050', '-58.593712'),
+(3, 'Eve', 4, 'eve@gmail.com', '-34.663050', '-58.593712'),
+(4, 'Tomas', 4, 'tomy@gmail.com', '-34.663050', '-58.593712'),
+(5, 'Juan', 4, 'juan@gmail.com', '-34.663050', '-58.593712');
 
 --
 -- Índices para tablas volcadas
@@ -401,6 +424,12 @@ ALTER TABLE `edicionseccion`
   ADD KEY `IdSeccion` (`IdSeccion`);
 
 --
+-- Indices de la tabla `estadonoticia`
+--
+ALTER TABLE `estadonoticia`
+  ADD PRIMARY KEY (`Id`);
+
+--
 -- Indices de la tabla `multimedia`
 --
 ALTER TABLE `multimedia`
@@ -413,6 +442,7 @@ ALTER TABLE `multimedia`
 --
 ALTER TABLE `noticia`
   ADD PRIMARY KEY (`Id`),
+  ADD KEY `IdEstadoNoticia` (`IdEstadoNoticia`),
   ADD KEY `IdEdicionSeccion` (`IdEdicionSeccion`);
 
 --
@@ -464,11 +494,7 @@ ALTER TABLE `usuario`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
-  ALTER TABLE `usuario`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 
-  ALTER TABLE `seccion`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `compra`
 --
@@ -485,7 +511,7 @@ ALTER TABLE `contraseña`
 -- AUTO_INCREMENT de la tabla `edicion`
 --
 ALTER TABLE `edicion`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT de la tabla `edicionseccion`
@@ -506,17 +532,22 @@ ALTER TABLE `noticia`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de la tabla `seccion`
+--
+ALTER TABLE `seccion`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT de la tabla `suscripcion`
 --
 ALTER TABLE `suscripcion`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-COMMIT;
 
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
@@ -545,20 +576,15 @@ ALTER TABLE `edicionseccion`
 -- Filtros para la tabla `multimedia`
 --
 ALTER TABLE `multimedia`
-  ADD CONSTRAINT `multimedia_ibfk_1` FOREIGN KEY (`IdNoticia`) REFERENCES `noticia` (`Id`),
+  ADD CONSTRAINT `multimedia_ibfk_1` FOREIGN KEY (`IdNoticia`) REFERENCES `noticia` (`Id`) ON DELETE CASCADE,
   ADD CONSTRAINT `multimedia_ibfk_2` FOREIGN KEY (`IdTipoMultimedia`) REFERENCES `tipomultimedia` (`Id`);
 
 --
 -- Filtros para la tabla `noticia`
 --
 ALTER TABLE `noticia`
-  ADD CONSTRAINT `noticia_ibfk_1` FOREIGN KEY (`IdEdicionSeccion`) REFERENCES `edicionseccion` (`Id`);
-
---
--- Filtros para la tabla `producto`
---
-ALTER TABLE `producto`
-  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`IdTipoProducto`) REFERENCES `tipoproducto` (`Id`);
+  ADD CONSTRAINT `IdEdicionSeccion` FOREIGN KEY (`IdEdicionSeccion`) REFERENCES `edicionseccion` (`Id`),
+  ADD CONSTRAINT `IdEstadoNoticia` FOREIGN KEY (`IdEstadoNoticia`) REFERENCES `estadonoticia` (`Id`);
 
 --
 -- Filtros para la tabla `suscripcion`
@@ -571,5 +597,9 @@ ALTER TABLE `suscripcion`
 -- Filtros para la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`IdTipoUsuario`) REFERENCES `tipousuario` (`Id`);
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`IdTipoUsuario`) REFERENCES `tipousuario` (`Id`) ON UPDATE CASCADE;
 COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

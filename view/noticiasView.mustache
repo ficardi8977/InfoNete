@@ -1,16 +1,57 @@
 {{> header}}
-<div class="container" id="ABMNoticias">
-    <input type="hidden" id="IdEdicionSeccion" value="{{IdEdicionSeccion}}">
-    <h1 class="display-1 text-center m-4">ABM NOTICIAS</h1>
-    <form action="/noticia/listarNoticias" method="GET">
-        <div class="row my-4">
-            <div class="col-md-3" id="listarProductos"></div>
-            <div class="col-md-3" id="listarEdiciones"></div>
-            <div class="col-md-3" id="listarSecciones"></div>
-            <button type="submit" id="verNoticias" class="col-md-2 btn btn-success" style="display: none;">Ver
-                Noticias</button>
-        </div>
-    </form>
+<div class="container" id="listarNoticias" style="min-height:calc(100vh - 17.5rem);">
+    {{#sesion}}    
+        {{#SoloContenidista}}
+            <div class="d-flex justify-content-md-end pb-3 mt-4">
+                <form action="/noticia/alta" method="POST">
+                    <input type="hidden" name="IdEdicionSeccion" value={{IdEdicionSeccion}}>
+                    <button type="submit" class="btn btn-success">Alta Noticia</button>
+                </form>
+            </div>
+        {{/SoloContenidista}}
+        <table class='table table-hover'>
+            <thead class='table-dark'>
+                <tr class='text-center'>
+                    <th scope='col'>Titulo Noticia</th>
+                    <th scope='col'>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#noticias}}
+                <tr class='text-center' id="noticia{{Id}}">
+                    <td>{{Titulo}}</td>
+                    <td class="col-md-5">
+                        <div class='d-flex justify-content-center'>
+                            {{#EsContenidista}}
+                                <div class='px-2'>
+                                    <button class='btn btn-info text-light leer' type='button' value="{{Id}}">Leer Noticia</button>
+                                </div>
+                            {{/EsContenidista}}
+                            {{#EsEditor}}
+                                <div class='px-2'>
+                                    <button class='btn btn-danger banear' type='button' value="{{Id}}">
+                                        {{#SoloEditor}} Denegar Noticia {{/SoloEditor}}
+                                        {{#EsAdministrador}} Banear Noticia {{/EsAdministrador}}                                        
+                                    </button>
+                                </div>
+                            {{/EsEditor}}
+                            {{#SoloContenidista}}                            
+                                <div class='px-2'>
+                                    <button class='btn btn-primary' type='button' value="{{Id}}" {{^Borrador}}disabled{{/Borrador}} >
+                                        Modificar Noticia
+                                    </button>
+                                </div>
+                                <div class='px-2'>
+                                    <button class='btn btn-danger borrar' type='button' value="{{Id}}">Borrar Noticia</button>
+                                </div>
+                            {{/SoloContenidista}}
+                        </div>
+                    </td>
+                </tr>
+                {{/noticias}}
+            </tbody>
+        </table>
+    {{/sesion}}
 </div>
 <script type="text/javascript" src="../public/js/ajax.js"></script>
 {{> footer}}

@@ -64,7 +64,14 @@ class ProductoController {
 
     }
 
-
-
-
+    public function listarProductosAjax()
+    {
+        $data = $this->productoModel->getProductos();
+        echo "<select id='productos' name='producto' class='form-select' >";
+        echo "<option value='default' selected>Seleccione un producto</option>";
+        foreach ($data as $value) {
+            echo "<option value='" . $value['Id'] . "'>" . $value['Nombre'] . "</option>";
+        }
+        echo "</select>";
+    }
 }

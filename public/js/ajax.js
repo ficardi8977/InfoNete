@@ -16,14 +16,14 @@ $(document).ready(function() {
     }
 
     function mostrarABMNoticias() {
-        consulta('', "/noticia/listarProductos", "#listarProductos");
+        consulta('', "/producto/listarProductosAjax", "#listarProductos");
 
         $("#listarProductos").on("change", "#productos", function(){
-            consulta(this.value, "/noticia/listarEdicionesPorProducto", "#listarEdiciones");
+            consulta(this.value, "/edicion/listarEdicionesAjax", "#listarEdiciones");
             });
         $("#listarEdiciones").on("change", "#ediciones", function(){
             $("#verNoticias").hide();
-            consulta(this.value, "/noticia/listarSeccionesPorEdicion", "#listarSecciones");
+            consulta(this.value, "/seccion/listarSeccionesAjax", "#listarSecciones");
             });
         $("#listarSecciones").on("change", "#secciones", function(){
             $("#verNoticias").show();

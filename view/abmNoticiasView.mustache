@@ -1,0 +1,16 @@
+{{> header}}
+<div class="container" id="ABMNoticias" style="min-height:calc(100vh - 17.5rem);">
+    <input type="hidden" id="IdEdicionSeccion" value="{{IdEdicionSeccion}}">
+    <h1 class="display-1 text-center m-4">ABM NOTICIAS</h1>
+    <form action="/noticia/listarNoticias" method="GET">
+        <div class="row my-4">
+            <div class="col-md-3" id="listarProductos"></div>
+            <div class="col-md-3" id="listarEdiciones"></div>
+            <div class="col-md-3" id="listarSecciones"></div>
+            <button type="submit" id="verNoticias" class="col-md-3 btn btn-success" style="display: none;">Ver
+                Noticias</button>
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="../public/js/ajax.js"></script>
+{{> footer}}
