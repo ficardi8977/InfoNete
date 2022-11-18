@@ -12,16 +12,28 @@ class NoticiaModel {
     }
 
     //obtenemos todas las noticias
-    public function getNoticias($edicion, $seccion)
+    public function getNoticias($idEdicionSeccion)
     {
-        $sql = "SELECT n.Titulo, n.Id FROM noticia n JOIN edicionseccion es ON n.IdEdicionSeccion = es.Id WHERE es.IdEdicion = $edicion AND es.IdSeccion = $seccion";
+        $sql = "SELECT Titulo, Id FROM noticia WHERE IdEdicionSeccion = $idEdicionSeccion";
         return $this->database->query($sql);
+    }
+
+    public function getIdEdicionSeccion($edicion, $seccion)
+    {
+        $sql = "SELECT Id FROM edicionseccion WHERE IdEdicion = $edicion AND IdSeccion = $seccion";
+        return $this->database->query($sql)[0]["Id"];
+    }
+
+    public function bajaNoticia($idNoticia){
+
+        $sql=("DELETE from noticia where Id=$idNoticia;");
+        $this->database->execute($sql);
     }
 
     //se ingresa la noticia en la base de datos
     public function addNoticia($datos) {
         $sql = "INSERT INTO noticia (titulo, subtitulo, cuerpo, idEdicionSeccion, coordenadaX, coordenadaY)
-        VALUES ('".$datos["titulo"]."', '".$datos["subtitulo"]."', '".$datos["cuerpo"]."', 1, 1, 1)";
+        VALUES ('".$datos["titulo"]."', '".$datos["subtitulo"]."', '".$datos["cuerpo"]."', ".$datos["idEdicionSeccion"].", 1, 1)";
         $idNoticia = $this->database->execute($sql);
 
         $sql = "INSERT INTO multimedia (nombre, idNoticia, idTipoMultimedia)

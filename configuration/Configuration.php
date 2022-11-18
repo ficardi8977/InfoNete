@@ -63,7 +63,6 @@ class Configuration {
         return new NoticiaController($this->createNoticiaModel(), $this->createProductoModel(), $this->createEdicionModel(), $this->createSeccionModel(), $this->view);
     }
 
-
     public function getSuscripcionController(){
         return new SuscripcionController($this->createSuscripcionModel(), $this->view, $this->createProductoModel(), $this->createEdicionModel());
     }

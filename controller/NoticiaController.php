@@ -19,24 +19,30 @@ class NoticiaController {
 
     public function mostrarABMNoticias(){
         Permisos::validarAcceso(Rol::Contenidista);
-        $data["productos"] = $this->productoModel->getProductos();
+        $data["IdEdicionSeccion"] = $_GET["IdEdicionSeccion"];
         echo $this->render->render("noticiasView.mustache", SesionData::cargar($data));
-        
     }
 
     public function listarNoticias()
     {
-        Permisos::validarAcceso(Rol::Contenidista);
-        $edicion = $_POST['datos']['edicion'];
-        $seccion = $_POST['datos']['seccion'];
-        $data["noticias"] = $this->noticiaModel->getNoticias($edicion, $seccion);
-        echo $this->render->render("listarNoticias.mustache", SesionData::cargar($data));
+        Permisos::validarAcceso(Rol::Lector);
+        if(isset($_GET["edicion"])){
+            $edicion = $_GET["edicion"];
+            $seccion = $_GET["seccion"];
+            $idEdicionSeccion = $this->noticiaModel->getIdEdicionSeccion($edicion, $seccion);
         }
+        else
+            $idEdicionSeccion = $_GET['IdEdicionSeccion'];
+        $data["IdEdicionSeccion"] = $idEdicionSeccion;
+        $data["noticias"] = $this->noticiaModel->getNoticias($idEdicionSeccion);
+        echo $this->render->render("listarNoticias.mustache", SesionData::cargar($data));
+    }
 
     public function alta()
     {
         Permisos::validarAcceso(Rol::Contenidista);
-        echo $this->render->render("noticiaView.mustache", SesionData::cargar());
+        $data["IdEdicionSeccion"] = $_POST["IdEdicionSeccion"];
+        echo $this->render->render("noticiaView.mustache", SesionData::cargar($data));
     }
 
     public function publicar()
@@ -47,7 +53,8 @@ class NoticiaController {
             "titulo" => $_POST["titulo"],
             "cuerpo" => $_POST["cuerpo"],
             "subtitulo" => $_POST["subtitulo"],
-            "imagen" => $_FILES["imagen"]["name"]
+            "imagen" => $_FILES["imagen"]["name"],
+            "idEdicionSeccion" => $_POST["IdEdicionSeccion"]
         );
 
         //recibo link opcional
@@ -68,7 +75,25 @@ class NoticiaController {
         }
         
         $this->noticiaModel->addNoticia($datos);
-        echo Redirect::doIt("/noticia/mostrarNoticias");
+        echo Redirect::doIt("/noticia/listarNoticias?IdEdicionSeccion=".$datos["idEdicionSeccion"]."");
+    }
+
+    public function baja()
+    {
+        Permisos::validarAcceso(Rol::Contenidista);
+        $this->noticiaModel->bajaNoticia($_POST["datos"]);
+        echo "Noticia eliminada";
+    }
+
+    public function listarProductos()
+    {
+        $data = $this->productoModel->getProductos();
+        echo "<select id='productos' name='producto' class='form-select' >";
+        echo "<option value='default' selected>Seleccione un producto</option>";
+        foreach ($data as $value) {
+            echo "<option value='" . $value['Id'] . "'>" . $value['Nombre'] . "</option>";
+        }
+        echo "</select>";
     }
     
     public function listarEdicionesPorProducto()
@@ -76,10 +101,10 @@ class NoticiaController {
         Permisos::validarAcceso(Rol::Contenidista);
         $producto = $_POST['datos'];
         $data = $this->edicionModel->getEdicionesPorProducto($producto);
-        echo "<select id='ediciones' name='ediciones' class='form-select'>";
+        echo "<select id='ediciones' name='edicion' class='form-select'>";
         echo "<option value='default'>Seleccione una edicion</option>";
         foreach ($data as $value) {
-            echo "<option value='" . $value['Id'] . "'>" . $value['Numero'] . "</option>";
+            echo "<option value='" . $value['Id'] . "'>Edicion Número " . $value['Numero'] . "</option>";
         }
         echo "</select>";
     }
@@ -89,7 +114,7 @@ class NoticiaController {
         Permisos::validarAcceso(Rol::Contenidista);
         $edicion = $_POST['datos'];
         $data = $this->seccionModel->getSeccionesPorEdicion($edicion);
-        echo "<select id='secciones' name='secciones' class='form-select'>";
+        echo "<select id='secciones' name='seccion' class='form-select'>";
         echo "<option value='default'>Seleccione una seccion</option>";
         foreach ($data as $value) {
             echo "<option value='" . $value['Id'] . "'>" . $value['Nombre'] . "</option>";

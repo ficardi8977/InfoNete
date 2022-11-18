@@ -11,11 +11,13 @@ class SesionData {
             case 2:
                 $_SESSION["EsLector"] = true;
                 $_SESSION["EsContenidista"] = true;
+                $_SESSION["SoloContenidista"] = true;
                 break;
             case 3:
                 $_SESSION["EsLector"] = true;
                 $_SESSION["EsContenidista"] = true;
                 $_SESSION["EsAdministrador"] = true;
+                $_SESSION["SoloAdministrador"] = true;
                 break;
         }
         $_SESSION["IdTipoUsuario"]=$tipoUsuario;

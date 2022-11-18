@@ -2,6 +2,8 @@
    <div class="container">
       <form class="row g-3" action="/noticia/publicar" method="post" enctype="multipart/form-data">
 
+         <input type="hidden" name="IdEdicionSeccion" value={{IdEdicionSeccion}}>
+
          <label for="titulo">Título de la noticia:</label>
          <input type="text" id="titulo" name="titulo" class="form-control" required>
 

@@ -1,17 +1,16 @@
 {{> header}}
-   <div class="container ">
-        <div class="row">
-            <div class="col-md-3">
-                <select name="productos" id="productos" class="form-select" >
-                    <option value="default" selected>Seleccione un producto</option>
-                    {{#productos}}
-                    <option value="{{Id}}">{{Nombre}}</option>
-                    {{/productos}}
-                </select>
-            </div>
-            <div class="col-md-3 listas" id="listarEdiciones"></div>
-            <div class="col-md-3 listas" id="listarSecciones"></div>
+<div class="container" id="ABMNoticias">
+    <input type="hidden" id="IdEdicionSeccion" value="{{IdEdicionSeccion}}">
+    <h1 class="display-1 text-center m-4">ABM NOTICIAS</h1>
+    <form action="/noticia/listarNoticias" method="GET">
+        <div class="row my-4">
+            <div class="col-md-3" id="listarProductos"></div>
+            <div class="col-md-3" id="listarEdiciones"></div>
+            <div class="col-md-3" id="listarSecciones"></div>
+            <button type="submit" id="verNoticias" class="col-md-2 btn btn-success" style="display: none;">Ver
+                Noticias</button>
         </div>
-        <div class="row" id="listarNoticias"><h1 class="display-1 text-center m-4">ABM NOTICIA</h1></div>
-   <script type="text/javascript" src="../public/js/ajax.js"></script>
- {{> footer}}
+    </form>
+</div>
+<script type="text/javascript" src="../public/js/ajax.js"></script>
+{{> footer}}
