@@ -125,4 +125,34 @@ class UsuarioModel
     {
         return "http://localhost/usuario/confirmar?IdUsuario=$idUsuario&CodigoVerificacion=$codigoVerificacion";
     }
+
+    public function productosCompradosPorUsuario(){
+        $sql= ("select u.Nombre as NombreUsuario,tu.Nombre as TipoUsuario,e.Id  as NumeroEdicion,p.Nombre as Producto,
+            CASE
+            when c.Pagado = true then 'pagado'
+            else 'impago'
+            end as EstadoCompra
+            from compra c inner join edicion e on(c.IdEdicion=e.Id)
+            inner join producto p on ( e.IdProducto=p.Id)
+            inner join usuario u on(u.Id=c.IdUsuario)
+            inner join tipousuario tu on(u.IdTipoUsuario=tu.Id)
+            order by u.Nombre");
+            return $this->database->query($sql);
+    }
+
+    public function  productosSuscriptosPorUsuario(){
+        $sql=("select tu.Nombre as NombreUsuario,p.Nombre as TipoProducto, s.FechaDesde,s.FechaHasta
+        from suscripcion s 
+        inner join usuario u on ( s.IdUsuario = u.Id)
+        inner join tipousuario tu on (u.IdTipoUsuario= tu.Id)
+        inner join producto p on (s.IdProducto= p.Id)
+        order by u.Nombre");
+        return $this->database->query($sql);
+    }
+
+    public function getProductosConSuTipo(){
+        $sql = ("SELECT p.Id as Id, p.nombre as Nombre , p.Imagen as Imagen, p.Mensualidad as Mensualidad,  t.nombre as NombreTipoProducto
+        from producto p inner join tipoproducto t on (p.IdTipoProducto=t.Id)");
+        return $this->database->query($sql);
+    }
 }

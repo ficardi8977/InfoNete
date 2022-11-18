@@ -25,6 +25,13 @@ class SuscripcionController{
             $data['suscripciones']= $this->suscripcion->listSuscripciones();
             echo $this->render->render("suscripcionesView.mustache", SesionData::cargar($data));
         }
+    
+    public function reporteMisSuscripciones(){            
+            Permisos::validarAcceso(Rol::Lector);             
+            $data['suscripciones']= $this->suscripcion->listSuscripciones();
+            $html = $this->render->render("reporteMisSuscripcionesView.mustache", SesionData::cargar($data));
+            GeneradorPdf::generarPdf($html);
+        }
 
     public function alta(){
             Permisos::validarAcceso(Rol::Lector);    
