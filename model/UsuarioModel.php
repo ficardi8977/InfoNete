@@ -155,4 +155,23 @@ class UsuarioModel
         from producto p inner join tipoproducto t on (p.IdTipoProducto=t.Id)");
         return $this->database->query($sql);
     }
+
+    public function cantidadProductosVendidos(){
+        $sql =("SELECT COUNT(*) as Cantidad, p.Nombre as NombreProducto  
+        FROM compra c 
+        inner join edicion e on(c.idEdicion = e.Id)
+        inner join producto p on (e.idProducto = p.Id)
+        inner join tipoproducto tp on (p.idTipoProducto = tp.Id)
+        GROUP BY p.Nombre");
+        return $this->database->query($sql);
+    }
+
+    public function cantidadProductosSuscriptos(){
+        $sql =("SELECT COUNT(*) as Cantidad, p.Nombre as NombreProducto,  s.FechaDesde , s.FechaHasta as Fecha
+        FROM suscripcion s 
+        inner join producto p on (s.idProducto = p.Id)
+        inner join tipoproducto tp on (p.idTipoProducto = tp.Id)
+        GROUP BY p.Nombre");
+        return $this->database->query($sql);
+    }
 }
