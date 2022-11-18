@@ -125,4 +125,9 @@ class UsuarioModel
     {
         return "http://localhost/usuario/confirmar?IdUsuario=$idUsuario&CodigoVerificacion=$codigoVerificacion";
     }
+
+    private function reporteCompras($fechaDesde, $fechaHasta)
+    {
+        $idUsuario = $_SESSION["IdUsuario"]; 
+    }
 }

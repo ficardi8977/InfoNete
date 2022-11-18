@@ -104,5 +104,13 @@ class UsuarioController {
         $this->usuarioModel->deleteUsuario($IdUsuario);
         Redirect::doIt("/usuario/mostrarUsuarios");
     }
+
+    public function reporteMisCompras(){
+        $fechaDesde = $_GET['fechaDesde'];
+        $fechaHasta = $_GET['fechaHasta'];
+        $data['compras'] = $this->usuarioModel->reporteCompras($fechaDesde, $fechaHasta);
+        $html = $this->render->render("reporteMisComprasView.mustache", SesionData::cargar($data));
+        GeneradorPdf::generarPdf($html);
+    }
 }
 ?>
