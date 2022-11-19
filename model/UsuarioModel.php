@@ -126,8 +126,24 @@ class UsuarioModel
         return "http://localhost/usuario/confirmar?IdUsuario=$idUsuario&CodigoVerificacion=$codigoVerificacion";
     }
 
-    private function reporteCompras($fechaDesde, $fechaHasta)
+    public function reporteCompras($fechaDesde, $fechaHasta)
     {
         $idUsuario = $_SESSION["IdUsuario"]; 
+        
+        return $this->database->query(
+            "SELECT 
+                p.Nombre as Producto,
+                tp.Nombre as TipoProducto,
+                e.Numero as Edicion, 
+                e.Fecha as FechaEdicion, 
+                c.Precio, 
+                c.FechaCompra
+            FROM compra c
+            join edicion e on e.Id = c.IdEdicion
+            join producto p on p.id = e.IdProducto
+            join tipoproducto tp on tp.Id = p.IdTipoProducto
+            where c.FechaCompra >= '".$fechaDesde.
+            "' and c.FechaCompra < '".$fechaHasta.
+            "' and c.IdUsuario = $idUsuario and c.Pagado = 1");
     }
 }
