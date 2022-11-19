@@ -33,6 +33,7 @@ include_once('controller/EdicionController.php');
 include_once('controller/ProductoController.php');
 include_once('controller/SeccionController.php');
 include_once('controller/EdicionesController.php');
+include_once('controller/GestionController.php');
 
 include_once('dependencies/mustache/src/Mustache/Autoloader.php');
 include_once ('dependencies/DomPdf/autoload.inc.php');
@@ -78,6 +79,10 @@ class Configuration {
 
     public function getSeccionController(){
         return new SeccionController($this->createSeccionModel(),$this->view);
+    }
+
+    public function getGestionController(){
+        return new GestionController($this->createSuscripcionModel(), $this->createEdicionModel(),$this->view);
     }
     // //
     // CONFIGS DE MODEL //

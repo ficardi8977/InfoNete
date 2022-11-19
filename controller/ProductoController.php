@@ -74,4 +74,11 @@ class ProductoController {
         }
         echo "</select>";
     }
+
+    public function ventas()
+    {
+        Permisos::validarAcceso(Rol::Administrador);
+        // retorna en forma de json la respuesta
+        echo json_encode($this->productoModel->ventas());
+    }
 }
