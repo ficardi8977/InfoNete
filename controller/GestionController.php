@@ -16,10 +16,5 @@ class GestionController {
     {
         echo $this->render->render("graficosView.mustache", SesionData::cargar());
     }
-
-    public function pdfGraficos(){
-        $html = $this->render->render("graficosView.mustache", SesionData::cargar());
-        GeneradorPdf::generarPdf($html);
-    }
 }
 ?>
