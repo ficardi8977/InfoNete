@@ -1,19 +1,16 @@
 <?php
 
 class GestionController {
-    private $suscripcionModel;
-    private $compraModel;
+
     private $render;
 
-    public function __construct($suscripcionModel, $compraModel, $render){
-
-        $this->suscripcionModel = $suscripcionModel;
-        $this->compraModel = $compraModel;
+    public function __construct($render){
         $this->render = $render;
     }
 
     public function vista()
     {
+        Permisos::validarAcceso(Rol::Administrador);
         echo $this->render->render("graficosView.mustache", SesionData::cargar());
     }
 }

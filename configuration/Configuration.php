@@ -82,7 +82,7 @@ class Configuration {
     }
 
     public function getGestionController(){
-        return new GestionController($this->createSuscripcionModel(), $this->createEdicionModel(),$this->view);
+        return new GestionController($this->view);
     }
     // //
     // CONFIGS DE MODEL //
