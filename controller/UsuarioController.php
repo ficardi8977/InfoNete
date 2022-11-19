@@ -126,6 +126,13 @@ class UsuarioController {
         $data["cantidadProductosVendidos"] = $this->usuarioModel->cantidadProductosVendidos();
         $data["cantidadProductosSuscriptos"] = $this->usuarioModel->cantidadProductosSuscriptos();
         $html = $this->render->render("listaProductosConInfo.mustache", SesionData::cargar($data));
+    }
+    
+    public function reporteMisCompras(){
+        $fechaDesde = $_GET['fechaDesde'];
+        $fechaHasta = $_GET['fechaHasta'];
+        $data['compras'] = $this->usuarioModel->reporteCompras($fechaDesde, $fechaHasta);
+        $html = $this->render->render("reporteMisComprasView.mustache", SesionData::cargar($data));
         GeneradorPdf::generarPdf($html);
     }
 }

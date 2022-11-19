@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reporte mis compras</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="text-center my-5">
+        <h2>Reporte de compras</h2>
+      </div>
+      <div>
+        <table class="table table-hover">
+          <thead class="table-dark">
+            <tr class="text-center">
+            <th scope="col">Producto</th>
+            <th scope="col">Tipo de Producto</th>
+            <th scope="col">N° Edición</th>
+            <th scope="col">Fecha edición</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Fecha Compra</th>
+            </tr>
+          </thead>
+          {{#compras}}
+          <tbody>
+            <tr class="text-center">
+              <td>
+                <div class="text-center">
+                  {{Producto}}
+                </div>
+              </td>
+                 <td>
+                <div class="text-center">
+                  {{TipoProducto}}
+                </div>
+              </td>
+                <td>
+                <div class="text-center">
+                  {{Edicion}}
+                </div>
+              </td>
+                <td>
+                <div class="text-center">
+                  {{FechaEdicion}}
+                </div>
+              </td>
+                <td>
+                <div class="text-center">
+                  {{Precio}}
+                </div>
+              </td>
+              <td>
+                <div class="text-center">
+                  {{FechaCompra}}
+                </div>
+              </td>
+            </tr>
+          </tbody>
+          {{/compras}}
+        </table>
+      </div>
+    </div>
+    <
+  </body>
+</html>
