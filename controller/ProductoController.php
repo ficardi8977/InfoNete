@@ -64,6 +64,8 @@ class ProductoController {
 
     }
 
+    //Funciones utilizadas con Ajax
+
     public function listarProductosAjax()
     {
         $data = $this->productoModel->getProductos();
@@ -73,5 +75,11 @@ class ProductoController {
             echo "<option value='" . $value['Id'] . "'>" . $value['Nombre'] . "</option>";
         }
         echo "</select>";
+    }
+
+    public function imagenProductoAjax()
+    {
+        $data = $this->productoModel->getProducto($_POST["datos"])[0];
+        echo "<img src='/public/".$data["Imagen"]."' class='img-fluid w-25 mt-5'>";
     }
 }
