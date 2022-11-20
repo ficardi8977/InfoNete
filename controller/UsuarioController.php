@@ -114,9 +114,8 @@ class UsuarioController {
     public function mostrarProductosSuscriptosyComprados(){
         Permisos::validarAcceso(Rol::Administrador);
         $data["usuarios"]= $this->usuarioModel->getUsuariosConTipo();
-        $data["productosCompradosPorUsuario"]=$this->usuarioModel->productosCompradosPorUsuario();
-        $data["productosSuscriptosPorUsuario"]=$this->usuarioModel->productosSuscriptosPorUsuario();
-                $html = $this->render->render("listaCompraYSuscripcionProductosView.mustache", SesionData::cargar($data));
+        $data["productosCompradosYSuscriptosPorUsuario"]=$this->usuarioModel->productosCompradosYsuscriptosPorUsuario();
+         $html = $this->render->render("listaCompraYSuscripcionProductosView.mustache", SesionData::cargar($data));
         GeneradorPdf::generarPdf($html);
     }
 
