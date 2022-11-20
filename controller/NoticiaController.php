@@ -3,14 +3,10 @@ class NoticiaController {
     
     private $noticiaModel;
     private $render;
-    private $sesion;
 
     public function __construct($noticiaModel, $render){
 
         $this->noticiaModel = $noticiaModel;
-        $this->productoModel = $productoModel;
-        $this->edicionModel = $edicionModel;
-        $this->seccionModel = $seccionModel;
         $this->render = $render;
     }
 

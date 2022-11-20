@@ -15,7 +15,7 @@ class EdicionController {
     public function listar()
     {
         Permisos::validarAcceso(Rol::Lector);
-        $data["ediciones"] = $this->edicionModel->getEdicionesPorProducto($_GET["IdProducto"]);
+        $data["ediciones"] = $this->edicionModel->getEdicionesDeProducto($_GET["IdProducto"]);
         echo $this->render->render("compraEdicionView.mustache", SesionData::cargar($data));
     }
 
