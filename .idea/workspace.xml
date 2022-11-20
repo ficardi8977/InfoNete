@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4e13c6af-8126-41ea-a0a2-a5242354deea" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/clima.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/clima.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/clima.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/clima.mustache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/ClimaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/ClimaController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

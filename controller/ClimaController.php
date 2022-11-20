@@ -12,7 +12,6 @@ class ClimaController{
     }
 
     public function mostrarClima(){
-        $data['productos'] = $this->climaModel->getProductos();
-        echo $this->render->render('clima.mustache', SesionData::cargar($data));
+        echo $this->render->render('clima.mustache', SesionData::cargar());
     }
 }
