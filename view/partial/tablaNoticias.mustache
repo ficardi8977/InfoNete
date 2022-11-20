@@ -1,0 +1,52 @@
+{{#sesion}}
+    <table id="tablaNoticias" class='table table-hover'>
+        <thead class='table-dark'>
+            <tr class='text-center'>
+                <th scope='col'>Titulo Noticia</th>
+                <th scope='col'>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#noticias}}
+            <tr class='text-center' id="noticia{{Id}}">
+                <td>{{Titulo}}</td>
+                <td class="col-md-5">
+                    <div class='d-flex justify-content-center'>
+                        {{#EsEditor}}
+                            <div class='px-2'>
+                                <button class='btn btn-info text-light leer' style="width: 9rem;" type='button' value="{{Id}}">
+                                    Leer
+                                </button>
+                            </div>
+                            <div class='px-2'>
+                                <button class='btn btn-danger banear{{IdEstadoNoticia}}' style="width: 9rem;" name="banear" type='button' value="{{Id}}">
+                                    {{#SoloEditor}} Denegar {{/SoloEditor}}
+                                    {{#EsAdministrador}} Banear {{/EsAdministrador}}                                        
+                                </button>
+                            </div>
+                        {{/EsEditor}}
+                        {{#SoloContenidista}} 
+                            <button class='btn btn-info text-light publicar{{IdEstadoNoticia}}' name="publicar" style="width: 9rem;" type='button' value="{{Id}}">
+                                Leer
+                            </button>
+                            <form action="/noticia/modificar" method="POST">
+                                <input type="hidden" name="IdEdicionSeccion" value={{IdEdicionSeccion}}>                           
+                                <div class='px-2'>
+                                    <button class='btn btn-primary modificar{{IdEstadoNoticia}}' style="width: 9rem;" name="modificar" type='submit' value="{{Id}}" disabled >
+                                        Modificar
+                                    </button>
+                                </div>
+                            </form>
+                            <div class='px-2'>
+                                <button class='btn btn-danger borrar{{IdEstadoNoticia}}' style="width: 9rem;" name="borrar" type='button' value="{{Id}}" disabled>
+                                    Borrar
+                                </button>
+                            </div>
+                        {{/SoloContenidista}}
+                    </div>
+                </td>
+            </tr>
+            {{/noticias}}
+        </tbody>
+    </table>
+{{/sesion}}

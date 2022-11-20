@@ -125,6 +125,7 @@ class UsuarioController {
         $data["cantidadProductosVendidos"] = $this->usuarioModel->cantidadProductosVendidos();
         $data["cantidadProductosSuscriptos"] = $this->usuarioModel->cantidadProductosSuscriptos();
         $html = $this->render->render("listaProductosConInfo.mustache", SesionData::cargar($data));
+        GeneradorPdf::generarPdf($html);
     }
     
     public function reporteMisCompras(){

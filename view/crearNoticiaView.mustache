@@ -1,6 +1,6 @@
  {{> header}}
    <div class="container">
-      <form class="row g-3" action="/noticia/publicar" method="post" enctype="multipart/form-data">
+      <form class="row g-3 mb-3" action="/noticia/cargar" method="post" enctype="multipart/form-data">
 
          <input type="hidden" name="IdEdicionSeccion" value={{IdEdicionSeccion}}>
 
@@ -14,17 +14,19 @@
          <textarea id="cuerpo" name="cuerpo" class="form-control" rows="15" required></textarea>
 
          <label for="imagen">Insertar imagen: </label>
-         <input type="file" id="imagen" name="imagen" class="form-control" required>
+         <input type="file" accept="image/jpeg,image/png" id="imagen" name="imagen" class="form-control" required>
+         <div class="col-md-2" id="verImagen"></div>
 
          <label for="link">Insertar un link a mayor información (opcional):</label>
          <input type="text" id="link" name="link" class="form-control">
 
          <label for="foto_o_video">Foto o video adicional (opcional):</label>
-         <input type="file" id="foto_o_video" name="foto_o_video" class="form-control">
+         <input type="file" accept="image/jpeg,image/png,video/mp4" id="foto_o_video" name="foto_o_video" class="form-control">
+         <div id="verFotoOVideo"></div>
 
          <div class="row my-4 g-2">
             <label class="row" for="grabacion">Grabar un audio (opcional):</label>
-            <input type="file" id="grabacion" name="grabacion" class="form-control" hidden>
+            <input type="file" accept=".wav" id="grabacion" name="grabacion" class="form-control" hidden>
             <button type="button" id="start" class="btn col-md-1 btn-success">Start</button>
             <button type="button" id="stop" class="btn col-md-1 btn-danger" disabled>Stop</button>
             <span id="grabando" class="col-md-10"></span>
@@ -32,10 +34,11 @@
          </div>
 
          <div class="d-flex justify-content-center col-md-12">
-            <input type="submit" class='btn btn-success' name="publicar" value="Publicar">
+            <input type="submit" class='btn btn-success' name="guardar" value="Guardar">
          </div>
                      
       </form>
    </div>
-   <script type="text/javascript" src="../public/js/audio.js"></script>
+   <script type="text/javascript" src="/public/js/audio.js"></script>
+   <script type="text/javascript" src="/public/js/altaNoticia.js"></script>
  {{> footer}}
