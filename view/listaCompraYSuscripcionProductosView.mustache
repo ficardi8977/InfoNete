@@ -58,96 +58,45 @@
       </div>
 
       <div class="text-center my-5">
-        <h2>Productos comprados por los Usuarios</h2>
+        <h2>Productos comprados y suscriptos por los Usuarios</h2>
       </div>
       <div>
         <table class="table table-hover">
           <thead class="table-dark">
             <tr class="text-center">
               <th scope="col">Nombre Usuario</th>
-              <th scope="col">Tipo de Usuario</th>
-              <th scope="col">Numero Edicion</th>
-              <th scope="col">Producto</th>
-              <th scope="col">Estado Compra</th>
+              <th scope="col">Email</th>
+              <th scope="col">Suscripciones</th>
+              <th scope="col">Compras</th>
             </tr>
           </thead>
-          {{#productosCompradosPorUsuario}}
+          {{#productosCompradosYSuscriptosPorUsuario}}
           <tbody>
             <tr class="text-center">
               <td>
                 <div class="text-center">
-                  {{ NombreUsuario }}
+                  {{ Nombre }}
                 </div>
               </td>
               <td>
                 <div class="text-center">
-                  {{ TipoUsuario }}
+                  {{ Email }}
                 </div>
               </td>
               <td>
                 <div class="text-center">
-                  {{ NumeroEdicion }}
+                  {{ suscripciones }}
                 </div>
               </td>
               <td>
                 <div class="text-center">
-                  {{ Producto }}
+                  {{ compras }}
                 </div>
               </td>
-              <td>
-                <div class="text-center">
-                  {{ EstadoCompra }}
-                </div>
-              </td>
-              <td></td>
             </tr>
           </tbody>
-          {{/productosCompradosPorUsuario}}
+          {{/productosCompradosYSuscriptosPorUsuario}}
         </table>
       </div>
-      <div class="text-center my-5">
-        <h2>Productos Suscriptos por Usuario</h2>
-      </div>
-      <div>
-        <table class="table table-hover">
-          <thead class="table-dark">
-            <tr class="text-center">
-              <th scope="col">Nombre Usuario</th>
-              <th scope="col">TipoProducto</th>
-              <th scope="col">FechaDesde</th>
-              <th scope="col">FechaHasta</th>
-            </tr>
-          </thead>
-          {{#productosSuscriptosPorUsuario}}
-          <tbody>
-            <tr class="text-center">
-              <td>
-                <div class="text-center">
-                  {{ NombreUsuario }}
-                </div>
-              </td>
-              <td>
-                <div class="text-center">
-                  {{ TipoProducto }}
-                </div>
-              </td>
-              <td>
-                <div class="text-center">
-                  {{ FechaDesde }}
-                </div>
-              </td>
-              <td>
-                <div class="text-center">
-                  {{ FechaHasta }}
-                </div>
-              </td>
-              <td></td>
-            </tr>
-          </tbody>
-          {{/productosSuscriptosPorUsuario}}
-        </table>
-      </div>
-    </
-    </div>
   </body>
 </html>

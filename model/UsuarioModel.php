@@ -126,33 +126,62 @@ class UsuarioModel
         return "http://localhost/usuario/confirmar?IdUsuario=$idUsuario&CodigoVerificacion=$codigoVerificacion";
     }
 
-    public function productosCompradosPorUsuario(){
-        $sql= ("select u.Nombre as NombreUsuario,tu.Nombre as TipoUsuario,e.Id  as NumeroEdicion,p.Nombre as Producto,
-            CASE
-            when c.Pagado = true then 'pagado'
-            else 'impago'
-            end as EstadoCompra
-            from compra c inner join edicion e on(c.IdEdicion=e.Id)
-            inner join producto p on ( e.IdProducto=p.Id)
-            inner join usuario u on(u.Id=c.IdUsuario)
-            inner join tipousuario tu on(u.IdTipoUsuario=tu.Id)
-            order by u.Nombre");
-            return $this->database->query($sql);
-    }
-
-    public function  productosSuscriptosPorUsuario(){
-        $sql=("select tu.Nombre as NombreUsuario,p.Nombre as TipoProducto, s.FechaDesde,s.FechaHasta
-        from suscripcion s 
-        inner join usuario u on ( s.IdUsuario = u.Id)
-        inner join tipousuario tu on (u.IdTipoUsuario= tu.Id)
-        inner join producto p on (s.IdProducto= p.Id)
-        order by u.Nombre");
+    public function productosCompradosYsuscriptosPorUsuario(){
+        $sql= ("SELECT u.Nombre,
+        u.Email,
+        u.CoordenadasX,
+        u.CoordenadasY,
+        (select GROUP_CONCAT(p.Nombre, '(edicion ', p.IdTipoProducto,')') as suscripcion from suscripcion s join producto p on p.id = s.IdProducto where s.idUsuario = u.id group by s.IdUsuario)  as suscripciones,
+        (select GROUP_CONCAT(p.Nombre, '(edicion ',c.IdEdicion,')') as compras from compra c join edicion e on (c.IdEdicion= e.Id) join producto p on(e.Id=p.Id) where c.idUsuario = u.id group by c.IdUsuario) as compras
+        FROM usuario u
+        order by u.id");
         return $this->database->query($sql);
     }
+
 
     public function getProductosConSuTipo(){
         $sql = ("SELECT p.Id as Id, p.nombre as Nombre , p.Imagen as Imagen, p.Mensualidad as Mensualidad,  t.nombre as NombreTipoProducto
         from producto p inner join tipoproducto t on (p.IdTipoProducto=t.Id)");
         return $this->database->query($sql);
+    }
+
+    public function cantidadProductosVendidos(){
+        $sql =("SELECT COUNT(*) as Cantidad, p.Nombre as NombreProducto  
+        FROM compra c 
+        inner join edicion e on(c.idEdicion = e.Id)
+        inner join producto p on (e.idProducto = p.Id)
+        inner join tipoproducto tp on (p.idTipoProducto = tp.Id)
+        GROUP BY p.Nombre");
+        return $this->database->query($sql);
+    }
+
+    public function cantidadProductosSuscriptos(){
+        $sql =("SELECT COUNT(*) as Cantidad, p.Nombre as NombreProducto,  s.FechaDesde as FechaDesde, s.FechaHasta as FechaHasta
+        FROM suscripcion s 
+        inner join producto p on (s.idProducto = p.Id)
+        inner join tipoproducto tp on (p.idTipoProducto = tp.Id)
+        GROUP BY p.Nombre");
+        return $this->database->query($sql);
+    }
+    
+    public function reporteCompras($fechaDesde, $fechaHasta)
+    {
+        $idUsuario = $_SESSION["IdUsuario"]; 
+        
+        return $this->database->query(
+            "SELECT 
+                p.Nombre as Producto,
+                tp.Nombre as TipoProducto,
+                e.Numero as Edicion, 
+                e.Fecha as FechaEdicion, 
+                c.Precio, 
+                c.FechaCompra
+            FROM compra c
+            join edicion e on e.Id = c.IdEdicion
+            join producto p on p.id = e.IdProducto
+            join tipoproducto tp on tp.Id = p.IdTipoProducto
+            where c.FechaCompra >= '".$fechaDesde.
+            "' and c.FechaCompra < '".$fechaHasta.
+            "' and c.IdUsuario = $idUsuario and c.Pagado = 1");
     }
 }

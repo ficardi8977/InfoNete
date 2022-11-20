@@ -51,6 +51,13 @@ class SuscripcionController{
            $data['ediciones'] = $this->suscripcion->getEdiciones($_GET['IdSuscripcion']);           
            echo $this->render->render("edicionesView.mustache",SesionData::cargar($data));
     }
+
+    public function estadisticasTotales()
+    {
+        Permisos::validarAcceso(Rol::Administrador);
+        // retorna en forma de json la respuesta
+        echo json_encode($this->suscripcion->estadisticasTotales());
+    }
 }
 
 ?>

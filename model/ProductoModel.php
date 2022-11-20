@@ -49,4 +49,13 @@ class ProductoModel
         $sql=("UPDATE producto SET Nombre='$nombreProducto',IdTipoProducto=$tipoProducto,Imagen='$imagen' WHERE Id=$idProducto;");
         $this->database->execute($sql);
     }
+
+    public function ventas(){
+        return $this->database->query("SELECT 
+        pr.Nombre as Producto, count(*) AS Cantidad
+        FROM producto pr
+        JOIN edicion ed ON ed.IdProducto = pr.Id
+        JOIN compra co ON co.IdEdicion = ed.Id
+        GROUP BY pr.Nombre");
+    }
 }
