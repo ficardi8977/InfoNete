@@ -17,6 +17,7 @@
             <tr class="text-center">
                 <th scope="col">Nombre</th>
                 <th scope="col">Tipo de producto</th>
+
             </tr>
           </thead>
           {{#productos}}
@@ -46,6 +47,7 @@
                 <tr class="text-center">
                     <th scope="col">Nombre Producto</th>
                     <th scope="col">Cantidad</th>
+
                 </tr>
                 </thead>
                 {{#cantidadProductosVendidos}}
@@ -76,7 +78,8 @@
                 <tr class="text-center">
                     <th scope="col">Nombre Producto</th>
                     <th scope="col">Cantidad</th>
-                    <th scope="col">Fecha</th>
+                    <th scope="col">Fecha Desde</th>
+                    <th scope="col">Fecha Hasta</th>
                 </tr>
                 </thead>
                 {{#cantidadProductosSuscriptos}}
@@ -93,9 +96,16 @@
                             </div>
                         </td>
 
-                        <td class="align-middle">{{FechaDesde}} a {{FechaHasta}}</td>
-
-                        <td></td>
+                        <td>
+                            <div class="text-center">
+                                {{ FechaDesde }}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-center">
+                                {{ FechaHasta }}
+                            </div>
+                        </td>
                     </tr>
                     </tbody>
                 {{/cantidadProductosSuscriptos}}
