@@ -81,5 +81,14 @@ class ProductoController {
     {
         $data = $this->productoModel->getProducto($_POST["datos"])[0];
         echo "<img src='/public/".$data["Imagen"]."' class='img-fluid w-25 mt-5'>";
+
     }
+
+    public function ventas()
+    {
+        Permisos::validarAcceso(Rol::Administrador);
+        // retorna en forma de json la respuesta
+        echo json_encode($this->productoModel->ventas());
+    }
+
 }

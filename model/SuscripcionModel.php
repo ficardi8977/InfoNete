@@ -82,5 +82,13 @@ class SuscripcionModel{
         left join edicion e on e.IdProducto = p.Id and s.FechaDesde <= e.fecha and s.FechaHasta >= e.Fecha
         where s.id = ".$idSuscripcion." and s.idUsuario = ".$idUsuario);
     }
+    public function estadisticasTotales(){
+
+            return $this->database->query("SELECT 
+            pr.Nombre as Producto, count(*) AS Cantidad
+            FROM producto pr
+            JOIN suscripcion su ON su.idproducto = pr.id
+            GROUP BY pr.Nombre"); 
+    }
 }
 ?>
