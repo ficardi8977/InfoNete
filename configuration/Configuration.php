@@ -33,6 +33,7 @@ include_once('controller/EdicionController.php');
 include_once('controller/ProductoController.php');
 include_once('controller/SeccionController.php');
 include_once('controller/EdicionesController.php');
+include_once('controller/climaController.php');
 
 include_once('dependencies/mustache/src/Mustache/Autoloader.php');
 include_once ('dependencies/DomPdf/autoload.inc.php');
@@ -50,6 +51,10 @@ class Configuration {
     }
 
     // CONFIGS DE CONTROLLER //
+
+    public function getClimaController(){
+        return new ClimaController($this->createClimaModel(), $this->view);
+    }
 
     public function getHomeController(){
         return new HomeController($this->createProductoModel(), $this->view);
@@ -110,5 +115,9 @@ class Configuration {
 
     public function createSeccionModel() : SeccionModel {
         return new SeccionModel($this->database);
+    }
+
+    public function createClimaModel() : ProductoModel{
+        return new ProductoModel($this->database);
     }
 }
