@@ -1,6 +1,6 @@
 {{> header}}
-<div id="containerWeather" style="width: 98vw; position: relative;">
-    <div class="border rounded-3 shadow bg-primary text-light" style="position: absolute; top: 15px; right: 10px;">
+<div id="containerWeather" style="width: 20vw; margin: 8rem auto 12rem auto;">
+    <div class="border rounded-3 shadow bg-primary text-light" style="top: 15px; right: 10px;">
         <div class="text-center pt-4 pb-3">
             <div id="iconWeather" class="d-inline-block"></div>
             <p id="temperature" class="d-inline-block fs-1 m-0 align-middle me-3"></p>
@@ -16,39 +16,10 @@
                 <div id="wind" class=""></div>
             </div>
         </div>
-        <div id="loader" class="loader m-5">Loading...</div>
+        <div style="display: flex; justify-content: center;">
+            <div id="loader" class="loader m-5">Loading...</div>
+        </div>
     </div>
 </div>
-<div class="container">
-    <h1 class="text-center mb-4">Vista del clima</h1>
-    <div class="row">
-        {{#productos}}
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{Nombre}}</h5>
-                        <div class="row g-0 "style="max-width: 540px;">
-                            <div class="col-md-4">
-                                <img src= "../public/{{Imagen}}" class="img-fluid rounded-start" alt="...">
-                            </div>
-                            <!--div class="col-md-8">
-                            </div-->
-                        </div>
-
-                        {{#sesion}}
-                            <form action="/suscripcion/mostrarAlta" method="GET">
-                                <input type="hidden" name="IdProducto" value={{Id}}>
-                                <button class="btn btn-success" type="submit" >Suscribirse</button>
-                            </form>
-                            <form action="/edicion/listar" method="GET">
-                                <input type="hidden" name="IdProducto" value={{Id}}>
-                                <button class="btn btn-primary" type="submit" >Comprar una edición</a>
-                            </form>
-                        {{/sesion}}
-                    </div>
-                </div>
-            </div>
-        {{/productos}}
-    </div>
     <script type="text/javascript" src="../public/js/clima.js"></script>
 {{> footer}}

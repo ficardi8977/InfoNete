@@ -32,13 +32,11 @@ const setWeatherData = data =>{
 }
 
 const cleanUp = () =>{
-    let container = document.getElementById('containerWeather');
     let bar = document.getElementById('bar');
     let loader = document.getElementById('loader');
 
     loader.style.display = 'none';
     bar.style.display = 'block';
-    container.style.display = 'absolute';
 }
 
 const getDescription = description =>{
