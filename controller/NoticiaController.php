@@ -49,6 +49,7 @@ class NoticiaController {
         //             break;
         //     }
         // }
+
         echo $this->render->render("noticiasView.mustache", SesionData::cargar($data));
     }
 
@@ -80,9 +81,54 @@ class NoticiaController {
     {
         Permisos::validarAcceso(Rol::Contenidista);
         $idNoticia = $_POST["datos"];
-        if($this->noticiaModel->verificarEstadoNoticiaBorrador($idNoticia)){
+        if($this->noticiaModel->verificarEstadoNoticia($idNoticia) == 1){
             $this->noticiaModel->bajaNoticia($idNoticia);
             echo "Noticia eliminada";
+        }
+    }
+
+    //publicar noticia esperando aprobacion
+    public function presentar()
+    {
+        Permisos::validarAcceso(Rol::Contenidista);
+        $idNoticia = $_POST["datos"];
+        if($this->noticiaModel->verificarEstadoNoticia($idNoticia) == 1){
+            $this->noticiaModel->presentarNoticia($idNoticia);
+            echo "Noticia presentada, esperando aprobacion";
+        }
+    }
+
+    //aprobar la noticia
+    public function aprobar()
+    {
+        Permisos::validarAcceso(Rol::Editor);
+        $idNoticia = $_POST["datos"];
+        if($this->noticiaModel->verificarEstadoNoticia($idNoticia) == 2){
+            $this->noticiaModel->aprobarNoticia($idNoticia);
+            echo "Noticia aprobada y publicada";
+        }
+    }
+
+    //banear noticia
+    public function banear()
+    {
+        Permisos::validarAcceso(Rol::Editor);
+        $idNoticia = $_POST["datos"];
+        $estado = $this->noticiaModel->verificarEstadoNoticia($idNoticia);
+        if($estado == 2 || $estado == 3){
+            $this->noticiaModel->banearNoticia($idNoticia);
+            echo "Noticia baneada";
+        }
+    }
+
+    //desbanear noticia
+    public function desbanear()
+    {
+        Permisos::validarAcceso(Rol::Administrador);
+        $idNoticia = $_POST["datos"];
+        if($this->noticiaModel->verificarEstadoNoticia($idNoticia) == 4){
+            $this->noticiaModel->desbanearNoticia($idNoticia);
+            echo "Noticia desbaneada";
         }
     }
 
@@ -108,7 +154,9 @@ class NoticiaController {
             "titulo" => $_POST["titulo"],
             "cuerpo" => $_POST["cuerpo"],
             "subtitulo" => $_POST["subtitulo"],
-            "idEdicionSeccion" => $_POST["IdEdicionSeccion"]
+            "idEdicionSeccion" => $_POST["IdEdicionSeccion"],
+            "coordenadasX" => $_POST["coordenadasX"],
+            "coordenadasY" => $_POST["coordenadasY"]
         );
 
         //recibo imagen
@@ -148,7 +196,8 @@ class NoticiaController {
         }
         else{
             $data["noticias"] = $this->noticiaModel->buscarNoticia($_GET["datos"]);
-            echo $this->render->render("partial/tablaNoticias.mustache", SesionData::cargar($data));
+            if($data["noticias"])
+                echo $this->render->render("partial/tablaNoticias.mustache", SesionData::cargar($data));
         }
     }
 }

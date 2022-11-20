@@ -9,7 +9,17 @@ class NoticiaModel {
     //obtenemos todas las noticias
     public function getNoticias($idEdicionSeccion)
     {
-        $sql = "SELECT Titulo, Id, IdEstadoNoticia FROM noticia WHERE IdEdicionSeccion = $idEdicionSeccion";
+        $sql = "SELECT n.Titulo, n.Id, n.IdEstadoNoticia, p.Nombre Producto, s.Nombre Seccion, e.Numero Edicion
+        FROM noticia n
+        JOIN edicionseccion es
+        ON n.IdEdicionSeccion = es.Id
+        JOIN seccion s
+        ON es.IdSeccion = s.Id
+        JOIN edicion e
+        ON es.IdEdicion = e.Id
+        JOIN producto p
+        ON e.IdProducto = p.Id
+        WHERE IdEdicionSeccion = $idEdicionSeccion";
         return $this->database->query($sql);
     }
 
@@ -45,22 +55,47 @@ class NoticiaModel {
         return $this->database->query($sql)[0]["Id"];
     }
 
-    public function verificarEstadoNoticiaBorrador($idNoticia)
+    public function verificarEstadoNoticia($idNoticia)
     {
-        $sql = "SELECT 1 FROM noticia WHERE id = $idNoticia AND idEstadoNoticia = 1";
-        return $this->database->query($sql);
+        $sql = "SELECT IdEstadoNoticia FROM noticia WHERE id = $idNoticia";
+        return $this->database->query($sql)[0]["IdEstadoNoticia"];
     }
 
     public function bajaNoticia($idNoticia){
 
-        $sql=("DELETE from noticia where Id=$idNoticia;");
+        $sql=("DELETE from noticia where Id=$idNoticia");
+        $this->database->execute($sql);
+    }
+
+    public function presentarNoticia($idNoticia)
+    {
+        $sql=("UPDATE noticia SET idEstadoNoticia = 2 WHERE Id=$idNoticia");
+        $this->database->execute($sql);
+    }
+
+    public function aprobarNoticia($idNoticia)
+    {
+        $sql=("UPDATE noticia SET idEstadoNoticia = 3 WHERE Id=$idNoticia");
+        $this->database->execute($sql);
+    }
+
+    public function banearNoticia($idNoticia)
+    {
+        $sql=("UPDATE noticia SET idEstadoNoticia = 4 WHERE Id=$idNoticia");
+        $this->database->execute($sql);
+    }
+
+    public function desbanearNoticia($idNoticia)
+    {
+        $sql=("UPDATE noticia SET idEstadoNoticia = 3 WHERE Id=$idNoticia");
         $this->database->execute($sql);
     }
 
     //se ingresa la noticia en la base de datos
     public function addNoticia($datos) {
         $sql = "INSERT INTO noticia (titulo, subtitulo, cuerpo, idEdicionSeccion, coordenadaX, coordenadaY, IdEstadoNoticia)
-        VALUES ('".$datos["titulo"]."', '".$datos["subtitulo"]."', '".$datos["cuerpo"]."', ".$datos["idEdicionSeccion"].", 1, 1, 1)";
+        VALUES ('".$datos["titulo"]."', '".$datos["subtitulo"]."', '".$datos["cuerpo"]."', ".$datos["idEdicionSeccion"].", ".$datos["coordenadasX"].",
+        ".$datos["coordenadasY"].", 1)";
         $idNoticia = $this->database->execute($sql);
 
         $sql = "INSERT INTO multimedia (nombre, idNoticia, idTipoMultimedia)
@@ -99,7 +134,8 @@ class NoticiaModel {
     public function updateNoticia($datos)
     {
         $sql = "UPDATE noticia
-        SET titulo = '".$datos["titulo"]."', subtitulo = '".$datos["subtitulo"]."', cuerpo = '".$datos["cuerpo"]."'
+        SET titulo = '".$datos["titulo"]."', subtitulo = '".$datos["subtitulo"]."', cuerpo = '".$datos["cuerpo"]."',
+        coordenadaX = ".$datos["coordenadasX"].", coordenadaY = ".$datos["coordenadasY"]."
         WHERE id = ".$datos["id"]."";
         $this->database->execute($sql);
 
@@ -156,7 +192,7 @@ class NoticiaModel {
 
     public function buscarNoticia($busqueda)
     {
-        $sql = "SELECT n.*
+        $sql = "SELECT n.Titulo, n.Id, n.IdEstadoNoticia, p.Nombre Producto, s.Nombre Seccion, e.Numero Edicion
         FROM noticia n
         JOIN edicionseccion es
         ON n.IdEdicionSeccion = es.Id

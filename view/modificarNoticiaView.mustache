@@ -22,6 +22,27 @@
                 <img id="imagen_" class="img-fluid" src="/public/{{imagen}}" alt="Imagen" >
             </div>
 
+            <div class="row mt-4">
+                Seleccione una ubicación para la noticia:
+             </div>
+             <div  class="row my-3 p-0">
+                <div class="col-md-3">
+                      <label for="coordenadasX">Latitud</label>
+                      <input type="text"   class="form-control my-2" id="coordenadasX" name="coordenadasX" value="{{CoordenadaX}}" pattern="^(-?\d+(\.\d+)?).\s*(-?\d+(\.\d+)?)$" placeholder="CoordenadasX : Latitud" required>
+                      <div class="invalid-feedback">
+                         Seleccionar coordendas en el mapa o ingresar manualmente un valor numerico!
+                      </div>
+                      <label for="coordenadasY">Longitud</label>
+                      <input type="text"  class="form-control my-2" id="coordenadasY" name="coordenadasY" value="{{CoordenadaY}}" pattern="^(-?\d+(\.\d+)?).\s*(-?\d+(\.\d+)?)$" placeholder="CoordenadasY : Longitud" required>
+                      <div class="invalid-feedback">
+                         Seleccionar coordendas en el mapa o ingresar manualmente un valor numerico!
+                      </div>
+                </div>
+                <div class="col-md-6 mx-5">
+                   <div id="mapa" class="map-responsive"></div>
+                </div>
+             </div>
+
             <label for="link">Insertar un link a mayor información (opcional):</label>
             <input type="text" id="link" name="link" value="{{Link}}" class="form-control">
 

@@ -13,12 +13,13 @@
         {{/IdEdicionSeccion}}
         {{/SoloContenidista}}
         {{^IdEdicionSeccion}}
-            <input class="form-control d-inline mb-2" type="text" name="busqueda" id="busqueda" placeholder="Buscar noticia...">
+            <input class="form-control d-inline mb-2" id="busqueda" autocomplete="off" type="text" name="busqueda" placeholder="Buscar noticia...">
+            <div id="busquedaVacia" class="text-danger pt-1"></div>
         {{/IdEdicionSeccion}}
     {{/sesion}}
         <div id="listarNoticias">
             {{> tablaNoticias}}
         </div>
 </div>
-<script type="text/javascript" src="/public/js/ajax.js"></script>
+<script type="text/javascript" src="/public/js/noticias.js"></script>
 {{> footer}}

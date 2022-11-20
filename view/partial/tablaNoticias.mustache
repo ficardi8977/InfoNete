@@ -1,8 +1,11 @@
 {{#sesion}}
-    <table id="tablaNoticias" class='table table-hover'>
-        <thead class='table-dark'>
-            <tr class='text-center'>
+    <table id="tablaNoticias" class='table table-hover table-striped'>
+        <thead>
+            <tr class='text-center text-light bg-primary'>
                 <th scope='col'>Titulo Noticia</th>
+                <th scope='col'>Diario o Revista</th>
+                <th scope='col'>Edicion</th>
+                <th scope='col'>Seccion</th>
                 <th scope='col'>Acciones</th>
             </tr>
         </thead>
@@ -10,6 +13,9 @@
             {{#noticias}}
             <tr class='text-center' id="noticia{{Id}}">
                 <td>{{Titulo}}</td>
+                <td>{{Producto}}</td>
+                <td>{{Edicion}}</td>
+                <td>{{Seccion}}</td>
                 <td class="col-md-5">
                     <div class='d-flex justify-content-center'>
                         {{#EsEditor}}
@@ -18,21 +24,36 @@
                                     Leer
                                 </button>
                             </div>
-                            <div class='px-2'>
-                                <button class='btn btn-danger banear{{IdEstadoNoticia}}' style="width: 9rem;" name="banear" type='button' value="{{Id}}">
-                                    {{#SoloEditor}} Denegar {{/SoloEditor}}
-                                    {{#EsAdministrador}} Banear {{/EsAdministrador}}                                        
-                                </button>
-                            </div>
+                            {{#SoloEditor}}
+                                <div class='px-2'>
+                                    <button class='btn btn-success aprobar{{IdEstadoNoticia}}' id="aprobar{{Id}}" style="width: 9rem;" name="aprobar" type='button' value="{{Id}}" disabled>
+                                        Aprobar
+                                    </button>
+                                </div>
+                                <div class='px-2'>
+                                    <button class='btn btn-danger rechazar{{IdEstadoNoticia}}' id="rechazar{{Id}}" style="width: 9rem;" name="rechazar" type='button' value="{{Id}}" disabled>
+                                        Rechazar
+                                    </button>                                
+                                </div>
+                            {{/SoloEditor}}
+                            {{#EsAdministrador}}
+                                <div class='px-2'>
+                                    <button class='btn btn-danger banear{{IdEstadoNoticia}}' id="banear{{Id}}" style="width: 9rem;" name="banear" type='button' value="{{Id}}" disabled>
+                                        Banear                                      
+                                    </button>
+                                </div>
+                                <div class='px-2 baneada{{IdEstadoNoticia}}'></div>
+                                <!--<div class='px-2 baneada{{IdEstadoNoticia}}'></div>-->
+                            {{/EsAdministrador}}
                         {{/EsEditor}}
                         {{#SoloContenidista}} 
-                            <button class='btn btn-info text-light publicar{{IdEstadoNoticia}}' name="publicar" style="width: 9rem;" type='button' value="{{Id}}">
+                            <button class='btn btn-info text-light presentar{{IdEstadoNoticia}}' name="presentar" style="width: 9rem;" type='button' value="{{Id}}">
                                 Leer
                             </button>
                             <form action="/noticia/modificar" method="POST">
                                 <input type="hidden" name="IdEdicionSeccion" value={{IdEdicionSeccion}}>                           
                                 <div class='px-2'>
-                                    <button class='btn btn-primary modificar{{IdEstadoNoticia}}' style="width: 9rem;" name="modificar" type='submit' value="{{Id}}" disabled >
+                                    <button class='btn btn-primary modificar{{IdEstadoNoticia}}' id="modificar{{Id}}" style="width: 9rem;" name="modificar" type='submit' value="{{Id}}" disabled >
                                         Modificar
                                     </button>
                                 </div>
