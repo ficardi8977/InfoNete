@@ -1,0 +1,25 @@
+{{> header}}
+<div id="containerWeather" style="width: 20vw; margin: 8rem auto 12rem auto;">
+    <div class="border rounded-3 shadow bg-primary text-light" style="top: 15px; right: 10px;">
+        <div class="text-center pt-4 pb-3">
+            <div id="iconWeather" class="d-inline-block"></div>
+            <p id="temperature" class="d-inline-block fs-1 m-0 align-middle me-3"></p>
+        </div>
+        <div class="px-4 pt-1 pb-4">
+            <h3 id="location" class=""></h3>
+            <div id="description" class="fw-bold"></div>
+            <div id="bar" class="border border-light mt-4" style="display: none"></div>
+            <div class="mt-4">
+                <div id="humidity" class=""></div>
+                <div id="pressure" class=""></div>
+                <div id="visibility" class=""></div>
+                <div id="wind" class=""></div>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: center;">
+            <div id="loader" class="loader m-5">Loading...</div>
+        </div>
+    </div>
+</div>
+    <script type="text/javascript" src="../public/js/clima.js"></script>
+{{> footer}}
