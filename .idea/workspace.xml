@@ -3,16 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="4e13c6af-8126-41ea-a0a2-a5242354deea" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/EdicionesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/EdicionesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/EdicionesModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/EdicionesModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/showEdiciones.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/showEdiciones.mustache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/ClimaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/ClimaController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" doNotAsk="true">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
   <component name="Git.Settings">
@@ -20,6 +19,12 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/phpmailer/phpmailer" />
+    </include_path>
   </component>
   <component name="ProjectId" id="2HY2XkdQNPlPsgWhXTtGqajyaTP" />
   <component name="ProjectLevelVcsManager">
@@ -46,6 +51,11 @@
       <updated>1668447737594</updated>
       <workItem from="1668447738891" duration="13955000" />
       <workItem from="1668514047659" duration="7914000" />
+      <workItem from="1668598015211" duration="1304000" />
+      <workItem from="1668767380816" duration="8143000" />
+      <workItem from="1668856174893" duration="8992000" />
+      <workItem from="1668906888979" duration="4951000" />
+      <workItem from="1668962374647" duration="8226000" />
     </task>
     <servers />
   </component>
