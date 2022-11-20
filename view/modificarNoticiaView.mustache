@@ -1,0 +1,86 @@
+{{> header}}
+<div class="container">
+    {{#noticia}}
+        <form class="row g-3 mb-3" action="/noticia/actualizar" method="post" enctype="multipart/form-data">
+
+            <input type="hidden" name="IdEdicionSeccion" value={{IdEdicionSeccion}}>
+            <input type="hidden" name="idNoticia" id="idNoticia" value="{{Id}}">
+
+            <label for="titulo">Título de la noticia:</label>
+            <input type="text" id="titulo" name="titulo" class="form-control" value="{{Titulo}}" required>
+
+            <label for="subtitulo">Subtítulo de la noticia:</label>
+            <input type="text" id="subtitulo" name="subtitulo" class="form-control" value="{{Subtitulo}}" required>
+
+            <label for="cuerpo">Cuerpo de la noticia:</label>
+            <textarea id="cuerpo" name="cuerpo" class="form-control" rows="15" required>{{Cuerpo}}</textarea>
+
+            <label for="imagen">Insertar imagen: </label>
+            <input type="file" accept="image/jpeg,image/png" id="imagen" name="imagen" class="form-control">
+            <input type="hidden" name="idImagen" id="idImagen" value="{{idImagen}}">
+            <div id="verImagen" class="col-md-2">
+                <img id="imagen_" class="img-fluid" src="/public/{{imagen}}" alt="Imagen" >
+            </div>
+
+            <div class="row mt-4">
+                Seleccione una ubicación para la noticia:
+             </div>
+             <div  class="row my-3 p-0">
+                <div class="col-md-3">
+                      <label for="coordenadasX">Latitud</label>
+                      <input type="text"   class="form-control my-2" id="coordenadasX" name="coordenadasX" value="{{CoordenadaX}}" pattern="^(-?\d+(\.\d+)?).\s*(-?\d+(\.\d+)?)$" placeholder="CoordenadasX : Latitud" required>
+                      <div class="invalid-feedback">
+                         Seleccionar coordendas en el mapa o ingresar manualmente un valor numerico!
+                      </div>
+                      <label for="coordenadasY">Longitud</label>
+                      <input type="text"  class="form-control my-2" id="coordenadasY" name="coordenadasY" value="{{CoordenadaY}}" pattern="^(-?\d+(\.\d+)?).\s*(-?\d+(\.\d+)?)$" placeholder="CoordenadasY : Longitud" required>
+                      <div class="invalid-feedback">
+                         Seleccionar coordendas en el mapa o ingresar manualmente un valor numerico!
+                      </div>
+                </div>
+                <div class="col-md-6 mx-5">
+                   <div id="mapa" class="map-responsive"></div>
+                </div>
+             </div>
+
+            <label for="link">Insertar un link a mayor información (opcional):</label>
+            <input type="text" id="link" name="link" value="{{Link}}" class="form-control">
+
+            <label for="foto_o_video">Foto o video adicional (opcional):</label>
+            <input type="file" accept="image/jpeg,image/png,video/mp4" id="foto_o_video" name="foto_o_video" class="form-control">
+            <div id="verFotoOVideo"></div>
+            {{#foto}}
+                <input type="hidden" name="idFoV" id="idFoV" value="{{idFoV}}">
+                <div id="verFoto" class="col-md-2">
+                    <img class="img-fluid" src="/public/{{foto}}" alt="Imagen" >
+                </div>
+            {{/foto}}
+            {{#video}}
+                <input type="hidden" name="idFoV" id="idFoV" value="{{idFoV}}">
+                <div id="verVideo">
+                    <video class="w-50" src="/public/{{video}}" controls></video>
+                </div>
+            {{/video}}
+
+            <div class="row my-4 g-2">
+                {{#grabacion}}
+                    <input type="hidden" name="idGrabacion" id="idGrabacion" value="{{idGrabacion}}">
+                {{/grabacion}}
+                <label class="row" for="grabacion">Grabar un audio (opcional):</label>
+                <input type="file" id="grabacion" name="grabacion" class="form-control" hidden>
+                <button type="button" id="start" class="btn col-md-1 btn-success">Start</button>
+                <button type="button" id="stop" class="btn col-md-1 btn-danger" disabled>Stop</button>
+                <span id="grabando" class="col-md-10"></span>
+                <audio id="reproducir" {{#grabacion}}src="/public/{{grabacion}}"{{/grabacion}} {{^grabacion}}hidden{{/grabacion}} class="col-md-4" controls></audio>
+            </div>
+
+            <div class="d-flex justify-content-center col-md-12">
+                <input type="submit" class='btn btn-success' name="guardar" value="Guardar">
+            </div>
+
+        </form>
+    {{/noticia}}
+</div>
+<script type="text/javascript" src="/public/js/audio.js"></script>
+<script type="text/javascript" src="/public/js/altaNoticia.js"></script>
+{{> footer}}
