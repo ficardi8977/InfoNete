@@ -167,7 +167,7 @@ class UsuarioModel
     }
 
     public function cantidadProductosSuscriptos(){
-        $sql =("SELECT COUNT(*) as Cantidad, p.Nombre as NombreProducto,  s.FechaDesde , s.FechaHasta as Fecha
+        $sql =("SELECT COUNT(*) as Cantidad, p.Nombre as NombreProducto,  s.FechaDesde as FechaDesde, s.FechaHasta as FechaHasta
         FROM suscripcion s 
         inner join producto p on (s.idProducto = p.Id)
         inner join tipoproducto tp on (p.idTipoProducto = tp.Id)
