@@ -9,6 +9,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="../../public/css/weather.css">
 <script src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAiq3xISXSZYgkd9GDAOdajy4NK2d3L7dY"></script>
 <script src = "../public/js/map.js"></script>
 <script src="../public/js/jquery-3.6.1.min.js"></script>
@@ -36,7 +37,7 @@
             <a class="nav-link" href="/edicion/misCompras">Mis Compras</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/">Pronostico</a>
+            <a class="nav-link" href="/clima/mostrarClima">Pronostico</a>
           </li>
           {{/EsLector}}
           {{#EsContenidista}}
@@ -47,7 +48,7 @@
               <a class="nav-link" href="/seccion/mostrarSecciones">ABM Sección</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/ediciones/mostrarProducto">ABM Edición</a>
+              <a class="nav-link" href="/edicion/mostrarProducto">ABM Edición</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/noticia/mostrarABMNoticias">ABM Noticia</a>
@@ -58,7 +59,10 @@
             <a class="nav-link" href="/usuario/mostrarUsuarios">ABM Usuarios</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/gestion/vista">Graficos</a>
+            <a class="nav-link" href="/reporte/mostrarReportes">Reportes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/gestion/vista">Estadisticas Graficas</a>
           </li>
         {{/EsAdministrador}}
       {{/sesion}}

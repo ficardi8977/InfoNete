@@ -3,19 +3,21 @@
 class EdicionController {
     private $edicionModel;
     private $seccionModel;
+    private $productoModel;
     private $render;
 
-    public function __construct($edicionModel, $seccionModel, $render){
+    public function __construct($edicionModel, $seccionModel, $productoModel, $render){
 
         $this->edicionModel = $edicionModel;
         $this->seccionModel = $seccionModel;
+        $this->productoModel = $productoModel;
         $this->render = $render;
     }
 
     public function listar()
     {
         Permisos::validarAcceso(Rol::Lector);
-        $data["ediciones"] = $this->edicionModel->getEdicionesPorProducto($_GET["IdProducto"]);
+        $data["ediciones"] = $this->edicionModel->getEdicionesDeProducto($_GET["IdProducto"]);
         echo $this->render->render("compraEdicionView.mustache", SesionData::cargar($data));
     }
 
@@ -70,6 +72,50 @@ class EdicionController {
             echo "<option value='" . $value['Id'] . "'>Edicion Número " . $value['Numero'] . "</option>";
         }
         echo "</select>";
+    }
+
+    public function mostrarProducto(){
+        Permisos::validarAcceso(Rol::Contenidista);
+        $data['productos'] = $this->productoModel->getProductosConSuTipo();
+        echo $this->render->render("edicionView.mustache", SesionData::cargar($data));
+    }
+
+    public function crearEdicion(){
+        Permisos::validarAcceso(Rol::Contenidista);
+        $data['producto']=$this->productoModel->getproductoConSuTipo($_GET['Id']);
+        echo $this->render->render('crearEdicionForm.mustache', SesionData::cargar($data));
+    }
+
+    public function altaEdicion(){
+        Permisos::validarAcceso(Rol::Contenidista);
+        $numero = $_POST['numero'];
+        $fecha = $_POST['fecha'];
+        $precio = $_POST['precio'];
+        $idProducto = $_POST['Id'];
+
+        $this->edicionModel->altaEdicion($numero, $idProducto, $fecha, $precio);
+
+        echo Redirect::doIt("/edicion/mostrarProducto");
+    }
+
+    public function mostrarEdiciones(){
+        Permisos::validarAcceso(Rol::Contenidista);
+        $idProducto = $_GET['Id'];
+        $data['ediciones'] = $this->edicionModel->getEdicionesPorIdProducto($idProducto);
+        echo $this->render->render("showEdiciones.mustache", SesionData::cargar($data));
+    }
+
+    public function bajaEdicion(){
+        Permisos::validarAcceso(Rol::Contenidista);
+        $idEdicion = $_POST['Id'];
+        $idProducto = $_POST['IdProducto'];
+        $this->edicionModel->baja($idEdicion);
+        echo Redirect::doIt("/edicion/mostrarEdiciones?Id=$idProducto");
+    }
+
+    public function volver(){
+        Permisos::validarAcceso(Rol::Contenidista);
+        echo Redirect::doIt("mostrarProducto");
     }
 }
 ?>

@@ -18,7 +18,6 @@ include_once("model/SuscripcionModel.php");
 include_once("model/EdicionModel.php");
 include_once("model/NoticiaModel.php");
 include_once("model/SeccionModel.php");
-include_once("model/EdicionesModel.php");
 
 // enums
 include_once("model/enums/Rol.php");
@@ -32,8 +31,9 @@ include_once('controller/SuscripcionController.php');
 include_once('controller/EdicionController.php');
 include_once('controller/ProductoController.php');
 include_once('controller/SeccionController.php');
-include_once('controller/EdicionesController.php');
+include_once('controller/climaController.php');
 include_once('controller/GestionController.php');
+include_once('controller/ReporteController.php');
 
 include_once('dependencies/mustache/src/Mustache/Autoloader.php');
 include_once ('dependencies/DomPdf/autoload.inc.php');
@@ -52,6 +52,10 @@ class Configuration {
 
     // CONFIGS DE CONTROLLER //
 
+    public function getClimaController(){
+        return new ClimaController($this->createClimaModel(), $this->view);
+    }
+
     public function getHomeController(){
         return new HomeController($this->createProductoModel(), $this->view);
     }
@@ -68,10 +72,7 @@ class Configuration {
         return new SuscripcionController($this->createSuscripcionModel(), $this->view, $this->createProductoModel(), $this->createEdicionModel());
     }
     public function getEdicionController(){
-        return new EdicionController($this->createEdicionModel(), $this->createSeccionModel(), $this->view);
-    }
-    public function getEdicionesController(){
-        return new EdicionesController($this->createEdicionesModel(), $this->createProductoModel(), $this->view);
+        return new EdicionController($this->createEdicionModel(), $this->createSeccionModel(), $this->createProductoModel(), $this->view);
     }
     public function getProductoController(){
         return new ProductoController($this->createProductoModel(),$this->view);
@@ -83,6 +84,10 @@ class Configuration {
 
     public function getGestionController(){
         return new GestionController($this->view);
+    }
+
+    public function getReporteController(){
+        return new ReporteController($this->createUsuarioModel(),$this->view);
     }
     // //
     // CONFIGS DE MODEL //
@@ -105,15 +110,15 @@ class Configuration {
         return new EdicionModel($this->database);
     }
 
-    public function createEdicionesModel(): EdicionesModel {
-        return new EdicionesModel($this->database);
-    }
-
     public function createNoticiaModel() : NoticiaModel {
         return new NoticiaModel($this->database);
     }
 
     public function createSeccionModel() : SeccionModel {
         return new SeccionModel($this->database);
+    }
+
+    public function createClimaModel() : ProductoModel{
+        return new ProductoModel($this->database);
     }
 }

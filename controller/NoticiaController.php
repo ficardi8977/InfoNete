@@ -3,7 +3,6 @@ class NoticiaController {
     
     private $noticiaModel;
     private $render;
-    private $sesion;
 
     public function __construct($noticiaModel, $render){
 

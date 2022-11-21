@@ -1,3 +1,4 @@
+function cargarGraficos(){
 google.charts.load('current', {'packages':['corechart', 'controls', 'table']});
 
       // Set a callback to run when the Google Visualization API is loaded.
@@ -14,6 +15,7 @@ google.charts.load('current', {'packages':['corechart', 'controls', 'table']});
       function generarGraficoBarra(){
         obtenerSuscripcionesTotalesPDF();
       }
+}
 
         function obtenerSuscripcionesTotalesPDF() {
           $.ajax({

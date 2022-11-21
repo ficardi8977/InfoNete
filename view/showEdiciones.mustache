@@ -2,7 +2,7 @@
 
 <div class="container ">
     <div class="d-flex justify-content-md-start pb-4">
-        <a href="/ediciones/volver" class="btn btn-dark d-flex align-items-center"><i class="bi bi-arrow-left-circle fs-5 me-2"></i>Volver</a>
+        <a href="/edicion/volver" class="btn btn-dark d-flex align-items-center"><i class="bi bi-arrow-left-circle fs-5 me-2"></i>Volver</a>
     </div>
     <div>
         <table class="table table-hover">
@@ -23,13 +23,13 @@
                     <td>
                         <div class="d-flex justify-content-center">
                             <!--<div class="px-2">
-                                <form action="/ediciones/modificar" method="GET">
+                                <form action="/edicion/modificar" method="GET">
                                     <input type="hidden" name="Id" value={{Id}}>
                                     <button class="btn btn-primary" type="submit" >Modificar Edición</a>
                                 </form>
                             </div>-->
                             <div class="px-2">
-                                <form action="/ediciones/bajaEdicion" method="POST">
+                                <form action="/edicion/bajaEdicion" method="POST">
                                     <input type="hidden" name="Id" value={{Id}}>
                                     <input type="hidden" name="IdProducto" value={{IdProducto}}>
                                     <button class="btn btn-danger" type="submit" >Bajar Edición</a>

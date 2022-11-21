@@ -1,0 +1,45 @@
+{{> header}}
+<div class="container">
+  <div class="text-center my-5">
+    <h2>Reportes</h2>
+  </div>
+
+  <div class="card my-4">
+    <h5 class="card-header">Reporte Contenidistas</h5>
+    <div class="card-body">
+      <p class="card-text">
+        Este reporte contiene toda la información personal referida a los
+        usuarios contenidistas.
+      </p>
+      <a href="/reporte/mostrarUsuariosContenidistas" class="btn btn-primary"
+        >Descargar PDF</a
+      >
+    </div>
+  </div>
+  <div class="card my-4">
+    <h5 class="card-header">Reporte Clientes</h5>
+    <div class="card-body">
+      <p class="card-text">
+        Este reporte contiene la información personal de los clientes junto con
+        sus productos adquiridos.
+      </p>
+      <a
+        href="/reporte/mostrarProductosSuscriptosyComprados"
+        class="btn btn-primary"
+        >Descargar PDF</a
+      >
+    </div>
+  </div>
+  <div class="card my-4">
+    <h5 class="card-header">Reporte Productos</h5>
+    <div class="card-body">
+      <p class="card-text">
+        Este reporte contiene todos los productos y su respectiva información.
+      </p>
+      <a href="/reporte/mostrarProductosConInfo" class="btn btn-primary"
+        >Descargar PDF</a
+      >
+    </div>
+  </div>
+</div>
+{{> footer}}

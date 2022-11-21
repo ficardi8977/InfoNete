@@ -9,6 +9,27 @@ class EdicionModel
         $this->database = $database;
     }
 
+    public function getEdicionesDeProducto($idProducto)
+    {
+        $idUsuario = $_SESSION["IdUsuario"]; 
+        return $this->database->query("SELECT e.Id, 
+        e.Numero, 
+        e.Fecha, 
+        e.IdProducto,
+        e.Precio,
+        p.Imagen as ImagenProducto,
+        p.Nombre as NombreProducto,
+        case when ".$idUsuario." = c.IdUsuario 
+            then true
+            else false 
+            end Comprado
+        FROM edicion e
+        JOIN producto p on p.id = e.idproducto
+        left join compra c on c.IdEdicion = e.Id
+        where e.IdProducto = $idProducto ORDER BY e.Numero");
+    }
+
+    
     public function getEdicionesPorProducto($idProducto)
     {
         $sql = "SELECT * FROM edicion WHERE idProducto = $idProducto";
@@ -19,11 +40,13 @@ class EdicionModel
     {
         $idUsuario = $_SESSION["IdUsuario"];
 
-        $sql = "INSERT INTO compra (IdEdicion, IdUsuario, Precio, Pagado)
+        $today = date('Y-m-d');
+        $sql = "INSERT INTO compra (IdEdicion, IdUsuario, Precio, Pagado, FechaCompra)
         VALUES (" . $idEdicion . ",
             " . $idUsuario . ", 
             " . $precio . ",
-            1)";
+            1,
+            '" . $today . "')";
 
         $this->database->execute($sql);      
     }
@@ -71,5 +94,22 @@ class EdicionModel
         " AND IdSeccion = ".$idSeccion;
         
         return $this->database->execute($sql);
+    }
+
+    public function altaEdicion($numero, $idProducto, $fecha, $precio){
+        $sql = ("INSERT INTO edicion(Numero, IdProducto, Fecha, precio) VALUES ('$numero', '$idProducto', '$fecha', $precio)");
+        $this->database->execute($sql);
+    }
+
+    public function getEdicionesPorIdProducto($idProducto){
+        $sql = ("SELECT Id, IdProducto, Numero, Fecha, precio
+                 FROM edicion
+                 WHERE IdProducto = '$idProducto'");
+        return $this->database->query($sql);
+    }
+
+    public function baja($idEdicion){
+        $sql = ("DELETE FROM edicion WHERE Id = '$idEdicion'");
+        $this->database->execute($sql);
     }
 }
