@@ -13,7 +13,9 @@
         {{/IdEdicionSeccion}}
         {{/SoloContenidista}}
         {{^IdEdicionSeccion}}
+        <form class="form-inline" id="buscar" action="#" method="GET">
             <input class="form-control d-inline mb-2" id="busqueda" autocomplete="off" type="text" name="busqueda" placeholder="Buscar noticia...">
+        </form>
             <div id="busquedaVacia" class="text-danger pt-1"></div>
         {{/IdEdicionSeccion}}
     {{/sesion}}
@@ -21,6 +23,9 @@
         <div id="listarNoticias">
             {{> tablaNoticias}}
         </div>
+    {{/HayNoticias}}
+    {{^HayNoticias}}
+        <h1 class="display-4 text-center m-4">No se encontraron noticias en esta seccion</h1>
     {{/HayNoticias}}
 </div>
 <script type="text/javascript" src="/public/js/noticias.js"></script>

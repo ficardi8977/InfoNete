@@ -138,13 +138,24 @@ class NoticiaController {
         $idNoticia = $_POST["modificar"];
         $idEdicionSeccion = $_POST["IdEdicionSeccion"];
         if($this->noticiaModel->verificarEstadoNoticia($idNoticia) == 1){
-            $data["noticia"] = $this->noticiaModel->getNoticia($idNoticia);
+            $data = $this->noticiaModel->getNoticia($idNoticia);
             echo $this->render->render("modificarNoticiaView.mustache", SesionData::cargar($data));
         }
         else{
             $errMsg = "La noticia no está en borrador o es inexistente";
             Redirect::doIt("/noticia/listarNoticias&IdEdicionSeccion=$idEdicionSeccion&errMsg=$errMsg");
         }
+    }
+
+    public function leer()
+    {
+        Permisos::validarAcceso(Rol::Lector);
+        $idNoticia = $_POST["idNoticia"];
+        if($this->noticiaModel->verificarEstadoNoticia($idNoticia) != 1){
+            $data = $this->noticiaModel->getNoticia($idNoticia);
+            echo $this->render->render("leerNoticiaView.mustache", SesionData::cargar($data));
+        }
+        Redirect::doIt();
     }
 
     public function recibirDatosNoticia()
@@ -161,7 +172,7 @@ class NoticiaController {
 
         //recibo imagen
         if (!empty($_FILES["imagen"]["name"])) {
-            move_uploaded_file($_FILES["imagen"]["tmp_name"], "imagenes/" . $_FILES["imagen"]["name"]);
+            move_uploaded_file($_FILES["imagen"]["tmp_name"], "public/" . $_FILES["imagen"]["name"]);
             $datos["imagen"] = $_FILES["imagen"]["name"];
             $datos["idImagen"] = $_POST["idImagen"];
         }
@@ -190,6 +201,7 @@ class NoticiaController {
     public function buscar()
     {
         Permisos::validarAcceso(Rol::Contenidista);
+        $data["HayNoticias"] = true;
         if(isset($_GET["busqueda"])){
             $data["noticias"] = $this->noticiaModel->buscarNoticia($_GET["busqueda"]);
             echo $this->render->render("noticiasView.mustache", SesionData::cargar($data));
