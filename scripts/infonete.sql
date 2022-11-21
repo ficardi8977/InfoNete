@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 18-11-2022 a las 10:30:41
--- Versión del servidor: 10.4.25-MariaDB
--- Versión de PHP: 8.1.10
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 21-11-2022 a las 01:50:28
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,18 +32,27 @@ CREATE TABLE `compra` (
   `IdUsuario` int(11) NOT NULL,
   `IdEdicion` int(11) NOT NULL,
   `Precio` decimal(10,2) NOT NULL,
-  `Pagado` bit(1) NOT NULL
+  `Pagado` bit(1) NOT NULL,
+  `FechaCompra` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `compra`
 --
 
-INSERT INTO `compra` (`Id`, `IdUsuario`, `IdEdicion`, `Precio`, `Pagado`) VALUES
-(1, 1, 5, '999.99', b'1'),
-(2, 1, 6, '999.99', b'1'),
-(3, 1, 2, '999.99', b'1'),
-(4, 1, 8, '7007.97', b'0');
+INSERT INTO `compra` (`Id`, `IdUsuario`, `IdEdicion`, `Precio`, `Pagado`, `FechaCompra`) VALUES
+(1, 1, 5, '999.99', b'1', '2022-11-01'),
+(2, 1, 6, '999.99', b'1', '2022-11-01'),
+(3, 1, 2, '999.99', b'1', '2022-11-01'),
+(4, 1, 8, '7007.97', b'1', '2022-11-01'),
+(5, 1, 4, '11004.93', b'1', '2022-11-01'),
+(6, 1, 4, '11004.93', b'1', '2022-11-01'),
+(7, 1, 23, '4453.49', b'1', '2022-11-01'),
+(8, 1, 1, '4453.49', b'1', '2022-11-01'),
+(9, 1, 22, '4453.49', b'1', '2022-11-20'),
+(10, 1, 30, '15382.41', b'1', '2022-11-20'),
+(11, 1, 3, '4591.18', b'1', '2022-11-21'),
+(12, 1, 46, '200.00', b'1', '2022-11-21');
 
 -- --------------------------------------------------------
 
@@ -132,7 +141,9 @@ INSERT INTO `edicion` (`Id`, `Numero`, `IdProducto`, `Fecha`, `Precio`) VALUES
 (39, 36, 5, '2022-12-14', '10894.37'),
 (40, 37, 5, '2022-12-14', '1787.03'),
 (41, 38, 5, '2022-12-14', '10558.94'),
-(42, 39, 5, '2022-12-14', '19633.39');
+(42, 39, 5, '2022-12-14', '19633.39'),
+(44, 35, 1, '2022-11-20', '100.00'),
+(46, 1, 10, '2022-11-20', '200.00');
 
 -- --------------------------------------------------------
 
@@ -151,13 +162,13 @@ CREATE TABLE `edicionseccion` (
 --
 
 INSERT INTO `edicionseccion` (`Id`, `IdEdicion`, `IdSeccion`) VALUES
-(1, 1, 1),
-(2, 2, 1),
-(3, 3, 1),
-(4, 4, 1),
-(5, 4, 2),
-(6, 6, 1),
-(7, 7, 1),
+(1, 1, 2),
+(2, 2, 3),
+(3, 3, 5),
+(4, 4, 6),
+(5, 4, 7),
+(6, 6, 7),
+(7, 7, 9),
 (8, 9, 4);
 
 -- --------------------------------------------------------
@@ -254,7 +265,7 @@ INSERT INTO `producto` (`Id`, `Nombre`, `IdTipoProducto`, `Imagen`, `Mensualidad
 (7, 'Cronica', 1, 'cronica.jpg', '300.00'),
 (8, 'Lo Gourmet', 2, 'loGourmet.jpg', '300.00'),
 (9, 'Ohlala!', 2, 'ohlala.jpg', '300.00'),
-(10, 'Pais', 2, 'ohlala.jpg', '300.00'),
+(10, 'Pais', 1, 'pais.jpg', '300.00'),
 (11, 'Rolling Stone', 2, 'rollingStone.jpg', '300.00');
 
 -- --------------------------------------------------------
@@ -273,13 +284,13 @@ CREATE TABLE `seccion` (
 --
 
 INSERT INTO `seccion` (`Id`, `Nombre`) VALUES
-(1, 'Deporte'),
 (2, 'Espectáculos'),
 (3, 'Arte y cultura'),
 (4, 'Economía y política'),
 (5, 'Sociedad'),
 (6, 'Editorial y opinión'),
-(7, 'Infantil');
+(7, 'Infantil'),
+(9, 'Anuncios');
 
 -- --------------------------------------------------------
 
@@ -302,7 +313,9 @@ CREATE TABLE `suscripcion` (
 
 INSERT INTO `suscripcion` (`Id`, `IdUsuario`, `IdProducto`, `FechaDesde`, `FechaHasta`, `Precio`) VALUES
 (16, 1, 2, '2022-11-07', '2023-01-07', '600.00'),
-(20, 1, 4, '2020-11-17', '2026-11-09', '14400.00');
+(23, 1, 9, '2022-11-20', '2023-05-20', '1800.00'),
+(24, 1, 1, '2022-11-20', '2023-11-20', '3600.00'),
+(25, 1, 6, '2022-11-21', '2023-11-21', '3600.00');
 
 -- --------------------------------------------------------
 
@@ -388,7 +401,7 @@ INSERT INTO `usuario` (`Id`, `Nombre`, `IdTipoUsuario`, `Email`, `CoordenadasX`,
 (1, 'Fer', 4, 'fernando.icardi@gmail.com', '-34.663050', '-58.593712'),
 (2, 'Sofi', 4, 'sofia@gmail.com', '-34.663050', '-58.593712'),
 (3, 'Eve', 4, 'eve@gmail.com', '-34.663050', '-58.593712'),
-(4, 'Tomas', 4, 'tomy@gmail.com', '-34.663050', '-58.593712'),
+(4, 'Tomas', 3, 'tomy@gmail.com', '-34.663050', '-58.593712'),
 (5, 'Juan', 4, 'juan@gmail.com', '-34.663050', '-58.593712');
 
 --
@@ -499,7 +512,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `compra`
 --
 ALTER TABLE `compra`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `contraseña`
@@ -511,7 +524,7 @@ ALTER TABLE `contraseña`
 -- AUTO_INCREMENT de la tabla `edicion`
 --
 ALTER TABLE `edicion`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT de la tabla `edicionseccion`
@@ -535,13 +548,13 @@ ALTER TABLE `noticia`
 -- AUTO_INCREMENT de la tabla `seccion`
 --
 ALTER TABLE `seccion`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `suscripcion`
 --
 ALTER TABLE `suscripcion`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
