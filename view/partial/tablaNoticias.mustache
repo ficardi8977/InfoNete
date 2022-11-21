@@ -19,11 +19,13 @@
                 <td class="col-md-5">
                     <div class='d-flex justify-content-center'>
                         {{#EsEditor}}
-                            <div class='px-2'>
-                                <button class='btn btn-info text-light leer' style="width: 9rem;" type='button' value="{{Id}}">
-                                    Leer
-                                </button>
-                            </div>
+                            <form action="/noticia/leer" method="POST">
+                                <div class='px-2'>
+                                    <button class='btn btn-info text-light leer' style="width: 9rem;" type='submit' value="{{Id}}">
+                                        Leer
+                                    </button>
+                                </div>
+                            </form>
                             {{#SoloEditor}}
                                 <div class='px-2'>
                                     <button class='btn btn-success aprobar{{IdEstadoNoticia}}' id="aprobar{{Id}}" style="width: 9rem;" name="aprobar" type='button' value="{{Id}}" disabled>
@@ -43,13 +45,17 @@
                                     </button>
                                 </div>
                                 <div class='px-2 baneada{{IdEstadoNoticia}}'></div>
-                                <!--<div class='px-2 baneada{{IdEstadoNoticia}}'></div>-->
                             {{/EsAdministrador}}
                         {{/EsEditor}}
                         {{#SoloContenidista}} 
-                            <button class='btn btn-info text-light presentar{{IdEstadoNoticia}}' name="presentar" style="width: 9rem;" type='button' value="{{Id}}">
-                                Leer
-                            </button>
+                            <form class="form-leer{{Id}}" action="/noticia/leer" method="POST">
+                                <input type="hidden" name="idNoticia" value="{{Id}}">
+                                <div class='px-2'>
+                                    <button class='btn btn-info text-light leer{{IdEstadoNoticia}}' name="leer" style="width: 9rem;" type='button' value="{{Id}}">
+                                        Leer
+                                    </button>
+                                </div>
+                            </form>
                             <form action="/noticia/modificar" method="POST">
                                 <input type="hidden" name="IdEdicionSeccion" value={{IdEdicionSeccion}}>                           
                                 <div class='px-2'>

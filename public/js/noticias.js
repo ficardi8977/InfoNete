@@ -21,9 +21,14 @@ $(document).ready(function() {
         $(document).on("click", ".presentar1", function(){
             buttonClick(this.value, "/noticia/presentar");
             $(this).html("Leer");
+            $(this).prop('class', 'btn btn-info text-light leer2');
             $("#modificar"+$(this).val()+"").prop('disabled', true);
             $("#modificar"+$(this).val()+"").html('En espera...');
             $("#borrar"+$(this).val()+"").prop('disabled', true);
+        });
+
+        $(document).on("click", ".leer2", function(){
+            $(".form-leer"+$(this).val()+"").submit();
         });
 
         $(document).on("click", ".aprobar2", function(){
@@ -61,8 +66,9 @@ $(document).ready(function() {
             $(".modificar2").html('En espera...');
             $(".modificar3").html('Publicada');
             $(".modificar4").html('Rechazada');
-            //boton presentar
-            $(".presentar1").html('Presentar');
+            //boton leer (se convierte en presentar)
+            $(".leer1").html('Presentar');
+            $(".leer1").prop('class', 'btn btn-info text-light presentar1');
             //boton borrar
             $(".borrar1").prop('disabled', false);
             //boton aprobar

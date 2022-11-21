@@ -1,0 +1,55 @@
+{{> header}}
+<div class="container">
+
+    <div id="titulo">
+        <h1>{{Titulo}}</h1>
+    </div>
+
+    <div id="subtitulo">
+        <h2>{{Subtitulo}}</h2>
+    </div>
+
+    <div id="cuerpo">
+        <p>{{Cuerpo}}</p>
+    </div>
+
+    <div id="imagen">
+        <img src="/public/{{imagen}}" alt="Imagen" style="width: 500px;">
+    </div>
+
+    <input type="hidden" id="coordenadasX" value="{{CoordenadaX}}">
+    <input type="hidden" id="coordenadasY" value="{{CoordenadaY}}">
+
+    <div class="col-md-6 my-5">
+        <div id="mapa" class="map-responsive"></div>
+    </div>
+
+    {{#Link}}
+        <div id="link">
+            <span>Para mayor informacion ingresa al siguiente link</span>
+            <a href="{{Link}}">{{Link}}</a>
+        </div>
+    {{/Link}}
+
+    {{#foto}}
+        <div id="foto">
+            <img class="img-fluid" src="/public/{{foto}}" alt="Imagen" >
+        </div>
+    {{/foto}}
+
+    {{#video}}
+        <div id="video">
+            <video class="w-50" src="/public/{{video}}" controls></video>
+        </div>
+    {{/video}}
+
+    {{#grabacion}}
+        <div id="grabacion">
+            <audio id="reproducir" src="/public/{{grabacion}}" class="col-md-4" controls></audio>
+        </div>
+    {{/grabacion}}
+</div>
+<script type="text/javascript">
+    document.body.addEventListener("load", loadMap());
+</script>
+{{> footer}}

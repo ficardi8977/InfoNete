@@ -1,7 +1,10 @@
 function loadMap() {
 
+    var posicionX = document.getElementById("coordenadasX");
+    var posicionY = document.getElementById("coordenadasY");
+    var map;
+
     var mapOptions = {
-        center:new google.maps.LatLng(-34.6686986,-58.5614947),
         zoom:12,
         panControl: false,
         zoomControl: true,
@@ -13,14 +16,18 @@ function loadMap() {
         mapTypeId:google.maps.MapTypeId.ROADMAP
     };
 
-    var map = new google.maps.Map(document.getElementById("mapa"),mapOptions);
-
-    var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(-34.6686986,-58.5614947),
-        map: map,
-        draggable:true,
-        icon:'/imagenes/logo_unlam.png'
-    });
+    if(!posicionX.value || !posicionY.value){
+        mapOptions["center"] = new google.maps.LatLng(-34.6686986,-58.5614947);
+        map = new google.maps.Map(document.getElementById("mapa"),mapOptions);
+    }
+    else{
+        mapOptions["center"] = new google.maps.LatLng(posicionX.value,posicionY.value);
+        map = new google.maps.Map(document.getElementById("mapa"),mapOptions);
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(posicionX.value,posicionY.value),
+            map: map,
+        });
+    }
 
     // evento que detecta click derecho y te devuelve las coordendas x e y
     google.maps.event.addListener(map, "rightclick", function(event) {

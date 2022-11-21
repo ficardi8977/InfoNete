@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $("body").load(loadMap());
+    loadMap();
     $("video").prop('volume', 0.5);
     $("#imagen").change(function(){
         var url = URL.createObjectURL($(this)[0].files[0]);
