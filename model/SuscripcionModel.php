@@ -13,6 +13,7 @@ class SuscripcionModel{
         $fechaDesde = date('Y-m-d');
         $fechaHasta = date('Y-m-d', strtotime('+'.$periodoMensual.' month', strtotime($fechaDesde)));
         $precioCalculado = $this->calcularPrecio($idProducto, $periodoMensual);
+        echo "$idUsuario, $idProducto, $fechaDesde,$fechaHasta, $precioCalculado";
 
         $sql = "INSERT INTO suscripcion (idUsuario, IdProducto, FechaDesde,FechaHasta, Precio)
         VALUES ('".$idUsuario."',
@@ -27,9 +28,6 @@ class SuscripcionModel{
     public function baja($idProducto){
                 $idUsuario = $_SESSION["IdUsuario"]; 
                 $idProducto= $_POST["IdProducto"];
-                /**
-                 * delete from suscripcion where IdUsuario=3 and IdProducto=1 
-                 */
                 $sql = "DELETE from suscripcion where IdUsuario=".$idUsuario." and IdProducto=".$idProducto.";";
         $this->database->execute($sql);
     }

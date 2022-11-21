@@ -33,7 +33,7 @@ class UsuarioModel
     public function getUsuario($nombre, $password)
     {
         $passMd5 = $this->EncriptarClave($password);
-        $sql = "SELECT * 
+        $sql = "SELECT u.* 
                 FROM usuario u 
                 join contraseña c on c.idUsuario = u.id   
                 where 
