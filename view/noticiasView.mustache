@@ -1,32 +1,41 @@
 {{> header}}
 <div class="container" id="noticias" style="min-height:calc(100vh - 17.5rem);">
-    {{#sesion}}    
-        {{#SoloContenidista}}
-        {{#IdEdicionSeccion}}
-            <h3>{{errMsg}}</h3>
-            <div class="d-flex justify-content-md-end pb-3 mt-4">
-                <form action="/noticia/alta" method="POST">
-                    <input type="hidden" name="IdEdicionSeccion" value={{IdEdicionSeccion}}>
-                    <button type="submit" class="btn btn-success">Alta Noticia</button>
-                </form>
-            </div>
-        {{/IdEdicionSeccion}}
-        {{/SoloContenidista}}
-        {{^IdEdicionSeccion}}
-        <form class="form-inline" id="buscar" action="#" method="GET">
-            <input class="form-control d-inline mb-2" id="busqueda" autocomplete="off" type="text" name="busqueda" placeholder="Buscar noticia...">
+    {{#sesion}}
+    {{#SoloContenidista}}{{#IdEdicionSeccion}}
+    <h3>{{errMsg}}</h3>
+    <div class="d-flex justify-content-md-end pb-3 mt-4">
+        <form action="/noticia/alta" method="POST">
+            <input type="hidden" name="IdEdicionSeccion" value={{IdEdicionSeccion}}>
+            <button type="submit" class="btn btn-success">Alta Noticia</button>
         </form>
-            <div id="busquedaVacia" class="text-danger pt-1"></div>
-        {{/IdEdicionSeccion}}
-    {{/sesion}}
-    {{#HayNoticias}}
-        <div id="listarNoticias">
-            {{> tablaNoticias}}
-        </div>
+    </div>
+    {{/IdEdicionSeccion}}{{/SoloContenidista}}
+    {{^IdEdicionSeccion}}
+    <form class="form-inline" id="buscar" action="#" method="GET">
+        <input class="form-control d-inline mb-2" id="busqueda" autocomplete="off" type="text" name="busqueda"
+            placeholder="Buscar noticia...">
+    </form>
+    <div id="busquedaVacia" class="text-danger pt-1"></div>
+    {{/IdEdicionSeccion}}
+    {{#EsContenidista}}{{#HayNoticias}}
+    <div id="listarNoticias">
+        {{> tablaNoticias}}
+    </div>
     {{/HayNoticias}}
     {{^HayNoticias}}
-        <h1 class="display-4 text-center m-4">No se encontraron noticias en esta seccion</h1>
-    {{/HayNoticias}}
+    <h1 class="display-4 text-center m-4">No se encontraron noticias en esta seccion</h1>
+    {{/HayNoticias}}{{/EsContenidista}}
+
+    {{#SoloLector}}{{#HayNoticiasLector}}
+    <div id="listarNoticias">
+        {{> tablaNoticias}}
+    </div>
+    {{/HayNoticiasLector}}
+    {{^HayNoticiasLector}}
+    <h1 class="display-4 text-center m-4">No se encontraron noticias en esta seccion</h1>
+    {{/HayNoticiasLector}}{{/SoloLector}}
+    
+    {{/sesion}}
 </div>
 <script type="text/javascript" src="/public/js/noticias.js"></script>
 {{> footer}}
