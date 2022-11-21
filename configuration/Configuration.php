@@ -33,6 +33,7 @@ include_once('controller/ProductoController.php');
 include_once('controller/SeccionController.php');
 include_once('controller/climaController.php');
 include_once('controller/GestionController.php');
+include_once('controller/ReporteController.php');
 
 include_once('dependencies/mustache/src/Mustache/Autoloader.php');
 include_once ('dependencies/DomPdf/autoload.inc.php');
@@ -83,6 +84,10 @@ class Configuration {
 
     public function getGestionController(){
         return new GestionController($this->view);
+    }
+
+    public function getReporteController(){
+        return new ReporteController($this->createUsuarioModel(),$this->view);
     }
     // //
     // CONFIGS DE MODEL //

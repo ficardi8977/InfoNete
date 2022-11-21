@@ -82,12 +82,6 @@ class UsuarioController {
 
     }
 
-    public function mostrarUsuariosContenidistas(){
-        Permisos::validarAcceso(Rol::Administrador);
-        $data["usuariosContenidistas"]= $this->usuarioModel->getUsuariosContenidistas();
-        $html = $this->render->render("listaContenidistasView.mustache", SesionData::cargar($data));
-        GeneradorPdf::generarPdf($html);
-    }
 
     public function modificar (){
         Permisos::validarAcceso(Rol::Administrador);
@@ -111,28 +105,5 @@ class UsuarioController {
         Redirect::doIt("/usuario/mostrarUsuarios");
     }
 
-    public function mostrarProductosSuscriptosyComprados(){
-        Permisos::validarAcceso(Rol::Administrador);
-        $data["usuarios"]= $this->usuarioModel->getUsuariosConTipo();
-        $data["productosCompradosYSuscriptosPorUsuario"]=$this->usuarioModel->productosCompradosYsuscriptosPorUsuario();
-         $html = $this->render->render("listaCompraYSuscripcionProductosView.mustache", SesionData::cargar($data));
-        GeneradorPdf::generarPdf($html);
-    }
-
-    public function mostrarProductosConInfo(){
-        Permisos::validarAcceso(Rol::Administrador);
-        $data["productos"] = $this->usuarioModel->getProductosConSuTipo();
-        $data["cantidadProductosVendidos"] = $this->usuarioModel->cantidadProductosVendidos();
-        $data["cantidadProductosSuscriptos"] = $this->usuarioModel->cantidadProductosSuscriptos();
-        $html = $this->render->render("listaProductosConInfo.mustache", SesionData::cargar($data));
-        GeneradorPdf::generarPdf($html);
-    }
     
-    public function reporteMisCompras(){
-        $fechaDesde = $_GET['fechaDesde'];
-        $fechaHasta = $_GET['fechaHasta'];
-        $data['compras'] = $this->usuarioModel->reporteCompras($fechaDesde, $fechaHasta);
-        $html = $this->render->render("reporteMisComprasView.mustache", SesionData::cargar($data));
-        GeneradorPdf::generarPdf($html);
-    }
 }
