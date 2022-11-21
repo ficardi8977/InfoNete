@@ -73,7 +73,6 @@ const getWind = wind =>{
     return 'Viento: ' + windKm + ' Km/h';
 }
 
-
-const onload = () =>{
+function cargarClimas(){
     navigator.geolocation.getCurrentPosition(fetchData);
 }
