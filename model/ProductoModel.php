@@ -9,10 +9,16 @@ class ProductoModel
         $this->database = $database;
     }
     public function getproductos() {
+        if(isset($_SESSION['IdUsuario'])){
+        $idUsuario = $_SESSION['IdUsuario'];
         return $this->database->query("SELECT p.Nombre as Nombre, p.Imagen as Imagen,p.Id  as Id,
-        CASE when p.Id = s.IdProducto then true 
+        CASE when  s.IdUsuario = $idUsuario then true 
         else false  end as suscripto
-         FROM producto p left join suscripcion s on (p.Id= s.IdProducto);");
+        FROM producto p left join suscripcion s on (p.Id= s.IdProducto);");
+        }
+
+        return $this->database->query("SELECT *
+        FROM producto ;");
     }
 
     public function getproducto($idProducto)  {
