@@ -12,8 +12,7 @@ class NoticiaController {
 
     public function mostrarABMNoticias(){
         Permisos::validarAcceso(Rol::Contenidista);
-        $data["IdEdicionSeccion"] = $_GET["IdEdicionSeccion"];
-        echo $this->render->render("abmNoticiasView.mustache", SesionData::cargar($data));
+        echo $this->render->render("abmNoticiasView.mustache", SesionData::cargar());
     }
 
     public function listarNoticias()
@@ -28,7 +27,11 @@ class NoticiaController {
         }
         else
             $idEdicionSeccion = $_GET['IdEdicionSeccion'];
-        $data["errMsg"] = $_GET["errMsg"];
+        
+        if(isset($_GET["errMsg"])){
+            $data["errMsg"] = $_GET["errMsg"];
+
+        }
         $data["IdEdicionSeccion"] = $idEdicionSeccion;
         $data["noticias"] = $this->noticiaModel->getNoticias($idEdicionSeccion);
         foreach ($data["noticias"] as $key => $value) {
