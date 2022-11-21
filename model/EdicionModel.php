@@ -87,14 +87,6 @@ class EdicionModel
         where IdEdicion = ".$idEdicion);      
     }
 
-    public function asociarSeccion($idEdicion,$idSeccion)
-    {
-        $sql = "INSERT INTO edicionSeccion (idEdicion,idSeccion)
-        VALUES(".$idEdicion.",".$idSeccion.")";
-        
-        return $this->database->execute($sql);
-    }
-
     public function desasociarSeccion($idEdicion,$idSeccion)
     {
         $sql = "DELETE FROM edicionSeccion 

@@ -62,8 +62,11 @@ class SeccionController
         $data = $this->seccionModel->getSeccionesPorEdicion($edicion);
         echo "<select id='secciones' name='seccion' class='form-select'>";
         echo "<option value='default'>Seleccione una seccion</option>";
-        foreach ($data as $value) {
+        foreach ($data["secciones"] as $value) {
             echo "<option value='" . $value['Id'] . "'>" . $value['Nombre'] . "</option>";
+        }
+        foreach ($data["seccionesACrear"] as $value) {
+            echo "<option value='" . $value['Id'] . "'>" . $value['Nombre'] . " - Asociar Seccion</option>";
         }
         echo "</select>";
     }
