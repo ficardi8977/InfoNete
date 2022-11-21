@@ -31,7 +31,7 @@ include_once('controller/SuscripcionController.php');
 include_once('controller/EdicionController.php');
 include_once('controller/ProductoController.php');
 include_once('controller/SeccionController.php');
-include_once('controller/climaController.php');
+include_once('controller/ClimaController.php');
 include_once('controller/GestionController.php');
 include_once('controller/ReporteController.php');
 

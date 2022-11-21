@@ -31,8 +31,16 @@ class NoticiaController {
         $data["errMsg"] = $_GET["errMsg"];
         $data["IdEdicionSeccion"] = $idEdicionSeccion;
         $data["noticias"] = $this->noticiaModel->getNoticias($idEdicionSeccion);
+        foreach ($data["noticias"] as $key => $value) {
+            if($value['IdEstadoNoticia'] == 3){
+                $data["noticias"][$key]["ValidaLector"] = true;
+                $data["HayNoticiasLector"] = true;
+            }
+        }
         if($data["noticias"])
             $data["HayNoticias"] = true;
+        echo $this->render->render("noticiasView.mustache", SesionData::cargar($data));
+
         // foreach ($data["noticias"] as $key => $value) {
         //     switch ($value['IdEstadoNoticia']) {
         //         case 1:
@@ -49,8 +57,6 @@ class NoticiaController {
         //             break;
         //     }
         // }
-
-        echo $this->render->render("noticiasView.mustache", SesionData::cargar($data));
     }
 
     public function alta()

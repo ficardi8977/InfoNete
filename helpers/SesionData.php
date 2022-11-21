@@ -7,6 +7,7 @@ class SesionData {
         switch ($tipoUsuario) {
             case 1:
                 $_SESSION["EsLector"] = true;
+                $_SESSION["SoloLector"] = true;
                 break;
             case 2:
                 $_SESSION["EsLector"] = true;

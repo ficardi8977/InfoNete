@@ -23,15 +23,16 @@
                 <td>
                 <div class="d-flex justify-content-center">
                     <div class="px-2">
-                        <form action="/edicionSeccion/Noticias" method="GET">
-                            <input type="hidden" name="Id" value={{Id}}>
+                        <form action="/noticia/listarNoticias" method="GET">
+                            <input type="hidden" name="edicion" value={{IdEdicion}}>
+                            <input type="hidden" name="seccion" value={{IdSeccion}}>
                             <button class="btn btn-primary" type="submit" >Leer</a>
                         </form>
                     </div>
                     <div class="px-2">
                         <form action="/edicion/desasociarSeccion" method="POST">
-                            <input type="hidden" name="IdEdicion" value={{IdEdicion}}>
-                            <input type="hidden" name="IdSeccion" value={{IdSeccion}}>
+                            <input type="hidden" name="edicion" value={{IdEdicion}}>
+                        <input type="hidden" name="seccion" value={{IdSeccion}}>
                             <button class="btn btn-danger" type="submit" >Quitar</a>
                         </form>
                     </div>
