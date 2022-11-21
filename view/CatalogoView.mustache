@@ -17,10 +17,18 @@
                     </div>
                
                 {{#sesion}}
+                {{#suscripto}}
+                 <form action="/suscripcion/mostrarAlta" method="GET">
+                    <input type="hidden" name="IdProducto" value={{Id}}>
+                    <button class="btn btn-success" type="submit" disabled>Suscribirse</button>
+                </form> 
+                {{/suscripto}}
+                {{^suscripto}}
                 <form action="/suscripcion/mostrarAlta" method="GET">
                     <input type="hidden" name="IdProducto" value={{Id}}>
                     <button class="btn btn-success" type="submit" >Suscribirse</button>
-                </form>    
+                </form>  
+                {{/suscripto}}
                 <form action="/edicion/listar" method="GET">
                     <input type="hidden" name="IdProducto" value={{Id}}>
                     <button class="btn btn-primary" type="submit" >Comprar una edición</a>
