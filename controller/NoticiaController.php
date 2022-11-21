@@ -12,8 +12,7 @@ class NoticiaController {
 
     public function mostrarABMNoticias(){
         Permisos::validarAcceso(Rol::Contenidista);
-        $data["IdEdicionSeccion"] = $_GET["IdEdicionSeccion"];
-        echo $this->render->render("abmNoticiasView.mustache", SesionData::cargar($data));
+        echo $this->render->render("abmNoticiasView.mustache", SesionData::cargar());
     }
 
     public function listarNoticias()
@@ -28,7 +27,11 @@ class NoticiaController {
         }
         else
             $idEdicionSeccion = $_GET['IdEdicionSeccion'];
-        $data["errMsg"] = $_GET["errMsg"];
+        
+        if(isset($_GET["errMsg"])){
+            $data["errMsg"] = $_GET["errMsg"];
+
+        }
         $data["IdEdicionSeccion"] = $idEdicionSeccion;
         $data["noticias"] = $this->noticiaModel->getNoticias($idEdicionSeccion);
         if($data["noticias"])
@@ -161,7 +164,7 @@ class NoticiaController {
 
         //recibo imagen
         if (!empty($_FILES["imagen"]["name"])) {
-            move_uploaded_file($_FILES["imagen"]["tmp_name"], "imagenes/" . $_FILES["imagen"]["name"]);
+            move_uploaded_file($_FILES["imagen"]["tmp_name"], "public/" . $_FILES["imagen"]["name"]);
             $datos["imagen"] = $_FILES["imagen"]["name"];
             $datos["idImagen"] = $_POST["idImagen"];
         }

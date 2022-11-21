@@ -52,7 +52,13 @@ class NoticiaModel {
     public function getIdEdicionSeccion($edicion, $seccion)
     {
         $sql = "SELECT Id FROM edicionseccion WHERE IdEdicion = $edicion AND IdSeccion = $seccion";
-        return $this->database->query($sql)[0]["Id"];
+        $result = $this->database->query($sql);
+        if(isset($result[0]["Id"]))
+        {
+            return $result[0]["Id"];
+        }else{
+            return null;
+        }
     }
 
     public function asociarSeccion($idEdicion,$idSeccion)
