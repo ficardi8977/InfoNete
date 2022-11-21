@@ -16,7 +16,11 @@ class SeccionModel{
     public function getSeccionesPorEdicion($edicion)
     {
         $sql = "SELECT s.Id, s.Nombre FROM seccion s JOIN edicionseccion e ON s.id = e.idSeccion WHERE e.idEdicion = $edicion";
-        return $this->database->query($sql);
+        $data["secciones"] = $this->database->query($sql);
+        $sql = "SELECT Id, Nombre FROM seccion
+        WHERE Id NOT IN (SELECT s.Id FROM edicionseccion e JOIN seccion s ON s.id = e.idSeccion WHERE e.idEdicion = $edicion)";
+        $data["seccionesACrear"] = $this->database->query($sql);
+        return $data;
     }
 
     public function getSeccion($idSeccion){

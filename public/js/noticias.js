@@ -23,6 +23,7 @@ $(document).ready(function() {
             $(this).html("Leer");
             $("#modificar"+$(this).val()+"").prop('disabled', true);
             $("#modificar"+$(this).val()+"").html('En espera...');
+            $("#borrar"+$(this).val()+"").prop('disabled', true);
         });
 
         $(document).on("click", ".aprobar2", function(){

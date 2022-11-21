@@ -8,9 +8,6 @@ class NoticiaController {
     public function __construct($noticiaModel, $render){
 
         $this->noticiaModel = $noticiaModel;
-        $this->productoModel = $productoModel;
-        $this->edicionModel = $edicionModel;
-        $this->seccionModel = $seccionModel;
         $this->render = $render;
     }
 
@@ -27,12 +24,16 @@ class NoticiaController {
             $edicion = $_GET["edicion"];
             $seccion = $_GET["seccion"];
             $idEdicionSeccion = $this->noticiaModel->getIdEdicionSeccion($edicion, $seccion);
+            if(!$idEdicionSeccion)
+                $idEdicionSeccion = $this->noticiaModel->asociarSeccion($edicion, $seccion);
         }
         else
             $idEdicionSeccion = $_GET['IdEdicionSeccion'];
         $data["errMsg"] = $_GET["errMsg"];
         $data["IdEdicionSeccion"] = $idEdicionSeccion;
         $data["noticias"] = $this->noticiaModel->getNoticias($idEdicionSeccion);
+        if($data["noticias"])
+            $data["HayNoticias"] = true;
         // foreach ($data["noticias"] as $key => $value) {
         //     switch ($value['IdEstadoNoticia']) {
         //         case 1:
@@ -137,7 +138,7 @@ class NoticiaController {
         Permisos::validarAcceso(Rol::Contenidista);
         $idNoticia = $_POST["modificar"];
         $idEdicionSeccion = $_POST["IdEdicionSeccion"];
-        if($this->noticiaModel->verificarEstadoNoticiaBorrador($idNoticia)){
+        if($this->noticiaModel->verificarEstadoNoticia($idNoticia) == 1){
             $data["noticia"] = $this->noticiaModel->getNoticia($idNoticia);
             echo $this->render->render("modificarNoticiaView.mustache", SesionData::cargar($data));
         }

@@ -55,6 +55,14 @@ class NoticiaModel {
         return $this->database->query($sql)[0]["Id"];
     }
 
+    public function asociarSeccion($idEdicion,$idSeccion)
+    {
+        $sql = "INSERT INTO edicionseccion (idEdicion,idSeccion)
+        VALUES($idEdicion, $idSeccion)";
+        
+        return $this->database->execute($sql);
+    }
+
     public function verificarEstadoNoticia($idNoticia)
     {
         $sql = "SELECT IdEstadoNoticia FROM noticia WHERE id = $idNoticia";

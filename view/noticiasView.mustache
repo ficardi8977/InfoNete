@@ -17,9 +17,11 @@
             <div id="busquedaVacia" class="text-danger pt-1"></div>
         {{/IdEdicionSeccion}}
     {{/sesion}}
+    {{#HayNoticias}}
         <div id="listarNoticias">
             {{> tablaNoticias}}
         </div>
+    {{/HayNoticias}}
 </div>
 <script type="text/javascript" src="/public/js/noticias.js"></script>
 {{> footer}}
