@@ -14,19 +14,21 @@ class SeccionController
 
     public function mostrarSecciones()
     {
+        Permisos::validarAcceso(Rol::Contenidista);
         $data['secciones'] = $this->seccionModel->getSecciones();
         echo $this->render->render("mostrarSecciones.mustache", SesionData::cargar($data));
     }
 
     public function alta()
     {
+        Permisos::validarAcceso(Rol::Contenidista);
         echo $this->render->render("altaSeccion.mustache", SesionData::cargar());
 
     }
 
     public function altaSeccion()
     {
-
+        Permisos::validarAcceso(Rol::Contenidista);
         $nombre = $_POST['nombre'];
         $data['secciones'] = $this->seccionModel->altaSeccion($nombre);
 
@@ -35,12 +37,14 @@ class SeccionController
 
     public function baja()
     {
+        Permisos::validarAcceso(Rol::Contenidista);
         $this->seccionModel->bajaSeccion($_POST["Id"]);
         Redirect::doIt("/seccion/mostrarSecciones");
     }
 
     public function modificar()
     {
+        Permisos::validarAcceso(Rol::Contenidista);
         //$data['IdSeccionAModificar'] = $_GET['Id'];
         $data['seccion'] = $this->seccionModel->getSeccion($_POST['Id']);
 
@@ -49,6 +53,7 @@ class SeccionController
 
 
     public function modificarSeccion(){
+        Permisos::validarAcceso(Rol::Contenidista);
         $this->seccionModel->updateSeccion($_POST['IdSeccion'], $_POST['nombreSeccion']);
 
         echo Redirect::doIt("/seccion/mostrarSecciones");

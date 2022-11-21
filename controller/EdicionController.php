@@ -36,27 +36,31 @@ class EdicionController {
     }
 
     public function detalle()
-    {        
+    {    
+        Permisos::validarAcceso(Rol::Lector);     
         $data['IdEdicion'] =$_GET["IdEdicion"];
         $data['edicion'] = $this->edicionModel->listSecciones($_GET["IdEdicion"]);
         echo $this->render->render("detalleEdicionView.mustache", SesionData::cargar($data));
     }
     
     public function MostrarAsociarSeccion()
-    {        
+    {    
+        Permisos::validarAcceso(Rol::Lector);     
         $data['IdEdicion'] =$_GET["IdEdicion"];
         $data['secciones'] = $this->seccionModel->listarDisponibles($_GET["IdEdicion"]);   
         echo $this->render->render("asociarSeccionView.mustache", SesionData::cargar($data));
     }
 
     public function asociarSeccion()
-    {        
+    {   
+        Permisos::validarAcceso(Rol::Contenidista);     
         $this->edicionModel->asociarSeccion($_POST["IdEdicion"], $_POST["IdSeccion"] );
         Redirect::doIt("/edicion/detalle?IdEdicion=".$_POST["IdEdicion"]);   
     }
     
     public function desasociarSeccion()
-    {        
+    {   
+        Permisos::validarAcceso(Rol::Contenidista);     
         $this->edicionModel->desasociarSeccion($_POST["IdEdicion"], $_POST["IdSeccion"] );
         Redirect::doIt("/edicion/detalle?IdEdicion=".$_POST["IdEdicion"]);   
     }

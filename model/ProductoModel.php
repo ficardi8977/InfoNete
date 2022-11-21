@@ -9,13 +9,16 @@ class ProductoModel
         $this->database = $database;
     }
     public function getproductos() {
-        return $this->database->query("SELECT * FROM producto");
+        return $this->database->query("SELECT p.Nombre as Nombre, p.Imagen as Imagen,p.Id  as Id,
+        CASE when p.Id = s.IdProducto then true 
+        else false  end as suscripto
+         FROM producto p left join suscripcion s on (p.Id= s.IdProducto);");
     }
 
     public function getproducto($idProducto)  {
         return $this->database->query("SELECT * FROM producto WHERE id= ".$idProducto.";");
     }
-
+   
      public function getproductoConSuTipo($idProducto){
         return $this->database->query("SELECT p.Id as Id, p.nombre as Nombre , p.Imagen as Imagen, t.nombre as NombreTipoProducto ,
         case  

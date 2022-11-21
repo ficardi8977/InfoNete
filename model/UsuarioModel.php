@@ -166,6 +166,7 @@ class UsuarioModel
     
     public function reporteCompras($fechaDesde, $fechaHasta)
     {
+
         $idUsuario = $_SESSION["IdUsuario"]; 
         
         return $this->database->query(

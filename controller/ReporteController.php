@@ -35,6 +35,7 @@ class ReporteController{
     }
     
     public function reporteMisCompras(){
+        Permisos::validarAcceso(Rol::Lector);
         $fechaDesde = $_GET['fechaDesde'];
         $fechaHasta = $_GET['fechaHasta'];
         $data['compras'] = $this->usuarioModel->reporteCompras($fechaDesde, $fechaHasta);
