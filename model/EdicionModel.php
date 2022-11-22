@@ -75,16 +75,15 @@ class EdicionModel
     {
         return $this->database->query(
         "SELECT 
-        e.Id as IdEdicion, 
-        e.Numero as NumeroEdicion, 
         s.Id as IdSeccion, 
         s.Nombre as NombreSeccion,
-        p.nombre as NombreProducto 
+        count(*) as CantidadNoticias
         FROM edicion e 
         join edicionseccion es on es.IdEdicion = e.Id
         join seccion s on s.Id = es.IdSeccion
         join producto p on p.id = e.idproducto
-        where IdEdicion = ".$idEdicion);      
+        join noticia n on n.IdEdicionSeccion = es.id
+        where IdEdicion = $idEdicion group by s.Id, s.Nombre");      
     }
 
     public function desasociarSeccion($idEdicion,$idSeccion)
