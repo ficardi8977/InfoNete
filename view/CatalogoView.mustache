@@ -3,13 +3,13 @@
     <h1 class="text-center mb-4">Catalogo de productos</h1>
 <div class="row">
   {{#productos}}
-    <div class="col-sm-4 text-center">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">{{Nombre}}</h5>
-                <div class="row" style="max-width: 540p">
+    <div class="col-sm-4 text-center mt-3">
+        <div class="card mb-2 shadow">
+            <div class="card-body pt-4">
+                <h3 class="card-title">{{Nombre}}</h3>
+                <div class="row py-3" style="max-width: 540p">
                         <div class="text-center">
-                        <img src= "../public/{{Imagen}}" class="img-fluid rounded-start" alt="...">
+                        <img src= "../public/{{Imagen}}" class="img-fluid rounded-start" style="width: 190px; height: 290px" alt="...">
                         </div>
                         <!--div class="col-md-8">
                         </div-->
@@ -17,18 +17,18 @@
                
                 {{#sesion}}
                 {{#suscripto}}
-                 <form action="/suscripcion/mostrarAlta" method="GET">
+                 <form action="/suscripcion/mostrarAlta" method="GET" class="d-inline-block py-2 mb-2 me-2">
                     <input type="hidden" name="IdProducto" value={{Id}}>
                     <button class="btn btn-success" type="submit" disabled>Suscribirse</button>
                 </form> 
                 {{/suscripto}}
                 {{^suscripto}}
-                <form action="/suscripcion/mostrarAlta" method="GET">
+                <form action="/suscripcion/mostrarAlta" method="GET" class="d-inline-block py-2 mb-2 me-2">
                     <input type="hidden" name="IdProducto" value={{Id}}>
                     <button class="btn btn-success" type="submit" >Suscribirse</button>
                 </form>  
                 {{/suscripto}}
-                <form action="/edicion/listar" method="GET">
+                <form action="/edicion/listar" method="GET" class="d-inline-block py-2 mb-2">
                     <input type="hidden" name="IdProducto" value={{Id}}>
                     <button class="btn btn-primary" type="submit" >Comprar</a>
                 </form>
