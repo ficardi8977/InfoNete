@@ -19,13 +19,13 @@ class EdicionModel
         e.Precio,
         p.Imagen as ImagenProducto,
         p.Nombre as NombreProducto,
-        case when ".$idUsuario." = c.IdUsuario 
+        case when c.id is not null
             then true
             else false 
             end Comprado
         FROM edicion e
         JOIN producto p on p.id = e.idproducto
-        left join compra c on c.IdEdicion = e.Id
+        left join compra c on c.IdEdicion = e.Id and $idUsuario = c.IdUsuario 
         where e.IdProducto = $idProducto ORDER BY e.Numero");
     }
 
