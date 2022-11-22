@@ -24,7 +24,7 @@ google.charts.load('current', {'packages':['corechart', 'controls', 'table']});
               success:  function (result) {
   
                   var data = new google.visualization.DataTable();
-                  data.addColumn('string', 'Topping');
+                  data.addColumn('string', 'Producto');
                   data.addColumn('number', 'Totales')
   
                   // convertir el json de resultado de endpoint en object array
@@ -43,7 +43,6 @@ google.charts.load('current', {'packages':['corechart', 'controls', 'table']});
                 var pdfBarra = document.getElementById('pdfBarra');
                 // Instantiate and draw our chart, passing in some options.
                 var chart = new google.visualization.BarChart(divGrafico);
-                //chart.draw(data, options);
                 pdfBarra.addEventListener('click', function () {
                   debugger;
                   var doc = new jsPDF();

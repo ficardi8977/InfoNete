@@ -33,7 +33,7 @@ class UsuarioModel
     public function getUsuario($nombre, $password)
     {
         $passMd5 = $this->EncriptarClave($password);
-        $sql = "SELECT * 
+        $sql = "SELECT u.* 
                 FROM usuario u 
                 join contraseña c on c.idUsuario = u.id   
                 where 
@@ -161,6 +161,15 @@ class UsuarioModel
         inner join producto p on (s.idProducto = p.Id)
         inner join tipoproducto tp on (p.idTipoProducto = tp.Id)
         GROUP BY p.Nombre");
+        return $this->database->query($sql);
+    }
+
+    public function cantidadEdicionesDeUnProducto(){
+        $sql = ("SELECT COUNT(*) as Cantidad, e.Numero as NumeroEdicion
+        FROM edicion e 
+        inner join producto p on (e.idProducto = p.Id)
+        inner join tipoproducto tp on (p.idTipoProducto = tp.Id)
+        GROUP BY e.Numero");
         return $this->database->query($sql);
     }
     

@@ -6,23 +6,20 @@
     </div>
 
     <div id="subtitulo">
-        <h2>{{Subtitulo}}</h2>
+        <h3>{{Subtitulo}}</h3>
     </div>
+    <div class="row">
+        <div class="col-md-6 my-5 text-center" id="cuerpo">
+            <p>{{Cuerpo}}</p>
+        </div>
 
-    <div id="cuerpo">
-        <p>{{Cuerpo}}</p>
+        <div class="col-md-6 my-5" id="imagen">
+            <img src="/public/{{imagen}}" alt="Imagen" style="width: 500px; height: 300px">
+            <div id="mapa"  style="width: 500px; height: 2px;" class="map-responsive"></div>
+        </div>
     </div>
-
-    <div id="imagen">
-        <img src="/public/{{imagen}}" alt="Imagen" style="width: 500px;">
-    </div>
-
     <input type="hidden" id="coordenadasX" value="{{CoordenadaX}}">
     <input type="hidden" id="coordenadasY" value="{{CoordenadaY}}">
-
-    <div class="col-md-6 my-5">
-        <div id="mapa" class="map-responsive"></div>
-    </div>
 
     {{#Link}}
         <div id="link">
@@ -32,19 +29,19 @@
     {{/Link}}
 
     {{#foto}}
-        <div id="foto">
+        <div id="foto" class="text-center">
             <img class="img-fluid" src="/public/{{foto}}" alt="Imagen" >
         </div>
     {{/foto}}
 
     {{#video}}
-        <div id="video">
+        <div id="video" class="text-center">>
             <video class="w-50" src="/public/{{video}}" controls></video>
         </div>
     {{/video}}
 
     {{#grabacion}}
-        <div id="grabacion">
+        <div id="grabacion" class="text-center">>
             <audio id="reproducir" src="/public/{{grabacion}}" class="col-md-4" controls></audio>
         </div>
     {{/grabacion}}

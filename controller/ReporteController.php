@@ -2,11 +2,13 @@
 
 class ReporteController{
     private $usuarioModel;
+    private $productoModel;
     private $render;
 
-    public function __construct($usuarioModel,$render){
+    public function __construct($usuarioModel,$productoModel,$render){
 
         $this->usuarioModel= $usuarioModel;
+        $this->productoModel= $productoModel;
         $this->render= $render;
 
     }
@@ -24,12 +26,10 @@ class ReporteController{
          $html = $this->render->render("listaCompraYSuscripcionProductosView.mustache", SesionData::cargar($data));
         GeneradorPdf::generarPdf($html);
     }
-
-    public function mostrarProductosConInfo(){
+    
+    public function mostrarProductosconCantidades(){
         Permisos::validarAcceso(Rol::Administrador);
-        $data["productos"] = $this->usuarioModel->getProductosConSuTipo();
-        $data["cantidadProductosVendidos"] = $this->usuarioModel->cantidadProductosVendidos();
-        $data["cantidadProductosSuscriptos"] = $this->usuarioModel->cantidadProductosSuscriptos();
+        $data["productos"] = $this->productoModel->reporteConCantidades();
         $html = $this->render->render("listaProductosConInfo.mustache", SesionData::cargar($data));
         GeneradorPdf::generarPdf($html);
     }

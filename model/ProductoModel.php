@@ -8,6 +8,7 @@ class ProductoModel
     {
         $this->database = $database;
     }
+    
     public function getproductos($idUsuario) {
         $productos = $this->database->query("SELECT Nombre, Imagen, Id
         FROM producto;");
@@ -33,7 +34,8 @@ class ProductoModel
         case  
         when p.IdTipoProducto = 1 then true
         else false
-        end as EsDiario
+        end as EsDiario,
+        p.Mensualidad
         from producto p inner join tipoproducto t on (p.IdTipoProducto=t.Id) where p.Id =".$idProducto.";");
     }
     
@@ -52,14 +54,25 @@ class ProductoModel
         return $this->database->query("SELECT * FROM tipoproducto ;");
     }
 
-    public function altaProducto($nombreProducto,$tipoProducto,$imagen){
-        $sql=("INSERT INTO producto( Nombre, IdTipoProducto, Imagen) VALUES ('$nombreProducto',$tipoProducto,'$imagen')");
+    public function altaProducto($nombreProducto,$tipoProducto,$imagen,$mensualidad){
+        $sql=("INSERT INTO producto( Nombre, IdTipoProducto, Imagen,mensualidad) VALUES ('$nombreProducto',$tipoProducto,'$imagen',$mensualidad)");
          $this->database->execute($sql);
     }
 
-    public function updateProducto($idProducto,$imagen,$nombreProducto,$tipoProducto){
-        $sql=("UPDATE producto SET Nombre='$nombreProducto',IdTipoProducto=$tipoProducto,Imagen='$imagen' WHERE Id=$idProducto;");
+    public function updateProducto($idProducto,$imagen,$nombreProducto,$tipoProducto, $mensualidad){
+        $sql=("UPDATE producto SET Nombre='$nombreProducto',IdTipoProducto=$tipoProducto,Imagen='$imagen', Mensualidad=$mensualidad WHERE Id=$idProducto;");
         $this->database->execute($sql);
+    }
+
+    public function reporteConCantidades(){
+        return $this->database->query("SELECT p.Id,
+        p.Nombre,
+        tp.Nombre as tipoproducto,
+        (select count(*) from edicion e where e.IdProducto = p.id) as cantidadEdiciones,
+        (select count(*) from suscripcion s where s.IdProducto = p.id) as cantidadSuscripciones,
+        (select count(*) from compra c join edicion ed2 on ed2.id = c.IdEdicion where ed2.IdProducto = p.id) as cantidadCompras
+        FROM producto p
+        join tipoproducto tp on tp.Id = p.IdTipoProducto;");
     }
 
     public function ventas(){

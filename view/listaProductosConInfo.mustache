@@ -9,7 +9,7 @@
   <body>
     <div class="container">
       <div class="text-center my-5">
-        <h2 style="color: #0000cc; text-align: center">Información de productos</h2>
+        <h2 >Información de productos</h2>
       </div>
       <div>
         <table class="table table-hover">
@@ -17,7 +17,9 @@
             <tr class="text-center">
                 <th scope="col">Nombre</th>
                 <th scope="col">Tipo de producto</th>
-
+                <th scope="col">Cant.Ediciones</th>
+                <th scope="col">Cant.Suscripciones</th>
+                <th scope="col">Cant.Compras</th>
             </tr>
           </thead>
           {{#productos}}
@@ -25,12 +27,27 @@
             <tr class="text-center">
               <td>
                 <div class="text-center">
-                  {{ Nombre }}
+                  {{Nombre}}
                 </div>
               </td>
               <td>
                 <div class="text-center">
-                  {{ NombreTipoProducto }}
+                  {{tipoproducto}}
+                </div>
+              </td>
+               <td>
+                <div class="text-center">
+                  {{cantidadEdiciones }}
+                </div>
+              </td>
+                <td>
+                <div class="text-center">
+                  {{ cantidadSuscripciones }}
+                </div>
+              </td>
+                <td>
+                <div class="text-center">
+                  {{ cantidadCompras }}
                 </div>
               </td>
             </tr>
@@ -38,80 +55,6 @@
           {{/productos}}
         </table>
       </div>
-        <div class="text-center my-5">
-            <h2 style="color: #0000cc; text-align: center">Cantidad de productos vendidos</h2>
-        </div>
-        <div>
-            <table class="table table-hover">
-                <thead class="table-dark">
-                <tr class="text-center">
-                    <th scope="col">Nombre Producto</th>
-                    <th scope="col">Cantidad</th>
-
-                </tr>
-                </thead>
-                {{#cantidadProductosVendidos}}
-                    <tbody>
-                    <tr class="text-center">
-                        <td>
-                            <div class="text-center">
-                                {{ NombreProducto }}
-                            </div>
-                        </td>
-                        <td>
-                            <div class="text-center">
-                                {{ Cantidad }}
-                            </div>
-                        </td>
-                        <td></td>
-                    </tr>
-                    </tbody>
-                {{/cantidadProductosVendidos}}
-            </table>
-        </div>
-        <div class="text-center my-5">
-            <h2 style="color: #0000cc; text-align: center">Cantidad de productos suscriptos</h2>
-        </div>
-        <div>
-            <table class="table table-hover">
-                <thead class="table-dark">
-                <tr class="text-center">
-                    <th scope="col">Nombre Producto</th>
-                    <th scope="col">Cantidad</th>
-                    <th scope="col">Fecha Desde</th>
-                    <th scope="col">Fecha Hasta</th>
-                </tr>
-                </thead>
-                {{#cantidadProductosSuscriptos}}
-                    <tbody>
-                    <tr class="text-center">
-                        <td>
-                            <div class="text-center">
-                                {{ NombreProducto }}
-                            </div>
-                        </td>
-                        <td>
-                            <div class="text-center">
-                                {{ Cantidad }}
-                            </div>
-                        </td>
-
-                        <td>
-                            <div class="text-center">
-                                {{ FechaDesde }}
-                            </div>
-                        </td>
-                        <td>
-                            <div class="text-center">
-                                {{ FechaHasta }}
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                {{/cantidadProductosSuscriptos}}
-            </table>
-        </div>
-
   </body>
 </html>
 
