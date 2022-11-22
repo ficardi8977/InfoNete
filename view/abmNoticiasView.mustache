@@ -1,5 +1,6 @@
 {{> header}}
 <div class="container" id="ABMNoticias" style="min-height:calc(100vh - 17.5rem);">
+<h1 class="text-center"> ABM de Noticias</h1>
     <input type="hidden" id="IdEdicionSeccion" value="{{IdEdicionSeccion}}">
     <!--<h1 class="display-1 text-center m-4">ABM NOTICIAS</h1>-->
     <form class="form-inline" id="buscar" action="/noticia/buscar" method="GET">
@@ -11,6 +12,14 @@
         </div>
         <div id="busquedaVacia" class="text-danger pt-1"></div>
     </form>
+    <div class="col-md-12">
+    <div class="alert alert-primary" role="alert"> 
+        <p>Dar de alta a una noticia:</p>
+        <p>1- Seleccionar un producto</p>
+        <p>2- Seleccionar un edición</p>
+        <p>3- Asignar una sección</p>
+    </div> 
+</div>  
     <form action="/noticia/listarNoticias" method="GET">
         <div class="row my-4">
             <div class="col-md-3" id="listarProductos"></div>
