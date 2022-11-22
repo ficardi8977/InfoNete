@@ -30,7 +30,8 @@ class ProductoModel
         case  
         when p.IdTipoProducto = 1 then true
         else false
-        end as EsDiario
+        end as EsDiario,
+        p.Mensualidad
         from producto p inner join tipoproducto t on (p.IdTipoProducto=t.Id) where p.Id =".$idProducto.";");
     }
     
@@ -49,13 +50,13 @@ class ProductoModel
         return $this->database->query("SELECT * FROM tipoproducto ;");
     }
 
-    public function altaProducto($nombreProducto,$tipoProducto,$imagen){
-        $sql=("INSERT INTO producto( Nombre, IdTipoProducto, Imagen) VALUES ('$nombreProducto',$tipoProducto,'$imagen')");
+    public function altaProducto($nombreProducto,$tipoProducto,$imagen,$mensualidad){
+        $sql=("INSERT INTO producto( Nombre, IdTipoProducto, Imagen,mensualidad) VALUES ('$nombreProducto',$tipoProducto,'$imagen',$mensualidad)");
          $this->database->execute($sql);
     }
 
-    public function updateProducto($idProducto,$imagen,$nombreProducto,$tipoProducto){
-        $sql=("UPDATE producto SET Nombre='$nombreProducto',IdTipoProducto=$tipoProducto,Imagen='$imagen' WHERE Id=$idProducto;");
+    public function updateProducto($idProducto,$imagen,$nombreProducto,$tipoProducto, $mensualidad){
+        $sql=("UPDATE producto SET Nombre='$nombreProducto',IdTipoProducto=$tipoProducto,Imagen='$imagen', Mensualidad=$mensualidad WHERE Id=$idProducto;");
         $this->database->execute($sql);
     }
 

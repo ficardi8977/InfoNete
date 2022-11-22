@@ -29,11 +29,12 @@ class ProductoController {
     public function altaProducto(){
             Permisos::validarAcceso(Rol::Contenidista);
             $nombreProducto = $_POST['nombreProducto'];
+            $mensualidad = $_POST['mensualidad'];
             $tipoProducto = isset($_POST['tipoProducto']);
             move_uploaded_file($_FILES["imagen"]["tmp_name"], "public/" . $_FILES["imagen"]["name"]);  //tmp_name ruta donde guarda el apache el archivo
             $imagen = $_FILES["imagen"]["name"];  // Para obtener solo el nombre de la imagen
         
-            $this->productoModel->altaProducto($nombreProducto,$tipoProducto,$imagen);
+            $this->productoModel->altaProducto($nombreProducto,$tipoProducto,$imagen,$mensualidad);
 
            echo Redirect::doIt("/producto/mostrarProductos");
     }
@@ -57,8 +58,8 @@ class ProductoController {
          
          $nombreProducto = $_POST['nombreProducto'];
          $tipoProducto = $_POST['tipoProducto'];
-
-        $this->productoModel->updateProducto($_POST['Id'],$imagen,$nombreProducto,$tipoProducto);
+         $mensualidad = $_POST['mensualidad'];
+        $this->productoModel->updateProducto($_POST['Id'],$imagen,$nombreProducto,$tipoProducto,$mensualidad);
 
         echo Redirect::doIt("/producto/mostrarProductos");
 
