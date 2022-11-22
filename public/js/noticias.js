@@ -27,7 +27,7 @@ $(document).ready(function() {
             $("#borrar"+$(this).val()+"").prop('disabled', true);
         });
 
-        $(document).on("click", ".leer2", function(){
+        $(document).on("click", ".leer", function(){
             $(".form-leer"+$(this).val()+"").submit();
         });
 
@@ -67,8 +67,8 @@ $(document).ready(function() {
             $(".modificar3").html('Publicada');
             $(".modificar4").html('Rechazada');
             //boton leer (se convierte en presentar)
-            $(".leer1").html('Presentar');
-            $(".leer1").prop('class', 'btn btn-info text-light presentar1');
+            $(".leer.1").html('Presentar');
+            $(".leer.1").prop('class', 'btn btn-info text-light presentar1');
             //boton borrar
             $(".borrar1").prop('disabled', false);
             //boton aprobar
