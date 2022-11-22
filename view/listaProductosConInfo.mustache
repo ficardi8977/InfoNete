@@ -9,7 +9,7 @@
   <body>
     <div class="container">
       <div class="text-center my-5">
-        <h2 style="color: #0000cc; text-align: center">Información de productos</h2>
+        <h2 >Información de productos</h2>
       </div>
       <div>
         <table class="table table-hover">
@@ -17,6 +17,7 @@
             <tr class="text-center">
                 <th scope="col">Nombre</th>
                 <th scope="col">Tipo de producto</th>
+
 
             </tr>
           </thead>
@@ -39,7 +40,7 @@
         </table>
       </div>
         <div class="text-center my-5">
-            <h2 style="color: #0000cc; text-align: center">Cantidad de productos vendidos</h2>
+            <h2>Cantidad de productos vendidos</h2>
         </div>
         <div>
             <table class="table table-hover">
@@ -70,7 +71,7 @@
             </table>
         </div>
         <div class="text-center my-5">
-            <h2 style="color: #0000cc; text-align: center">Cantidad de productos suscriptos</h2>
+            <h2>Cantidad de productos suscriptos</h2>
         </div>
         <div>
             <table class="table table-hover">
@@ -78,8 +79,8 @@
                 <tr class="text-center">
                     <th scope="col">Nombre Producto</th>
                     <th scope="col">Cantidad</th>
-                    <th scope="col">Fecha Desde</th>
-                    <th scope="col">Fecha Hasta</th>
+
+
                 </tr>
                 </thead>
                 {{#cantidadProductosSuscriptos}}
@@ -96,22 +97,44 @@
                             </div>
                         </td>
 
-                        <td>
-                            <div class="text-center">
-                                {{ FechaDesde }}
-                            </div>
-                        </td>
-                        <td>
-                            <div class="text-center">
-                                {{ FechaHasta }}
-                            </div>
-                        </td>
-                    </tr>
+
                     </tbody>
                 {{/cantidadProductosSuscriptos}}
             </table>
         </div>
+        <div class="text-center my-5">
+            <h2>Cantidad de ediciones de un producto</h2>
+        </div>
+        <div>
+            <table class="table table-hover">
+                <thead class="table-dark">
+                <tr class="text-center">
+                    <th scope="col">Numero de edicion</th>
+                    <th scope="col">Cantidad</th>
 
+
+                </tr>
+                </thead>
+                {{#cantidadEdicionesDeUnProducto}}
+                    <tbody>
+                    <tr class="text-center">
+                        <td>
+                            <div class="text-center">
+                                {{ NumeroEdicion }}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-center">
+                                {{ Cantidad }}
+                            </div>
+                        </td>
+
+
+                    </tbody>
+                {{/cantidadEdicionesDeUnProducto}}
+            </table>
+        </div>
+    </div>
   </body>
 </html>
 
