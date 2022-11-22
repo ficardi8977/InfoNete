@@ -1,6 +1,9 @@
 {{> header}}
 <div class="container" id="ABMNoticias" style="min-height:calc(100vh - 17.5rem);">
 <h1 class="text-center"> ABM de Noticias</h1>
+    <div class="d-flex justify-content-md-start pb-4">
+        <a href="/" class="btn btn-dark d-flex align-items-center"><i class="bi bi-arrow-left-circle fs-5 me-2"></i>Volver</a>
+    </div>     
     <input type="hidden" id="IdEdicionSeccion" value="{{IdEdicionSeccion}}">
     <!--<h1 class="display-1 text-center m-4">ABM NOTICIAS</h1>-->
     <form class="form-inline" id="buscar" action="/noticia/buscar" method="GET">
