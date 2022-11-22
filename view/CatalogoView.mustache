@@ -1,42 +1,35 @@
 {{> header}}
 <div class="container">
     <h1 class="text-center mb-4">Catalogo de productos:</h1>
-<div class="row">
-  {{#productos}}
+    <div class="row">
+        {{#productos}}
 
-    <div class="col-sm-6">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">{{Nombre}}</h5>
-                <div class="row g-0 "style="max-width: 540px;">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{Nombre}}</h5>
+                    <div class="row g-0 " style="max-width: 540px;">
                         <div class="col-md-4">
-                        <img src= "../public/{{Imagen}}" class="img-fluid rounded-start" alt="...">
+                            <img src="../public/{{Imagen}}" class="img-fluid rounded-start" alt="...">
                         </div>
                         <!--div class="col-md-8">
                         </div-->
                     </div>
-               
-                {{#sesion}}
-                {{#suscripto}}
-                 <form action="/suscripcion/mostrarAlta" method="GET">
-                    <input type="hidden" name="IdProducto" value={{Id}}>
-                    <button class="btn btn-success" type="submit" disabled>Suscribirse</button>
-                </form> 
-                {{/suscripto}}
-                {{^suscripto}}
-                <form action="/suscripcion/mostrarAlta" method="GET">
-                    <input type="hidden" name="IdProducto" value={{Id}}>
-                    <button class="btn btn-success" type="submit" >Suscribirse</button>
-                </form>  
-                {{/suscripto}}
-                <form action="/edicion/listar" method="GET">
-                    <input type="hidden" name="IdProducto" value={{Id}}>
-                    <button class="btn btn-primary" type="submit" >Comprar una edición</a>
-                </form>
-                {{/sesion}}
+                    <form action="/suscripcion/mostrarAlta" method="GET">
+                        <input class="IdProducto" type="hidden" name="IdProducto" value={{Id}}>
+                        <button class="btn btn-success" type="submit" {{#suscripto}}disabled{{/suscripto}}>
+                            Suscribirse
+                        </button>
+                    </form>
+
+                    <form action="/edicion/listar" method="GET">
+                        <input type="hidden" name="IdProducto" value={{Id}}>
+                        <button class="btn btn-primary" type="submit">Comprar una edición</a>
+                    </form>
+                </div>
             </div>
         </div>
+        {{/productos}}
     </div>
-    {{/productos}}
-</div> 
-{{> footer}}
+</div>
+    {{> footer}}

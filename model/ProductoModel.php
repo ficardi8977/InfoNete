@@ -8,11 +8,20 @@ class ProductoModel
     {
         $this->database = $database;
     }
-    public function getproductos() {
-        return $this->database->query("SELECT p.Nombre as Nombre, p.Imagen as Imagen,p.Id  as Id,
-        CASE when p.Id = s.IdProducto then true 
-        else false  end as suscripto
-         FROM producto p left join suscripcion s on (p.Id= s.IdProducto);");
+    public function getproductos($idUsuario) {
+        $productos = $this->database->query("SELECT Nombre, Imagen, Id
+        FROM producto;");
+        if($idUsuario){
+            $suscripciones = $this->database->query("SELECT IdProducto 
+            FROM suscripcion WHERE IdUsuario = $idUsuario;");
+            foreach ($productos as $keyP => $valueP) {
+                foreach ($suscripciones as $valueS) {
+                    if($valueP["Id"] == $valueS["IdProducto"])
+                        $productos[$keyP]["suscripto"] = true;
+                }
+            }
+        }
+        return $productos;
     }
 
     public function getproducto($idProducto)  {

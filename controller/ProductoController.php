@@ -12,7 +12,7 @@ class ProductoController {
            Permisos::validarAcceso(Rol::Contenidista);
            $data['productos']=$this->productoModel->getProductosConSuTipo(); 
            echo $this->render->render("productosView.mustache", SesionData::cargar($data));
-    }   
+    }
 
     public function baja(){  
             Permisos::validarAcceso(Rol::Contenidista);

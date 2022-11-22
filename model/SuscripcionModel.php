@@ -21,7 +21,7 @@ class SuscripcionModel{
         '".$fechaHasta."', 
         ".$precioCalculado.")";
              
-     $this->database->execute($sql);        
+     $this->database->execute($sql);
 }
 
     public function baja($idProducto){

@@ -82,7 +82,7 @@
         </tr>
         {{/noticias}}{{/EsContenidista}}
         <tbody>
-            {{#SoloLector}}{{#noticias}}{{#ValidaLector}}
+            {{#SoloLector}}{{#noticias}}{{#Publicada}}
             <tr class='text-center' id="noticia{{Id}}">
                 <td>{{Titulo}}</td>
                 <td>{{Producto}}</td>
@@ -101,7 +101,7 @@
                     </div>
                 </td>
             </tr>
-            {{/ValidaLector}}{{/noticias}}{{/SoloLector}}
+            {{/Publicada}}{{/noticias}}{{/SoloLector}}
     </tbody>
 </table>
 {{/sesion}}

@@ -36,7 +36,7 @@ class NoticiaController {
         $data["noticias"] = $this->noticiaModel->getNoticias($idEdicionSeccion);
         foreach ($data["noticias"] as $key => $value) {
             if($value['IdEstadoNoticia'] == 3){
-                $data["noticias"][$key]["ValidaLector"] = true;
+                $data["noticias"][$key]["Publicada"] = true;
                 $data["HayNoticiasLector"] = true;
             }
         }
