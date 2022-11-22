@@ -30,6 +30,7 @@ class ReporteController{
         $data["productos"] = $this->usuarioModel->getProductosConSuTipo();
         $data["cantidadProductosVendidos"] = $this->usuarioModel->cantidadProductosVendidos();
         $data["cantidadProductosSuscriptos"] = $this->usuarioModel->cantidadProductosSuscriptos();
+        $data["cantidadEdicionesDeUnProducto"] = $this->usuarioModel->cantidadEdicionesDeUnProducto();
         $html = $this->render->render("listaProductosConInfo.mustache", SesionData::cargar($data));
         GeneradorPdf::generarPdf($html);
     }
