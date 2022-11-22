@@ -69,6 +69,7 @@ $(document).ready(function() {
             //boton leer (se convierte en presentar)
             $(".leer.1").html('Presentar');
             $(".leer.1").prop('class', 'btn btn-info text-light presentar1');
+            $(".leer.editor1").prop('disabled', true);
             //boton borrar
             $(".borrar1").prop('disabled', false);
             //boton aprobar

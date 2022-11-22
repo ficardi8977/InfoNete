@@ -9,20 +9,17 @@ class ProductoModel
         $this->database = $database;
     }
     
-    public function getproductos($idUsuario = NULL) {
-        $productos = $this->database->query("SELECT Nombre, Imagen, Id
-        FROM producto;");
-        if($idUsuario){
-            $suscripciones = $this->database->query("SELECT IdProducto 
-            FROM suscripcion WHERE IdUsuario = $idUsuario;");
-            foreach ($productos as $keyP => $valueP) {
-                foreach ($suscripciones as $valueS) {
-                    if($valueP["Id"] == $valueS["IdProducto"])
-                        $productos[$keyP]["suscripto"] = true;
-                }
-            }
+    public function getproductos() {
+        if(isset($_SESSION['IdUsuario'])){
+        $idUsuario = $_SESSION['IdUsuario'];
+        return $this->database->query("SELECT p.Nombre as Nombre, p.Imagen as Imagen,p.Id  as Id,
+        CASE when  s.id is not null then true 
+        else false  end as suscripto
+        FROM producto p left join suscripcion s on (p.Id= s.IdProducto) and s.IdUsuario = $idUsuario;");
         }
-        return $productos;
+
+        return $this->database->query("SELECT *
+        FROM producto ;");
     }
 
     public function getproducto($idProducto)  {

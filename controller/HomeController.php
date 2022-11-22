@@ -12,9 +12,7 @@ class HomeController {
 
     public function get()
     {
-        if(isset($_SESSION["IdUsuario"]))
-            $idUsuario = $_SESSION["IdUsuario"];
-        $data["productos"] = $this->productoModel->getProductos($idUsuario);
+        $data["productos"] = $this->productoModel->getProductos();
         echo $this->render->render("CatalogoView.mustache", SesionData::cargar($data));
     }
 }
