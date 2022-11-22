@@ -504,7 +504,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
-ALTER TABLE `Producto`
+ALTER TABLE `producto`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `compra`

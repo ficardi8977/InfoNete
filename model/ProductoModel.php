@@ -9,7 +9,7 @@ class ProductoModel
         $this->database = $database;
     }
     
-    public function getproductos($idUsuario) {
+    public function getproductos($idUsuario = NULL) {
         $productos = $this->database->query("SELECT Nombre, Imagen, Id
         FROM producto;");
         if($idUsuario){
