@@ -60,6 +60,17 @@ class ProductoModel
         $this->database->execute($sql);
     }
 
+    public function reporteConCantidades(){
+        return $this->database->query("SELECT p.Id,
+        p.Nombre,
+        tp.Nombre as tipoproducto,
+        (select count(*) from edicion e where e.IdProducto = p.id) as cantidadEdiciones,
+        (select count(*) from suscripcion s where s.IdProducto = p.id) as cantidadSuscripciones,
+        (select count(*) from compra c join edicion ed2 on ed2.id = c.IdEdicion where ed2.IdProducto = p.id) as cantidadCompras
+        FROM producto p
+        join tipoproducto tp on tp.Id = p.IdTipoProducto;");
+    }
+
     public function ventas(){
         return $this->database->query("SELECT 
         pr.Nombre as Producto, count(*) AS Cantidad

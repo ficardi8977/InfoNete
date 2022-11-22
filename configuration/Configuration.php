@@ -87,7 +87,7 @@ class Configuration {
     }
 
     public function getReporteController(){
-        return new ReporteController($this->createUsuarioModel(),$this->view);
+        return new ReporteController($this->createUsuarioModel(),$this->createProductoModel(),$this->view);
     }
     // //
     // CONFIGS DE MODEL //
