@@ -12,9 +12,9 @@ class ProductoModel
         if(isset($_SESSION['IdUsuario'])){
         $idUsuario = $_SESSION['IdUsuario'];
         return $this->database->query("SELECT p.Nombre as Nombre, p.Imagen as Imagen,p.Id  as Id,
-        CASE when  s.IdUsuario = $idUsuario then true 
+        CASE when  s.id is not null then true 
         else false  end as suscripto
-        FROM producto p left join suscripcion s on (p.Id= s.IdProducto);");
+        FROM producto p left join suscripcion s on (p.Id= s.IdProducto) and s.IdUsuario = $idUsuario;");
         }
 
         return $this->database->query("SELECT *
