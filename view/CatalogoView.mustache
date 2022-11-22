@@ -4,7 +4,7 @@
 <div class="row">
   {{#productos}}
 
-    <div class="col-sm-6 text-center">
+    <div class="col-sm-4 text-center">
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">{{Nombre}}</h5>
@@ -31,7 +31,7 @@
                 {{/suscripto}}
                 <form action="/edicion/listar" method="GET">
                     <input type="hidden" name="IdProducto" value={{Id}}>
-                    <button class="btn btn-primary" type="submit" >Comprar una edición</a>
+                    <button class="btn btn-primary" type="submit" >Comprar</a>
                 </form>
                 {{/sesion}}
             </div>
