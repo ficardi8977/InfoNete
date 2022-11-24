@@ -1,80 +1,80 @@
 {{> header}}
-<div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
-<h1>Mis compras</h1>
-</div>
-<div class="container">     
-    <div class="d-flex justify-content-md-start pb-4">
+<div class="container py-5 w-75 d-flex justify-content-between" style="" id="band">
+    <div class="d-inline-block float-left">
         <a href="/" class="btn btn-dark d-flex align-items-center"><i class="bi bi-arrow-left-circle fs-5 me-2"></i>Volver</a>
-    </div>      
+    </div>
+    <h1>Mis compras</h1>
+    <div></div>
+</div>
+<div class="container mt-3">
+    <div class="row m-0">
+            <table class="table">
+                    <thead class="table-dark">
+                            <tr class="text-center">
+                                    <th scope="col">Producto</th>
+                                    <th scope="col">Nombre Producto</th>
+                                    <th scope="col">Tipo Producto</th>
+                                    <th scope="col">Nro Edición</th>
+                                    <th scope="col">Fecha Edición</th>
+                                    <th scope="col">Precio compra</th>
+                                    <th scope="col">Pago</th>
+                                    <th scope="col">Accion</th>
+         </tr>
+                    </thead>
+            {{#compras}}
+            <tbody>
+                    <tr class="text-center">
+                            <td>
+                            <div class="col-12 my-5 ">
+                                    <div class="row g-0 text-center"style="max-width: 540px;">
+                                            <div>
+                                            <img src= "../public/{{ImagenProducto}}" class="img-fluid rounded" alt="...">
+                                            </div>
+                                    </div>
+                            </div>
+                            </td>
+                            <td class="align-middle fs-5"><p class="m-0">{{NombreProducto}}</p>
+                            </td>
+                            <td class="align-middle fs-5">{{TipoProducto}}</td>
+                            <td class="align-middle fs-5">{{NumeroEdicion}}</td>
+                            <td class="align-middle fs-5">{{FechaEdicion}}</td>
+                            <td class="align-middle fs-5">{{PrecioCompra}}</td>
+                            {{#Pagado}}
+                            <td class="align-middle fs-2"><i class="bi bi-check"></i></td>
+                            {{/Pagado}}
+                            <td class="align-middle fs-5">
+                                    <div class="py-2">
+                                     <form action="/edicion/detalle" method="get">
+                                            <input type="hidden" name="IdEdicion" value={{IdEdicion}}>
+                                            <button class="btn btn-primary" type="submit" >Leer</button>
+                                    </form>
+                                    </div>
+                            </td>
+                            </tr>
+                    <tr>
+            </tbody>
+            {{/compras}}
+            </table>
+    </div>
+    <form class="mt-4 g-3 needs-validation mb-5" action="/reporte/reporteMisCompras" method="get" novalidate>
         <div class="row">
-                <table class="table">
-                        <thead class="table-dark">
-                                <tr class="text-center">
-                                        <th scope="col">Producto</th>
-                                        <th scope="col">Nombre Producto</th>
-                                        <th scope="col">Tipo Producto</th>
-                                        <th scope="col">Nro Edición</th>
-                                        <th scope="col">Fecha Edición</th>
-                                        <th scope="col">Precio compra</th>
-                                        <th scope="col">Pago</th>
-                                        <th scope="col">Accion</th>
-             </tr>
-                        </thead>
-                {{#compras}}
-                <tbody>
-                        <tr class="text-center">
-                                <td> 
-                                <div class="col-12 my-5 ">
-                                        <div class="row g-0 text-center"style="max-width: 540px;">
-                                                <div>
-                                                <img src= "../public/{{ImagenProducto}}" class="img-fluid rounded" alt="...">
-                                                </div>
-                                        </div>
-                                </div>
-                                </td>
-                                <td class="align-middle"><p>{{NombreProducto}}</p>
-                                </td>
-                                <td class="align-middle">{{TipoProducto}}</td>
-                                <td class="align-middle">{{NumeroEdicion}}</td>
-                                <td class="align-middle">{{FechaEdicion}}</td>
-                                <td class="align-middle">{{PrecioCompra}}</td>
-                                {{#Pagado}}
-                                <td class="align-middle"><i class="bi bi-check"></i></td>
-                                {{/Pagado}}
-                                <td class="align-middle">
-                                        <div class="py-2">                                       
-                                         <form action="/edicion/detalle" method="get">
-                                                <input type="hidden" name="IdEdicion" value={{IdEdicion}}>       
-                                                <button class="btn btn-primary" type="submit" >Leer</button>
-                                        </form>
-                                        </div>
-                                </td>
-                                </tr>
-                        <tr>
-                </tbody>
-                {{/compras}}    
-                </table>
-                           <form class="row g-3 needs-validation" action="/reporte/reporteMisCompras" method="get" novalidate>
-                        <div class="row">
-                                <div class="col-sm">
-                                        <div class="card">
-                                                <h3>Reporte de compras </h3>
-                                                <div class="card-body">
-                                                        <label for="fechaDesde">Fecha desde: </label>
-                                                        <input type = "date" class="form-control" id="fechaDesde" name="fechaDesde" required>
-                                                        <div class="invalid-feedback">valor requerido!</div>
+            <div class="col-sm">
+                <div class="card">
+                    <h3 class="ps-3 pt-3 m-0">Reporte de compras </h3>
+                    <div class="card-body">
+                        <label class="form-label" for="fechaDesde">Fecha desde: </label>
+                        <input class="form-control mb-3" type="date" class="form-control" id="fechaDesde" name="fechaDesde" required>
+                        <div class="invalid-feedback">valor requerido!</div>
 
-                                                        <label for="fechaHasta">Fecha hasta: </label>
-                                                        <input type = "date" class="form-control" id="fechaHasta" name="fechaHasta" required>
-                                                        <div class="invalid-feedback">valor requerido!</div>
-                                                        
-                                                        <button class="btn btn-primary" type="submit" >Generar reporte</a>
-                                                </div>
-                                        </div>
-                                </div>
+                        <label class="form-label" for="fechaHasta">Fecha hasta: </label>
+                        <input class="form-control mb-3" type = "date" class="form-control" id="fechaHasta" name="fechaHasta" required>
+                        <div class="invalid-feedback">valor requerido!</div>
 
-                        </div> 
-                </form> 
-        </div> 
+                        <button class="btn btn-primary" type="submit" >Generar reporte</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
 {{> footer}}
