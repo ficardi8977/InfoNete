@@ -23,4 +23,15 @@ $(document).ready(function() {
             $("#verFotoOVideo").html("<img id='imagen_' src=" + url + " class='img-fluid'>");
         }
     });
+
+    $("#formulario").submit(function(e){
+        if(!$(".tinymce").val()){
+            e.preventDefault($("#textareaVacio").html("Complete el cuerpo de la noticia"));
+            $('html, body').animate({
+                scrollTop: $("#textareaVacio").offset().top
+                }, 0);
+        }
+    });
+    
+    
 });

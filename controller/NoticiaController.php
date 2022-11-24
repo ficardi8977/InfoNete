@@ -164,7 +164,8 @@ class NoticiaController {
             $data = $this->noticiaModel->getNoticia($idNoticia);
             echo $this->render->render("leerNoticiaView.mustache", SesionData::cargar($data));
         }
-        Redirect::doIt();
+        else
+            Redirect::doIt();
     }
 
     public function recibirDatosNoticia()

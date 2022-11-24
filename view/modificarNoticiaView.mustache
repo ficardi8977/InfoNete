@@ -1,6 +1,6 @@
 {{> header}}
 <div class="container">
-    <form class="row g-3 mb-3" action="/noticia/actualizar" method="post" enctype="multipart/form-data">
+    <form class="row g-3 mb-3" id="formulario" action="/noticia/actualizar" method="post" enctype="multipart/form-data">
 
         <input type="hidden" name="IdEdicionSeccion" value={{IdEdicionSeccion}}>
         <input type="hidden" name="idNoticia" id="idNoticia" value="{{Id}}">
@@ -10,9 +10,10 @@
 
         <label for="subtitulo">Subtítulo de la noticia:</label>
         <input type="text" id="subtitulo" name="subtitulo" class="form-control" value="{{Subtitulo}}" required>
-
+        
+        <div id="textareaVacio" class="text-danger pt-1"></div>
         <label for="cuerpo">Cuerpo de la noticia:</label>
-        <textarea id="cuerpo" name="cuerpo" class="tinymce form-control" rows="15" required>{{Cuerpo}}</textarea>
+        <textarea id="cuerpo" name="cuerpo" class="tinymce form-control" rows="15">{{Cuerpo}}</textarea>
 
         <label for="imagen">Insertar imagen: </label>
         <input type="file" accept="image/jpeg,image/png" id="imagen" name="imagen" class="form-control">
