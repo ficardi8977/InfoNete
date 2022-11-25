@@ -1,8 +1,8 @@
 {{#sesion}}
-<h1 class="text-center">Noticias de la sección</h1>
+<h1 class="text-center my-5">Noticias de la sección</h1>
 <table id="tablaNoticias" class='table table-hover table-striped'>
     <thead>
-        <tr class='text-center table-dark'>
+        <tr class='text-center table-dark align-middle'>
             <th scope='col'>Imagen</th>
             <th scope='col'>Titulo Noticia</th>
             <th scope='col'>Diario o Revista</th>
@@ -13,17 +13,17 @@
     </thead>
     <tbody>
         {{#EsContenidista}}{{#noticias}}
-        <tr class='text-center' id="noticia{{Id}}">
-            <td><img src="/public/{{Imagen}}" class="img-thumbnail" alt="Imagen"></td>
+        <tr class='text-center align-middle' id="noticia{{Id}}">
+            <td><img src="/public/{{Imagen}}" class="p-3" alt="Imagen" style="width: 22rem; height: 14rem; object-fit: cover"></td>
             <td>{{Titulo}}</td>
             <td>{{Producto}}</td>
-            <td>{{Edicion}}</td>
-            <td>{{Seccion}}</td>
-            <td class="col-md-5">
-                <div class='d-flex justify-content-center'>
+            <td class="col-md-1">{{Edicion}}</td>
+            <td class="col-md-1">{{Seccion}}</td>
+            <td class="col-md-2">
+                <div class='d-flex justify-content-center flex-column'>
                     {{#EsEditor}}
                     <form action="/noticia/leer" method="POST">
-                        <div class='px-2'>
+                        <div class='px-2 py-1'>
                             <button class='btn btn-info text-light leer editor{{IdEstadoNoticia}}' name="idNoticia" style="width: 8rem;" type='submit'
                                 value="{{Id}}">
                                 Leer
@@ -32,13 +32,13 @@
                     </form>
                     {{/EsEditor}}
                     {{#SoloEditor}}
-                    <div class='px-2'>
+                    <div class='px-2 py-1'>
                         <button class='btn btn-success aprobar{{IdEstadoNoticia}}' id="aprobar{{Id}}"
                             style="width: 8rem;" name="aprobar" type='button' value="{{Id}}" disabled>
                             Aprobar
                         </button>
                     </div>
-                    <div class='px-2'>
+                    <div class='px-2 py-1'>
                         <button class='btn btn-danger rechazar{{IdEstadoNoticia}}' id="rechazar{{Id}}"
                             style="width: 8rem;" name="rechazar" type='button' value="{{Id}}" disabled>
                             Rechazar
@@ -46,7 +46,7 @@
                     </div>
                     {{/SoloEditor}}
                     {{#EsAdministrador}}
-                    <div class='px-2'>
+                    <div class='px-2 py-1'>
                         <button class='btn btn-danger banear{{IdEstadoNoticia}}' id="banear{{Id}}" style="width: 8rem;"
                             name="banear" type='button' value="{{Id}}" disabled>
                             Banear
@@ -57,7 +57,7 @@
                     {{#SoloContenidista}}
                     <form class="form-leer{{Id}}" action="/noticia/leer" method="POST">
                         <input type="hidden" name="idNoticia" value="{{Id}}">
-                        <div class='px-2'>
+                        <div class='px-2 py-1'>
                             <button class='btn btn-info text-light leer {{IdEstadoNoticia}}' name="leer"
                                 style="width: 8rem;" type='button' value="{{Id}}">
                                 Leer
@@ -66,14 +66,14 @@
                     </form>
                     <form action="/noticia/modificar" method="POST">
                         <input type="hidden" name="IdEdicionSeccion" value={{IdEdicionSeccion}}>
-                        <div class='px-2'>
+                        <div class='px-2 py-1'>
                             <button class='btn btn-primary modificar{{IdEstadoNoticia}}' id="modificar{{Id}}"
                                 style="width: 8rem;" name="modificar" type='submit' value="{{Id}}" disabled>
                                 Modificar
                             </button>
                         </div>
                     </form>
-                    <div class='px-2'>
+                    <div class='px-2 py-1'>
                         <button class='btn btn-danger borrar{{IdEstadoNoticia}}' id="borrar{{Id}}" style="width: 8rem;"
                             name="borrar" type='button' value="{{Id}}" disabled>
                             Borrar
