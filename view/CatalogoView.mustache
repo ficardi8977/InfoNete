@@ -17,10 +17,11 @@
                
                 {{#sesion}}
                 {{#suscripto}}
-                 <form action="/suscripcion/mostrarAlta" method="GET" class="d-inline-block py-2 mb-2 me-2">
-                    <input type="hidden" name="IdProducto" value={{Id}}>
-                    <button class="btn btn-success" type="submit" disabled>Suscribirse</button>
-                </form> 
+                 <form action="/suscripcion/ediciones" method="get"
+                    class="d-inline-block py-2 mb-2 me-2">
+                    <input type="hidden" name="IdSuscripcion" value={{IdSuscripcion}}>
+                    <td><button class="btn btn-success">Leer</button></td>
+                </form>
                 {{/suscripto}}
                 {{^suscripto}}
                 <form action="/suscripcion/mostrarAlta" method="GET" class="d-inline-block py-2 mb-2 me-2">
