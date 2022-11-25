@@ -3,26 +3,27 @@
 <h1 class="text-center"> ABM de Noticias</h1>
     <div class="d-flex justify-content-md-start pb-4">
         <a href="/" class="btn btn-dark d-flex align-items-center"><i class="bi bi-arrow-left-circle fs-5 me-2"></i>Volver</a>
-    </div>     
+    </div>
     <input type="hidden" id="IdEdicionSeccion" value="{{IdEdicionSeccion}}">
     <!--<h1 class="display-1 text-center m-4">ABM NOTICIAS</h1>-->
     <form class="form-inline" id="buscar" action="/noticia/buscar" method="GET">
         <div class="row">
             <div class="col-md-9">
-                <input class="form-control" id="busqueda" autocomplete="off" type="text" name="busqueda" placeholder="Buscar noticia...">
+                <input class="form-control" id="busqueda" autocomplete="off" type="text" name="busqueda"
+                    placeholder="Buscar noticia...">
             </div>
             <button class="btn btn-primary col-md-3" type="submit">Buscar</button>
         </div>
         <div id="busquedaVacia" class="text-danger pt-1"></div>
     </form>
     <div class="col-md-12">
-    <div class="alert alert-primary" role="alert"> 
-        <p>Dar de alta a una noticia:</p>
-        <p>1- Seleccionar un producto</p>
-        <p>2- Seleccionar un edición</p>
-        <p>3- Asignar una sección</p>
-    </div> 
-</div>  
+        <div class="alert alert-primary" role="alert">
+            <p>Dar de alta a una noticia:</p>
+            <p>1- Seleccionar un producto</p>
+            <p>2- Seleccionar un edición</p>
+            <p>3- Asignar una sección</p>
+        </div>
+    </div>
     <form action="/noticia/listarNoticias" method="GET">
         <div class="row my-4">
             <div class="col-md-3" id="listarProductos"></div>
@@ -32,7 +33,7 @@
                 Noticias</button>
         </div>
     </form>
-    <div id="imagen" class="d-flex justify-content-center" ></div>
+    <div id="imagen" class="d-flex justify-content-center"></div>
 </div>
 <script type="text/javascript" src="/public/js/noticias.js"></script>
 {{> footer}}

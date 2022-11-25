@@ -21,7 +21,7 @@ $(document).ready(function() {
         $(document).on("click", ".presentar1", function(){
             buttonClick(this.value, "/noticia/presentar");
             $(this).html("Leer");
-            $(this).prop('class', 'btn btn-info text-light leer2');
+            $(this).prop('class', 'btn btn-info text-light leer 2');
             $("#modificar"+$(this).val()+"").prop('disabled', true);
             $("#modificar"+$(this).val()+"").html('En espera...');
             $("#borrar"+$(this).val()+"").prop('disabled', true);

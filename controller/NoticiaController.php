@@ -28,10 +28,8 @@ class NoticiaController {
         else
             $idEdicionSeccion = $_GET['IdEdicionSeccion'];
         
-        if(isset($_GET["errMsg"])){
+        if(isset($_GET["errMsg"]))
             $data["errMsg"] = $_GET["errMsg"];
-
-        }
         $data["IdEdicionSeccion"] = $idEdicionSeccion;
         $data["noticias"] = $this->noticiaModel->getNoticias($idEdicionSeccion);
         foreach ($data["noticias"] as $key => $value) {
@@ -164,7 +162,8 @@ class NoticiaController {
             $data = $this->noticiaModel->getNoticia($idNoticia);
             echo $this->render->render("leerNoticiaView.mustache", SesionData::cargar($data));
         }
-        Redirect::doIt();
+        else
+            Redirect::doIt();
     }
 
     public function recibirDatosNoticia()
