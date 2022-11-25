@@ -1,7 +1,11 @@
 {{> header}}
 <body onload="cargarGraficos()">
     <!--Div that will hold the pie chart-->
+    <div class="container">
     <h1 class="text-center">Estadisticas graficas</h1>
+                            <div class="d-flex justify-content-md-start pb-4">
+                        <a href="/" class="btn btn-dark d-flex align-items-center"><i class="bi bi-arrow-left-circle fs-5 me-2"></i>Volver</a>
+                    </div>  
     <div class="row">
       <div class="col-sm-6"> 
         <div id="pieChart_div"></div>
@@ -15,6 +19,7 @@
             <button id = "pdfBarra"class="btn btn-primary">Generar PDF</button>
           </div>
       </div>
+    </div>
     </div>
   </body>
   {{> footer}}

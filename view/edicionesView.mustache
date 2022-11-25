@@ -3,13 +3,16 @@
         <div class="row justify-content-center "> 
                 <div class="text-center">
                     <h1>Mi Suscripción "{{ediciones.0.NombreProducto}}" </h1>
-                </div>           
-                
+                </div>      
                  <div class="col-8 my-5 text-center ">
                 <div>
                     <img src= "../public/{{ediciones.0.ImagenProducto}}" class="img-fluid rounded" alt="...">
                 </div>  
                 </div>
+                                    <div class="d-flex justify-content-md-start pb-4">
+                        <a href="/suscripcion/misSuscripciones" class="btn btn-dark d-flex align-items-center"><i class="bi bi-arrow-left-circle fs-5 me-2"></i>Volver</a>
+                    </div>          
+                
                 <div class="alert alert-primary" role="alert">
                 A continuación vas a visualizar las ediciones correspondientes desde la fecha 
                 {{ediciones.0.FechaDesde}} hasta {{ediciones.0.FechaHasta}} 
