@@ -145,33 +145,6 @@ class UsuarioModel
         return $this->database->query($sql);
     }
 
-    public function cantidadProductosVendidos(){
-        $sql =("SELECT COUNT(*) as Cantidad, p.Nombre as NombreProducto  
-        FROM compra c 
-        inner join edicion e on(c.idEdicion = e.Id)
-        inner join producto p on (e.idProducto = p.Id)
-        inner join tipoproducto tp on (p.idTipoProducto = tp.Id)
-        GROUP BY p.Nombre");
-        return $this->database->query($sql);
-    }
-
-    public function cantidadProductosSuscriptos(){
-        $sql =("SELECT COUNT(*) as Cantidad, p.Nombre as NombreProducto,  s.FechaDesde as FechaDesde, s.FechaHasta as FechaHasta
-        FROM suscripcion s 
-        inner join producto p on (s.idProducto = p.Id)
-        inner join tipoproducto tp on (p.idTipoProducto = tp.Id)
-        GROUP BY p.Nombre");
-        return $this->database->query($sql);
-    }
-
-    public function cantidadEdicionesDeUnProducto(){
-        $sql = ("SELECT COUNT(*) as Cantidad, e.Numero as NumeroEdicion
-        FROM edicion e 
-        inner join producto p on (e.idProducto = p.Id)
-        inner join tipoproducto tp on (p.idTipoProducto = tp.Id)
-        GROUP BY e.Numero");
-        return $this->database->query($sql);
-    }
     
     public function reporteCompras($fechaDesde, $fechaHasta)
     {
@@ -193,5 +166,15 @@ class UsuarioModel
             where c.FechaCompra >= '".$fechaDesde.
             "' and c.FechaCompra < '".$fechaHasta.
             "' and c.IdUsuario = $idUsuario and c.Pagado = 1");
+    }
+
+    public function noticiasAAprobar(){
+        $sql = ("SELECT n.Titulo, n.Subtitulo, n.Cuerpo, en.Id as Estado
+        FROM noticia n
+        JOIN estadonoticia en on n.IdEstadoNoticia = en.Id
+        WHERE IdEstadoNoticia = 2" );
+
+        return $this->database->query($sql);
+
     }
 }

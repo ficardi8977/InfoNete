@@ -21,7 +21,7 @@ public static function  generarPdf($html){
         $dompdf->render();
 
         // Output the generated PDF to Browser
-        $dompdf->stream("document.pdf" , ['Attachment' => 0]);
+        $dompdf->stream("document.pdf" , ['Attachment' => 1]);
 
 
 
