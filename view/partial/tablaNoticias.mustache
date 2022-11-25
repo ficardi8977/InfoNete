@@ -3,6 +3,7 @@
 <table id="tablaNoticias" class='table table-hover table-striped'>
     <thead>
         <tr class='text-center table-dark'>
+            <th scope='col'>Imagen</th>
             <th scope='col'>Titulo Noticia</th>
             <th scope='col'>Diario o Revista</th>
             <th scope='col'>Edicion</th>
@@ -13,6 +14,7 @@
     <tbody>
         {{#EsContenidista}}{{#noticias}}
         <tr class='text-center' id="noticia{{Id}}">
+            <td><img src="/public/{{Imagen}}" class="img-thumbnail" alt="Imagen"></td>
             <td>{{Titulo}}</td>
             <td>{{Producto}}</td>
             <td>{{Edicion}}</td>
@@ -22,7 +24,7 @@
                     {{#EsEditor}}
                     <form action="/noticia/leer" method="POST">
                         <div class='px-2'>
-                            <button class='btn btn-info text-light leer editor{{IdEstadoNoticia}}' name="idNoticia" style="width: 9rem;" type='submit'
+                            <button class='btn btn-info text-light leer editor{{IdEstadoNoticia}}' name="idNoticia" style="width: 8rem;" type='submit'
                                 value="{{Id}}">
                                 Leer
                             </button>
@@ -32,20 +34,20 @@
                     {{#SoloEditor}}
                     <div class='px-2'>
                         <button class='btn btn-success aprobar{{IdEstadoNoticia}}' id="aprobar{{Id}}"
-                            style="width: 9rem;" name="aprobar" type='button' value="{{Id}}" disabled>
+                            style="width: 8rem;" name="aprobar" type='button' value="{{Id}}" disabled>
                             Aprobar
                         </button>
                     </div>
                     <div class='px-2'>
                         <button class='btn btn-danger rechazar{{IdEstadoNoticia}}' id="rechazar{{Id}}"
-                            style="width: 9rem;" name="rechazar" type='button' value="{{Id}}" disabled>
+                            style="width: 8rem;" name="rechazar" type='button' value="{{Id}}" disabled>
                             Rechazar
                         </button>
                     </div>
                     {{/SoloEditor}}
                     {{#EsAdministrador}}
                     <div class='px-2'>
-                        <button class='btn btn-danger banear{{IdEstadoNoticia}}' id="banear{{Id}}" style="width: 9rem;"
+                        <button class='btn btn-danger banear{{IdEstadoNoticia}}' id="banear{{Id}}" style="width: 8rem;"
                             name="banear" type='button' value="{{Id}}" disabled>
                             Banear
                         </button>
@@ -57,7 +59,7 @@
                         <input type="hidden" name="idNoticia" value="{{Id}}">
                         <div class='px-2'>
                             <button class='btn btn-info text-light leer {{IdEstadoNoticia}}' name="leer"
-                                style="width: 9rem;" type='button' value="{{Id}}">
+                                style="width: 8rem;" type='button' value="{{Id}}">
                                 Leer
                             </button>
                         </div>
@@ -66,13 +68,13 @@
                         <input type="hidden" name="IdEdicionSeccion" value={{IdEdicionSeccion}}>
                         <div class='px-2'>
                             <button class='btn btn-primary modificar{{IdEstadoNoticia}}' id="modificar{{Id}}"
-                                style="width: 9rem;" name="modificar" type='submit' value="{{Id}}" disabled>
+                                style="width: 8rem;" name="modificar" type='submit' value="{{Id}}" disabled>
                                 Modificar
                             </button>
                         </div>
                     </form>
                     <div class='px-2'>
-                        <button class='btn btn-danger borrar{{IdEstadoNoticia}}' id="borrar{{Id}}" style="width: 9rem;"
+                        <button class='btn btn-danger borrar{{IdEstadoNoticia}}' id="borrar{{Id}}" style="width: 8rem;"
                             name="borrar" type='button' value="{{Id}}" disabled>
                             Borrar
                         </button>
@@ -85,6 +87,7 @@
         <tbody>
             {{#SoloLector}}{{#noticias}}{{#Publicada}}
             <tr class='text-center' id="noticia{{Id}}">
+                <td><img src="/public/{{Imagen}}" class="img-thumbnail" alt="Imagen"></td>
                 <td>{{Titulo}}</td>
                 <td>{{Producto}}</td>
                 <td>{{Edicion}}</td>
@@ -93,7 +96,7 @@
                     <div class='d-flex justify-content-center'>
                         <form action="/noticia/leer" method="POST">
                             <div class='px-2'>
-                                <button class='btn btn-info text-light leer' name="idNoticia" style="width: 9rem;" type='submit'
+                                <button class='btn btn-info text-light leer' name="idNoticia" style="width: 8rem;" type='submit'
                                     value="{{Id}}">
                                     Leer
                                 </button>
