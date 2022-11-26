@@ -30,7 +30,7 @@ class SuscripcionController{
             Permisos::validarAcceso(Rol::Lector);             
             $data['suscripciones']= $this->suscripcion->listSuscripciones();
             $html = $this->render->render("reporteMisSuscripcionesView.mustache", SesionData::cargar($data));
-            GeneradorPdf::generarPdf($html);
+            GeneradorPdf::generarPdf($html,'MisSuscripciones.pdf');
         }
 
     public function alta(){

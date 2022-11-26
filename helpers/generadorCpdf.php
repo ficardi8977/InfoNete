@@ -7,7 +7,7 @@ class   GeneradorPdf{
 
 
 
-public static function  generarPdf($html){
+public static function  generarPdf($html, $nombreArchivo){
    
 
         // instantiate and use the dompdf class
@@ -21,7 +21,7 @@ public static function  generarPdf($html){
         $dompdf->render();
 
         // Output the generated PDF to Browser
-        $dompdf->stream("document.pdf" , ['Attachment' => 1]);
+        $dompdf->stream($nombreArchivo , ['Attachment' => 1]);
 
 
 
