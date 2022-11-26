@@ -83,7 +83,7 @@ class EdicionModel
         join seccion s on s.Id = es.IdSeccion
         join producto p on p.id = e.idproducto
         join noticia n on n.IdEdicionSeccion = es.id
-        where IdEdicion = $idEdicion group by s.Id, s.Nombre");      
+        where IdEdicion = $idEdicion and n.idEstadoNoticia = 3 group by s.Id, s.Nombre");      
     }
 
     public function desasociarSeccion($idEdicion,$idSeccion)
