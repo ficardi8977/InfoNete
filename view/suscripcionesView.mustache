@@ -1,60 +1,65 @@
 {{> header}}
-<div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
+<div class="w3-container w3-content w3-center w3-padding-16" style="max-width:800px" id="band">
 <h1>Mis suscripciones</h1>
 </div>
   
-<div class="container">             
-        <div class="d-flex flex-row-reverse">
-        <a href="/suscripcion/reporteMisSuscripciones" class="btn btn-primary" type="submit" >Generar reporte</a>
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center py-4">
+        <div class="">
+            <a href="/" class="btn btn-dark d-flex align-items-center"><i class="bi bi-arrow-left-circle fs-5 me-2"></i>Volver</a>
         </div>
+        <div class="">
+            <a href="/suscripcion/reporteMisSuscripciones" class="btn btn-primary" type="submit" >Generar reporte</a>
+        </div>
+    </div>
 
-        <div class="row">
-                <table class="table">
-                        <thead class="table-dark">
-                                <tr class="text-center">
-                                        <th scope="col">Producto</th>
-                                        <th>Nombre Producto</th>
-                                        <th scope="col">Tipo Producto</th>
-                                        <th scope="col">Vigencia</th>
-                                        <th scope="col">Autogestion</th>
-                                </tr>
-                        </thead>
-                {{#suscripciones}}
-                <tbody>
+    <div class="row m-0 mt-2">
+        <table class="table">
+                <thead class="table-dark">
                         <tr class="text-center">
-                                <td> 
-                                <div class="col-12 my-5 ">
-                                        <div class="row g-0 text-center"style="max-width: 540px;">
-                                                <div>
-                                                <img src= "../public/{{Imagen}}" class="img-fluid rounded" alt="...">
-                                                </div>
+                                <th scope="col">Producto</th>
+                                <th>Nombre Producto</th>
+                                <th scope="col">Tipo Producto</th>
+                                <th scope="col">Vigencia</th>
+                                <th scope="col">Autogestion</th>
+                        </tr>
+                </thead>
+        {{#suscripciones}}
+        <tbody>
+                <tr class="text-center">
+                        <td>
+                        <div class="col-12 my-5 ">
+                                <div class="row g-0 text-center"style="max-width: 540px;">
+                                        <div>
+                                        <img src= "../public/{{Imagen}}" class="img-fluid rounded" alt="...">
                                         </div>
                                 </div>
-                                </td>
-                                <td class="align-middle"><p>{{NombreProducto}}</p>
-                                </td>
-                                <td class="align-middle">{{NombreTipoProducto}}</td>
-                                <td class="align-middle">{{FechaDesde}} a {{FechaHasta}}</td>
-                                <td class="align-middle">
-                                        <div class="py-2">                                        
-                                        <form action="/suscripcion/baja" method="post">
-                                                 <input type="hidden" name="IdProducto" value={{IdProducto}}>       
-                                                 <button class="btn btn-danger" type="submit" >Desuscribirse</button>
-                                        </form>
-                                        </div>
-                                        <div class="py-2">                                       
-                                         <form action="/suscripcion/ediciones" method="get">
-                                                <input type="hidden" name="IdSuscripcion" value={{Id}}>       
-                                                <button class="btn btn-info" type="submit" >Ediciones</button>
-                                        </form> 
-                                        </div>
-                                </td>
-                                </tr>
-                        <tr>
-                </tbody>
-                {{/suscripciones}}    
-                </table>
+                        </div>
+                        </td>
+                        <td class="align-middle fs-5"><p>{{NombreProducto}}</p>
+                        </td>
+                        <td class="align-middle fs-5">{{NombreTipoProducto}}</td>
+                        <td class="align-middle fs-5">{{FechaDesde}} - {{FechaHasta}}</td>
+                        <td class="align-middle">
+                            <div class="py-2">
+                                 <form action="/suscripcion/ediciones" method="get">
+                                        <input type="hidden" name="IdSuscripcion" value={{Id}}>
+                                        <button class="btn btn-info px-4" type="submit" >Ediciones</button>
+                                </form>
+                            </div>
+                            <div class="py-2">
+                                <form action="/suscripcion/baja" method="post">
+                                    <input type="hidden" name="IdProducto" value={{IdProducto}}>
+                                    <button class="btn btn-danger" type="submit" >Desuscribirse</button>
+                                </form>
+                            </div>
+                        </td>
+                        </tr>
+                <tr>
+        </tbody>
+        {{/suscripciones}}
+        </table>
 
-        </div>
+    </div>
 </div>
 {{> footer}}

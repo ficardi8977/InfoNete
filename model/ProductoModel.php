@@ -12,7 +12,7 @@ class ProductoModel
     public function getproductos() {
         if(isset($_SESSION['IdUsuario'])){
         $idUsuario = $_SESSION['IdUsuario'];
-        return $this->database->query("SELECT p.Nombre as Nombre, p.Imagen as Imagen,p.Id  as Id,
+        return $this->database->query("SELECT p.Nombre as Nombre, p.Imagen as Imagen,p.Id  as Id, s.Id as IdSuscripcion,
         CASE when  s.id is not null then true 
         else false  end as suscripto
         FROM producto p left join suscripcion s on (p.Id= s.IdProducto) and s.IdUsuario = $idUsuario;");

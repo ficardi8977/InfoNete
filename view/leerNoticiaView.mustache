@@ -15,37 +15,45 @@
 
         <div class="col-md-6 my-5" id="imagen">
             <img src="/public/{{imagen}}" alt="Imagen" style="width: 500px; height: 300px">
-            <div id="mapa"  style="width: 500px; height: 2px;" class="map-responsive"></div>
+            <div id="mapa" style="width: 500px; height: 2px;" class="map-responsive"></div>
         </div>
     </div>
     <input type="hidden" id="coordenadasX" value="{{CoordenadaX}}">
     <input type="hidden" id="coordenadasY" value="{{CoordenadaY}}">
 
     {{#Link}}
-        <div id="link">
-            <span>Para mayor informacion ingresa al siguiente link</span>
-            <a href="{{Link}}">{{Link}}</a>
-        </div>
+    <div id="link">
+        <span>Para mayor informacion ingresa al siguiente link</span>
+        <a href="{{Link}}">{{Link}}</a>
+    </div>
     {{/Link}}
 
     {{#foto}}
-        <div id="foto" class="text-center">
-            <img class="img-fluid" src="/public/{{foto}}" alt="Imagen" >
-        </div>
+    <div id="foto" class="text-center">
+        <img class="img-fluid" src="/public/{{foto}}" alt="Imagen">
+    </div>
     {{/foto}}
 
     {{#video}}
-        <div id="video" class="text-center">>
-            <video class="w-50" src="/public/{{video}}" controls></video>
-        </div>
+    <div id="video" class="text-center">>
+        <video class="w-50" src="/public/{{video}}" controls></video>
+    </div>
     {{/video}}
 
     {{#grabacion}}
-        <div id="grabacion" class="text-center">>
-            <audio id="reproducir" src="/public/{{grabacion}}" class="col-md-4" controls></audio>
-        </div>
+    <div id="grabacion" class="text-center">>
+        <audio id="reproducir" src="/public/{{grabacion}}" class="col-md-4" controls></audio>
+    </div>
     {{/grabacion}}
+    <div class="d-flex justify-content-center">
+<<<<<<< HEAD
+        <a href="javascript:history.back()"><button type="button" class='btn btn-outline-dark my-4' name="volver">Volver</button></a>
+=======
+        <a href="javascript:history.back()" class='btn btn-outline-dark my-4'>Volver</a>
+>>>>>>> c2e03cc064f5c07d5b6aa0d3a35101c14d712bbc
+    </div>
 </div>
+
 <script type="text/javascript">
     document.body.addEventListener("load", loadMap());
 </script>

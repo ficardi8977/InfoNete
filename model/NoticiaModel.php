@@ -9,7 +9,8 @@ class NoticiaModel {
     //obtenemos todas las noticias
     public function getNoticias($idEdicionSeccion)
     {
-        $sql = "SELECT n.Titulo, n.Id, n.IdEstadoNoticia, p.Nombre Producto, s.Nombre Seccion, e.Numero Edicion
+        $sql = "SELECT n.Titulo, n.Id, n.IdEstadoNoticia, p.Nombre Producto, s.Nombre Seccion, e.Numero Edicion,
+        (SELECT Nombre FROM multimedia WHERE IdNoticia = n.Id LIMIT 1) Imagen
         FROM noticia n
         JOIN edicionseccion es
         ON n.IdEdicionSeccion = es.Id
@@ -206,7 +207,8 @@ class NoticiaModel {
 
     public function buscarNoticia($busqueda)
     {
-        $sql = "SELECT n.Titulo, n.Id, n.IdEstadoNoticia, p.Nombre Producto, s.Nombre Seccion, e.Numero Edicion
+        $sql = "SELECT n.Titulo, n.Id, n.IdEstadoNoticia, p.Nombre Producto, s.Nombre Seccion, e.Numero Edicion,
+        (SELECT Nombre FROM multimedia WHERE IdNoticia = n.Id LIMIT 1) Imagen
         FROM noticia n
         JOIN edicionseccion es
         ON n.IdEdicionSeccion = es.Id
