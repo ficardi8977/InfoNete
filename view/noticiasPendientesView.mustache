@@ -19,15 +19,15 @@
         <tbody>
         {{#noticiasAAprobar}}
             <tr class='text-center' id="noticia{{Id}}">
-                <td><img src="/public/{{Imagen}}" class='img-fluid'></td>
+                <td><img src="/public/{{Imagen}}" class="p-3" alt="Imagen" style="width: 22rem; height: 14rem; object-fit: cover"></td>
                 <td >{{Titulo}}</td>
                 <td>{{Producto}}</td>
                 <td>{{Edicion}}</td>
                 <td>{{Seccion}}</td>
                 <td class="col-md-5">
-                <div class='d-flex justify-content-center'>
+                <div class='d-flex justify-content-center flex-column'>
                         <form action="/noticia/leer" method="POST">
-                                        <div class='px-2'>
+                                        <div class='px-2 py-1'>
                                             <button class='btn btn-info text-light leer editor{{IdEstadoNoticia}}' name="idNoticia" style="width: 9rem;" type='submit'
                                                     value="{{Id}}">
                                                 Leer
@@ -35,13 +35,13 @@
                                         </div>
                                 </form>
                         {{#SoloEditor}}
-                        <div class='px-2'>
+                        <div class='px-2 py-1'>
                             <button class='btn btn-success aprobar{{IdEstadoNoticia}}' id="aprobar2"
                                 style="width: 9rem;" name="aprobar" type='button' value="{{Id}}">
                                 Aprobar
                             </button>
                         </div>
-                        <div class='px-2'>
+                        <div class='px-2 py-1'>
                             <button class='btn btn-danger rechazar{{IdEstadoNoticia}}' id="rechazar2"
                                 style="width: 9rem;" name="rechazar" type='button' value="{{Id}}">
                                 Rechazar
