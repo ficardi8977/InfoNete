@@ -103,13 +103,5 @@ class UsuarioController {
         $IdUsuario = $_POST['Id'];
         $this->usuarioModel->deleteUsuario($IdUsuario);
         Redirect::doIt("/usuario/mostrarUsuarios");
-    }
-
-    public function noticiasAAprobar(){
-        Permisos::validarAcceso(Rol::Editor);
-        $data['noticiasAAprobar']= $this->usuarioModel->noticiasAAprobar();
-        echo $this->render->render("noticiasPendientesView.mustache", SesionData::cargar($data));
-    }
-
-    
+    }   
 }

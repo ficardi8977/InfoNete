@@ -114,7 +114,14 @@ class NoticiaController {
         $idNoticia = $_POST["datos"];
         if($this->noticiaModel->verificarEstadoNoticia($idNoticia) == 2){
             $this->noticiaModel->aprobarNoticia($idNoticia);
-            echo "Noticia aprobada y publicada";
+            
+            $myObj = new stdClass();
+            $myObj->name = $idNoticia;
+            $myObj->mensaje = "Noticia aprobada y publicada";
+
+            $myJSON = json_encode($myObj);
+
+            echo $myJSON;
         }
     }
 
@@ -126,7 +133,13 @@ class NoticiaController {
         $estado = $this->noticiaModel->verificarEstadoNoticia($idNoticia);
         if($estado == 2 || $estado == 3){
             $this->noticiaModel->banearNoticia($idNoticia);
-            echo "Noticia baneada";
+            $myObj = new stdClass();
+            $myObj->name = $idNoticia;
+            $myObj->mensaje = "Noticia baneada";
+
+            $myJSON = json_encode($myObj);
+
+            echo $myJSON;
         }
     }
 
@@ -221,5 +234,11 @@ class NoticiaController {
             if($data["noticias"])
                 echo $this->render->render("partial/tablaNoticias.mustache", SesionData::cargar($data));
         }
+    }
+
+    public function pendientesAprobacion(){
+        Permisos::validarAcceso(Rol::Editor);
+        $data['noticiasAAprobar']= $this->noticiaModel->noticiasAAprobar();
+        echo $this->render->render("noticiasPendientesView.mustache", SesionData::cargar($data));
     }
 }

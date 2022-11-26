@@ -221,4 +221,24 @@ class NoticiaModel {
         OR p.Nombre LIKE '%$busqueda%'";
         return $this->database->query($sql);
     }
+    
+    public function noticiasAAprobar(){
+        $sql = ("SELECT 
+        n.Id,
+		n.Titulo, 
+        p.nombre as Producto,
+        e.numero as Edicion, 
+        s.nombre as Seccion,
+        n.IdEstadoNoticia,
+        (select m.Nombre from multimedia m where m.IdNoticia = n.Id LIMIT 1) as Imagen
+        FROM noticia n
+        join edicionseccion es on es.id = n.idEdicionSeccion
+        join edicion e on e.id = es.idEdicion
+        join seccion s on s.id = es.idSeccion
+        join producto p on p.id = e.idProducto       	
+        WHERE n.IdEstadoNoticia = 2");
+
+        return $this->database->query($sql);
+
+    }
 }

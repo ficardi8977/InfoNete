@@ -7,6 +7,9 @@ $(document).ready(function() {
         case 'noticias':
             listarNoticias();
             break;
+        case 'pendientes':
+            pendientes();
+            break;
         default:
             console.log("no hay contenedor");
             break;
@@ -193,5 +196,42 @@ $(document).ready(function() {
             return false;
         }
         return true;
+    }
+
+    
+    function pendientes() {
+        $("#mensajeAlerta").hide();
+        $(document).on("click", ".aprobar2", function(){
+            $.ajax({
+                data:  {datos: this.value},
+                type:  'POST',
+                url:   '/noticia/aprobar',
+                success:  function (result) {
+                 const obj = JSON.parse(result);
+                 $('#noticia'+ obj.name).prop('hidden',true);
+                 $('#mensajeAlerta').text(obj.mensaje);
+                 $("#mensajeAlerta").fadeTo(2000, 500).slideUp(500, function() {
+                    $("#mensajeAlerta").slideUp(500);
+                  });   
+                }
+            });
+        });
+
+        $(document).on("click", ".rechazar2", function(){
+            $("#mensajeAlerta").hide();
+            $.ajax({
+                data:  {datos: this.value},
+                type:  'POST',
+                url:   '/noticia/banear',
+                success:  function (result) {
+                 const obj = JSON.parse(result);
+                 $('#noticia'+ obj.name).prop('hidden',true);
+                 $('#mensajeAlerta').text(obj.mensaje);
+                 $("#mensajeAlerta").fadeTo(2000, 500).slideUp(500, function() {
+                    $("#mensajeAlerta").slideUp(500);
+                  }); 
+                }
+            });
+        });
     }
 });

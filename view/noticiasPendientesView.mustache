@@ -1,77 +1,59 @@
-{{header}}
-
+ {{> header}}
 {{#sesion}}
-    <h1 class="text-center">Noticias a aprobar</h1>
+    <div class="container" id="pendientes">
+    <h1 class="text-center">Noticias pendientes de aprobación</h1>
+    <div id="mensajeAlerta" class="alert alert-success" role="alert">
+    mensaje de alerta
+    </div>
     <table id="tablaNoticias" class='table table-hover table-striped'>
         <thead>
         <tr class='text-center table-dark'>
+            <th scope='col'>Foto</th>
             <th scope='col'>Titulo Noticia</th>
-            <th scope='col'>Diario o Revista</th>
+            <th scope='col'>Producto</th>
             <th scope='col'>Edicion</th>
             <th scope='col'>Seccion</th>
             <th scope='col'>Acciones</th>
         </tr>
         </thead>
         <tbody>
-        {{#SoloEditor}}{{#noticias}}
+        {{#noticiasAAprobar}}
             <tr class='text-center' id="noticia{{Id}}">
-                <td>{{Titulo}}</td>
+                <td><img src="/public/{{Imagen}}" class='img-fluid'></td>
+                <td >{{Titulo}}</td>
                 <td>{{Producto}}</td>
                 <td>{{Edicion}}</td>
                 <td>{{Seccion}}</td>
                 <td class="col-md-5">
-                    <div class='d-flex justify-content-center'>
-                        {{#EsEditor}}
-                            <form action="/noticia/leer" method="POST">
-                                <div class='px-2'>
-                                    <button class='btn btn-info text-light leer editor{{IdEstadoNoticia}}' name="idNoticia" style="width: 9rem;" type='submit'
-                                            value="{{Id}}">
-                                        Leer
-                                    </button>
-                                </div>
-                            </form>
-                        {{/EsEditor}}
-                        {{#SoloEditor}}
-                            <div class='px-2'>
-                                <button class='btn btn-success aprobar{{IdEstadoNoticia}}' id="aprobar{{Id}}"
-                                        style="width: 9rem;" name="aprobar" type='button' value="{{Id}}" disabled>
-                                    Aprobar
-                                </button>
-                            </div>
-                            <div class='px-2'>
-                                <button class='btn btn-danger rechazar{{IdEstadoNoticia}}' id="rechazar{{Id}}"
-                                        style="width: 9rem;" name="rechazar" type='button' value="{{Id}}" disabled>
-                                    Rechazar
-                                </button>
-                            </div>
-                        {{/SoloEditor}}
-
-
-                    </div>
-                </td>
-            </tr>
-        {{/noticias}}{{/SoloEditor}}
-        <tbody>
-        {{#SoloEditor}}{{#noticias}}{{#Publicada}}
-            <tr class='text-center' id="noticia{{Id}}">
-                <td>{{Titulo}}</td>
-                <td>{{Producto}}</td>
-                <td>{{Edicion}}</td>
-                <td>{{Seccion}}</td>
-                <td class="col-md-5">
-                    <div class='d-flex justify-content-center'>
+                <div class='d-flex justify-content-center'>
                         <form action="/noticia/leer" method="POST">
-                            <div class='px-2'>
-                                <button class='btn btn-info text-light leer' name="idNoticia" style="width: 9rem;" type='submit'
-                                        value="{{Id}}">
-                                    Leer
-                                </button>
-                            </div>
-                        </form>
+                                        <div class='px-2'>
+                                            <button class='btn btn-info text-light leer editor{{IdEstadoNoticia}}' name="idNoticia" style="width: 9rem;" type='submit'
+                                                    value="{{Id}}">
+                                                Leer
+                                            </button>
+                                        </div>
+                                </form>
+                        {{#SoloEditor}}
+                        <div class='px-2'>
+                            <button class='btn btn-success aprobar{{IdEstadoNoticia}}' id="aprobar2"
+                                style="width: 9rem;" name="aprobar" type='button' value="{{Id}}">
+                                Aprobar
+                            </button>
+                        </div>
+                        <div class='px-2'>
+                            <button class='btn btn-danger rechazar{{IdEstadoNoticia}}' id="rechazar2"
+                                style="width: 9rem;" name="rechazar" type='button' value="{{Id}}">
+                                Rechazar
+                            </button>
+                        </div>
                     </div>
-                </td>
-            </tr>
-        {{/Publicada}}{{/noticias}}{{/SoloEditor}}
+                    </tr>
+                    {{/SoloEditor}}
+        {{/noticiasAAprobar}}
         </tbody>
     </table>
 {{/sesion}}
+</div>
+<script type="text/javascript" src="/public/js/noticias.js"></script>
+{{> footer}}

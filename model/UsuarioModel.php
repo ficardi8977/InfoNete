@@ -167,14 +167,4 @@ class UsuarioModel
             "' and c.FechaCompra < '".$fechaHasta.
             "' and c.IdUsuario = $idUsuario and c.Pagado = 1");
     }
-
-    public function noticiasAAprobar(){
-        $sql = ("SELECT n.Titulo, n.Subtitulo, n.Cuerpo, en.Id as Estado
-        FROM noticia n
-        JOIN estadonoticia en on n.IdEstadoNoticia = en.Id
-        WHERE IdEstadoNoticia = 2" );
-
-        return $this->database->query($sql);
-
-    }
 }
