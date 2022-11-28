@@ -1,6 +1,10 @@
 {{> header}}
 <body onload="cargarClimas()">
+<div class="container">
 <h1 class="text-center"> Pronostico del tiempo</h1> 
+<div class="d-flex justify-content-md-start pb-4">
+    <a href="javascript: history.go(-1)" class="btn btn-dark d-flex align-items-center"><i class="bi bi-arrow-left-circle fs-5 me-2"></i>Volver</a>
+</div>    
 <div id="containerWeather" style="width: 20vw; margin: 8rem auto 12rem auto;">
     <div class="border rounded-3 shadow bg-primary text-light" style="top: 15px; right: 10px;">
         <div class="text-center pt-4 pb-3">
@@ -22,6 +26,7 @@
             <div id="loader" class="loader m-5">Loading...</div>
         </div>
     </div>
+</div>
 </div>
     <script type="text/javascript" src="../public/js/clima.js"></script>
 {{> footer}}
