@@ -1,20 +1,24 @@
 {{> header}}
-<div class="container ">
-    <h1 class="text-center">Contenido de la edición N° {{edicion.0.Numero}} del producto "{{edicion.0.NombreProducto}}"</h1>
+<div class="container mb-5">
     <div>
         <div class="col-md-12">
-                <div class="text-center">
-                    <img src= "/public/{{edicion.0.ImagenProducto}}" class="img-fluid rounded" alt="...">
-                </div>  
-                <div class="d-flex justify-content-md-start pb-4">
-    <a href="javascript: history.go(-1)" class="btn btn-dark d-flex align-items-center"><i class="bi bi-arrow-left-circle fs-5 me-2"></i>Volver</a>
-</div>      
+            <div class="py-5 d-flex justify-content-between align-items-center" style="" id="band">
+                <div class="d-inline-block float-left">
+                    <a href="javascript: history.go(-1)" class="btn btn-dark d-flex align-items-center"><i class="bi bi-arrow-left-circle fs-5 me-2"></i>Volver</a>
+                </div>
+                <h1 class="text-center">Contenido de la edición N° {{edicion.0.Numero}} del producto "{{edicion.0.NombreProducto}}"</h1>
+                <div></div>
+            </div>
+
+            <div class="text-center">
+                <img src= "/public/{{edicion.0.ImagenProducto}}" class="img-fluid rounded mb-5" alt="...">
+            </div>
             <div class="alert alert-primary" role="alert">
                 <p>
                     Seleccioná la seccion de la edicion para poder acceder y visualizar las noticias.
                 </p>
             </div>
-            <table class="table table-hover   ">
+            <table class="table table-hover">
                 <thead class="table-dark ">
                     <tr class="text-center">
                         <th scope="col">Seccion</th>
@@ -24,12 +28,12 @@
                 </thead>
                 {{#edicion}}
                 <tbody>
-                    <tr class="text-center">
+                    <tr class="text-center align-middle">
                         <td>{{NombreSeccion}}</td>
                         <td>{{CantidadNoticias}}</td>
                         <td>
                             <div class="d-flex justify-content-center">
-                                <div class="px-2">
+                                <div class="px-2 py-2">
                                     <form action="/noticia/listarNoticias" method="GET">
                                         <input type="hidden" name="edicion" value={{IdEdicion}}>
                                         <input type="hidden" name="seccion" value={{IdSeccion}}>

@@ -1,16 +1,18 @@
 {{> header}}
-<div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
-<h1>Ediciones del producto "{{ediciones.0.NombreProducto}}"</h1>
+<div class="container py-5 d-flex justify-content-between align-items-center" id="band">
+    <div class="d-inline-block float-left">
+        <a href="javascript: history.go(-1)" class="btn btn-dark d-flex align-items-center"><i class="bi bi-arrow-left-circle fs-5 me-2"></i>Volver</a>
+    </div>
+    <h1 class="text-center">Ediciones del producto "{{ediciones.0.NombreProducto}}"</h1>
+    <div></div>
 </div>
-<div class="d-flex flex-row">
-        <div class="col-2 my-5 ">
-            <div class="row g-0 text-center"style="max-width: 540px;">
-                 <div>
-                    <img src= "../public/{{ediciones.0.ImagenProducto}}" class="img-fluid rounded" alt="...">
-                 </div>
+<div class="container d-flex flex-row mb-5">
+        <div class="col-2 me-5">
+            <div class="row text-center"style="max-width: 540px;">
+                <img src= "../public/{{ediciones.0.ImagenProducto}}" class="img-fluid rounded" alt="...">
             </div>
         </div>
-        <table class="table">
+        <table class="table text-center align-middle">
         <thead class="table-dark">
                 <tr>
                     <th scope="col">N°Edicion</th>

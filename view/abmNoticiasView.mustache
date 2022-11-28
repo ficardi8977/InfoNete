@@ -1,12 +1,15 @@
 {{> header}}
 <div class="container" id="ABMNoticias" style="min-height:calc(100vh - 17.5rem);">
-<h1 class="text-center"> ABM de Noticias</h1>
-    <div class="d-flex justify-content-md-start pb-4">
-        <a href="/" class="btn btn-dark d-flex align-items-center"><i class="bi bi-arrow-left-circle fs-5 me-2"></i>Volver</a>
+    <div class="py-5 d-flex justify-content-between align-items-center" id="band">
+        <div class="d-inline-block float-left">
+            <a href="/" class="btn btn-dark d-flex align-items-center"><i class="bi bi-arrow-left-circle fs-5 me-2"></i>Volver</a>
+        </div>
+        <h1 class="text-center"> ABM de Noticias</h1>
+        <div></div>
     </div>
     <input type="hidden" id="IdEdicionSeccion" value="{{IdEdicionSeccion}}">
     <!--<h1 class="display-1 text-center m-4">ABM NOTICIAS</h1>-->
-    <form class="form-inline" id="buscar" action="/noticia/buscar" method="GET">
+    <form class="form-inline my-4" id="buscar" action="/noticia/buscar" method="GET">
         <div class="row">
             <div class="col-md-9">
                 <input class="form-control" id="busqueda" autocomplete="off" type="text" name="busqueda"
@@ -33,7 +36,7 @@
                 Noticias</button>
         </div>
     </form>
-    <div id="imagen" class="d-flex justify-content-center"></div>
+    <div id="imagen" class="d-flex justify-content-center mb-5"></div>
 </div>
 <script type="text/javascript" src="/public/js/noticias.js"></script>
 {{> footer}}
