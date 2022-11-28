@@ -131,10 +131,16 @@ class UsuarioModel
         u.Email,
         u.CoordenadasX,
         u.CoordenadasY,
-        (select GROUP_CONCAT(p.Nombre, '(edicion ', p.IdTipoProducto,')') as suscripcion from suscripcion s join producto p on p.id = s.IdProducto where s.idUsuario = u.id group by s.IdUsuario)  as suscripciones,
-        (select GROUP_CONCAT(p.Nombre, '(edicion ',c.IdEdicion,')') as compras from compra c join edicion e on (c.IdEdicion= e.Id) join producto p on(e.Id=p.Id) where c.idUsuario = u.id group by c.IdUsuario) as compras
-        FROM usuario u
-        order by u.id");
+        (select GROUP_CONCAT(p.Nombre) as suscripcion from suscripcion s 
+         join producto p on p.id = s.IdProducto 
+         where s.idUsuario = u.id group by 		s.IdUsuario)  as suscripciones,
+        (select GROUP_CONCAT(p.Nombre, '(edicion ',c.IdEdicion,')') as compras 
+         from compra c 
+         join edicion e on (c.IdEdicion= e.Id) 
+         join producto p on(e.IdProducto=p.Id) 
+         where c.idUsuario =  u.id group by c.IdUsuario) as compras
+FROM usuario u
+order by u.id");
         return $this->database->query($sql);
     }
 
