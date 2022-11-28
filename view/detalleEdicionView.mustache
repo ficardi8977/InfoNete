@@ -1,8 +1,11 @@
 {{> header}}
 <div class="container ">
-    <h1 class="text-center">Contenido de la edición del producto</h1>
+    <h1 class="text-center">Contenido de la edición N° {{edicion.0.Numero}} del producto "{{edicion.0.NombreProducto}}"</h1>
     <div>
         <div class="col-md-12">
+                <div class="text-center">
+                    <img src= "/public/{{edicion.0.ImagenProducto}}" class="img-fluid rounded" alt="...">
+                </div>  
             <div class="alert alert-primary" role="alert">
                 <p>
                     Seleccioná la seccion de la edicion para poder acceder y visualizar las noticias.
